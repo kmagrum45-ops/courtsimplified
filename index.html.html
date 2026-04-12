@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CourtSimplified | Canada-Wide Legal Preparation Platform</title>
+  <meta name="description" content="CourtSimplified is a Canada-wide legal preparation platform that helps people organize facts, understand key legal issues, and prepare stronger materials for family, civil, and small claims matters." />
+  <style>
+    :root {
+      --bg: #f3f7fc;
+      --surface: #ffffff;
+      --surface-soft: #f8fbff;
+      --text: #132033;
+      --muted: #5c6b7f;
+      --line: #d7e2f1;
+      --primary: #1b4ed8;
+      --primary-dark: #143ca8;
+      --primary-soft: #e9f1ff;
+      --accent: #0f766e;
+      --accent-soft: #eaf9f5;
+      --gold: #c89f45;
+      --hero-a: #0d1b35;
+      --hero-b: #183761;
+      --hero-c: #23529c;
+      --hero-d: #5fa4ff;
+      --warning: #fff8e8;
+      --success-soft: #edf9f5;
+      --shadow: 0 18px 44px rgba(20, 35, 70, 0.08);
+      --radius: 24px;
+      --radius-sm: 14px;
+      --max: 1280px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(95,164,255,0.12), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(27,78,216,0.08), transparent 22%),
+        linear-gradient(180deg, #f7faff 0%, #f3f7fc 42%, #eef4fb 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      backdrop-filter: blur(12px);
+      background: rgba(243,247,252,0.9);
+      border-bottom: 1px solid rgba(215,226,241,0.9);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.08rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: var(--shadow);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover { color: var(--primary); }
+
+    .nav-cta {
+      padding: 11px 16px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: #fff !important;
+      font-weight: 700;
+    }
+
+    .hero { padding: 28px 0 26px; }
+
+    .hero-shell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.12), transparent 28%),
+        radial-gradient(circle at 100% 100%, rgba(95,164,255,0.16), transparent 24%),
+        linear-gradient(135deg, var(--hero-a) 0%, var(--hero-b) 44%, var(--hero-c) 78%, var(--hero-d) 120%);
+      border: 1px solid rgba(215,226,241,0.4);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(135deg, rgba(255,255,255,0.06), transparent 30%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cg opacity='0.16' fill='none' stroke='%23ffffff' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M800 170v355'/%3E%3Cpath d='M610 240h380'/%3E%3Cpath d='M800 170c0-28 21-49 49-49s49 21 49 49'/%3E%3Cpath d='M800 170c0-28-21-49-49-49s-49 21-49 49'/%3E%3Cpath d='M680 240 560 390'/%3E%3Cpath d='M920 240 1040 390'/%3E%3Cpath d='M520 390h78l48 112H394z'/%3E%3Cpath d='M1080 390h-78l-48 112h252z'/%3E%3Cpath d='M680 240 800 294 920 240'/%3E%3Cpath d='M680 565h240'/%3E%3Cpath d='M620 644h360'/%3E%3Cpath d='M708 565l-36 79h256l-36-79'/%3E%3C/g%3E%3Cg opacity='0.08' fill='%23ffffff'%3E%3Cpath d='M180 690c88-41 180-65 268-65 156 0 248 70 360 70 127 0 181-48 325-48 105 0 210 29 287 62v94H180Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 24px;
+      padding: 54px;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #dbe8ff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1,h2,h3,h4,h5 { margin: 0; line-height: 1.14; }
+
+    .hero-copy h1 {
+      color: #fff;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      max-width: 760px;
+    }
+
+    .hero-copy .lead {
+      color: rgba(255,255,255,0.88);
+      font-size: 1.08rem;
+      margin: 0 0 24px;
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    .btn-primary:hover { background: #edf4ff; }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,0.28);
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+    .hero-note {
+      color: rgba(255,255,255,0.76);
+      font-size: 0.95rem;
+      max-width: 720px;
+    }
+
+    .hero-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-block {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .hero-block h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .section { padding: 34px 0; }
+    .section-head { max-width: 900px; margin-bottom: 22px; }
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .soft-band {
+      background: linear-gradient(180deg, rgba(255,255,255,0.58), rgba(248,251,255,0.86));
+      border-top: 1px solid rgba(215,226,241,0.75);
+      border-bottom: 1px solid rgba(215,226,241,0.75);
+    }
+
+    .grid-2,.grid-3,.grid-4,.pricing-grid,.faq-grid,.footer-grid,.launch-grid,.tool-layout,.province-cards {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+    .faq-grid { grid-template-columns: repeat(2, 1fr); }
+    .launch-grid { grid-template-columns: 1.08fr 0.92fr; }
+    .footer-grid { grid-template-columns: 1.2fr 0.8fr 0.8fr; }
+    .tool-layout { grid-template-columns: 1fr 1fr; }
+    .province-cards { grid-template-columns: 1.08fr 0.92fr; }
+
+    .card,.pricing-card,.faq-card,.notice,.contact-box,.footer-card,.tool-shell,.output-box,.map-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .card h3,.pricing-card h3,.faq-card h3,.notice h3,.contact-box h3,.footer-card h3,.tool-shell h3,.output-box h3,.map-card h3 {
+      font-size: 1.16rem;
+      margin-bottom: 10px;
+    }
+
+    .card p,.pricing-card p,.faq-card p,.notice p,.contact-box p,.footer-card p,.tool-shell p,.output-box p,.map-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: #e8f0ff;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .mini-label {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eef5ff;
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .checklist,.bullet-list,.pricing-list,.footer-links,.province-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .checklist li,.bullet-list li,.pricing-list li,.province-list li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .bullet-list li::before,.pricing-list li::before,.province-list li::before {
+      content: "•";
+      position: absolute;
+      left: 3px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .education-box {
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+    }
+
+    .province-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 18px 20px;
+      background: linear-gradient(135deg, #ffffff, #eef5ff);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .province-banner strong {
+      color: var(--primary);
+    }
+
+    .province-selector {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    select, input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+      color: var(--text);
+    }
+
+    textarea { min-height: 120px; resize: vertical; }
+
+    .province-select {
+      min-width: 240px;
+      background: white;
+    }
+
+    .map-card {
+      background:
+        radial-gradient(circle at top right, rgba(27,78,216,0.06), transparent 30%),
+        linear-gradient(180deg, #ffffff, #f8fbff);
+    }
+
+    .province-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .province-tile {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .province-tile strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .province-tile span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .tool-layout {
+      align-items: start;
+    }
+
+    .form-grid { display: grid; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .tool-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .tool-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .tool-btn.primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .tool-btn.primary:hover { background: var(--primary-dark); }
+
+    .tool-btn.secondary {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .tool-btn.secondary:hover { background: #f8fbff; }
+
+    .output-box {
+      min-height: 100%;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+    }
+
+    .output-panel {
+      white-space: pre-wrap;
+      line-height: 1.65;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      min-height: 500px;
+      margin-top: 14px;
+    }
+
+    .saved-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--primary);
+      transform: translateY(-4px);
+    }
+
+    .badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #e8f0ff;
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 2px 0;
+    }
+
+    .price small {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .pricing-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .pay-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .pay-btn.primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .pay-btn.primary:hover { background: var(--primary-dark); }
+
+    .pay-btn.secondary {
+      background: white;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .pay-btn.secondary:hover { background: #f8fbff; }
+
+    .notice {
+      background: var(--warning);
+      border-color: #ead18c;
+    }
+
+    .footer-links a { color: var(--muted); }
+    .footer-links a:hover { color: var(--primary); }
+
+    .footer-bottom {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom p { margin: 0; color: var(--muted); }
+    .tiny { font-size: 0.92rem; color: var(--muted); }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .grid-3,
+      .grid-4,
+      .pricing-grid,
+      .faq-grid,
+      .launch-grid,
+      .footer-grid,
+      .tool-layout,
+      .province-cards,
+      .province-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-grid { grid-template-columns: 1fr; }
+      .province-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav { gap: 12px; }
+
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .pricing-grid,
+      .faq-grid,
+      .launch-grid,
+      .footer-grid,
+      .tool-layout,
+      .province-cards,
+      .province-grid,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid { padding: 28px 20px; }
+      .card,.pricing-card,.faq-card,.notice,.contact-box,.footer-card,.tool-shell,.output-box,.map-card,.hero-panel { padding: 20px; }
+      .province-banner { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark">CS</span>
+        <span>CourtSimplified</span>
+      </a>
+      <nav class="nav">
+        <a href="#jurisdiction">Jurisdiction</a>
+        <a href="#features">Features</a>
+        <a href="#learn">Learn</a>
+        <a href="#tool">Case Builder</a>
+        <a href="#contact" class="nav-cta">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Canada-wide legal preparation platform</div>
+            <h1>Understand your case, choose your province, and build stronger materials.</h1>
+            <p class="lead">
+              CourtSimplified is built for people across Canada who need structure, clarity, and practical help with family, civil, and small claims matters. It combines Canada-wide legal guidance with province-aware steps, outputs, and next-step thinking.
+            </p>
+            <div class="hero-actions">
+              <a href="#jurisdiction" class="btn btn-primary">Choose Your Province</a>
+              <a href="#tool" class="btn btn-secondary">Use the Case Builder</a>
+            </div>
+            <p class="hero-note">
+              Built to feel more like a real platform than a generic template, with blue as the main brand color, a stronger visual identity, and a province-aware workflow from the start.
+            </p>
+          </div>
+
+          <aside class="hero-panel">
+            <div class="hero-block">
+              <h3>What makes this different</h3>
+              <ul class="checklist">
+                <li>Canada-wide positioning, not one-province branding</li>
+                <li>Province-aware case intake and outputs</li>
+                <li>Clear plain-language teaching with practical structure</li>
+                <li>Built to grow into a full AI legal preparation system</li>
+              </ul>
+            </div>
+            <div class="hero-block province-pick">
+              <h3>Built for all provinces and territories</h3>
+              <p>Users can start with their jurisdiction first, then move into tailored guidance and structured outputs.</p>
+              <div class="province-pill-row">
+                <span class="province-pill">Ontario</span>
+                <span class="province-pill">British Columbia</span>
+                <span class="province-pill">Alberta</span>
+                <span class="province-pill">Quebec</span>
+                <span class="province-pill">Nova Scotia</span>
+                <span class="province-pill">And more</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="jurisdiction">
+      <div class="container">
+        <div class="section-head">
+          <h2>Start with your jurisdiction</h2>
+          <p>
+            The strongest version of this platform starts by recognizing that some legal principles are Canada-wide, while forms, court names, filing tracks, and procedural details vary by province or territory.
+          </p>
+        </div>
+
+        <div class="province-banner">
+          <div>
+            <div class="status-chip">Current jurisdiction: <strong id="selectedProvinceLabel">Ontario</strong></div>
+            <p class="tiny" style="margin-top:8px; max-width:720px;">This selection affects the wording in the case builder and the jurisdiction summaries shown below. You can change it at any time.</p>
+          </div>
+          <div class="province-selector">
+            <select id="provinceSelect" class="province-select">
+              <option>Ontario</option>
+              <option>British Columbia</option>
+              <option>Alberta</option>
+              <option>Saskatchewan</option>
+              <option>Manitoba</option>
+              <option>Quebec</option>
+              <option>New Brunswick</option>
+              <option>Nova Scotia</option>
+              <option>Prince Edward Island</option>
+              <option>Newfoundland and Labrador</option>
+              <option>Yukon</option>
+              <option>Northwest Territories</option>
+              <option>Nunavut</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="province-cards" style="margin-top:18px;">
+          <article class="map-card">
+            <h3>How the site handles Canada-wide vs province-specific information</h3>
+            <ul class="province-list" style="margin-top:14px;">
+              <li>Canada-wide guidance explains concepts like negligence, evidence, family-law reasoning, and state conduct in plain language.</li>
+              <li>Province-aware logic helps tailor court naming, process language, and next-step structure to the selected jurisdiction.</li>
+              <li>The platform can expand later into province-specific forms, filing guides, and court procedure modules.</li>
+            </ul>
+
+            <div class="province-grid">
+              <div class="province-tile"><strong>Ontario</strong><span>Family, civil, small claims support</span></div>
+              <div class="province-tile"><strong>British Columbia</strong><span>Province-aware guidance path</span></div>
+              <div class="province-tile"><strong>Alberta</strong><span>Province-aware guidance path</span></div>
+              <div class="province-tile"><strong>Quebec</strong><span>High-level support with future tailoring</span></div>
+              <div class="province-tile"><strong>Atlantic Canada</strong><span>Expandable workflow model</span></div>
+              <div class="province-tile"><strong>Territories</strong><span>Future procedural expansion</span></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Platform approach</h3>
+            <p>This site is designed as a legal preparation system, not a province-limited brochure. The workflow is:</p>
+            <ul class="bullet-list" style="margin-top:14px;">
+              <li>Choose the user’s province or territory</li>
+              <li>Teach the core legal ideas in plain language</li>
+              <li>Help the user build a structured case summary</li>
+              <li>Later layer in more detailed province-specific process guidance</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="features">
+      <div class="container">
+        <div class="section-head">
+          <h2>Main platform features</h2>
+          <p>
+            The platform is designed to solve real user problems: uncertainty, weak structure, confusion about what matters, and not knowing what to do next.
+          </p>
+        </div>
+        <div class="grid-4">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Province-aware intake</h3>
+            <p>Users start by choosing their province or territory so the platform can structure guidance around their jurisdiction.</p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Case Type Finder</h3>
+            <p>Helps people think about whether their issue is family, civil, small claims, negligence-related, or tied to public authority.</p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Story Builder</h3>
+            <p>Turns a messy personal story into a cleaner summary, timeline, and issue list.</p>
+          </article>
+          <article class="card">
+            <div class="icon">04</div>
+            <h3>Judge’s Perspective</h3>
+            <p>Explains in plain language what judges often look for in different kinds of matters.</p>
+          </article>
+          <article class="card">
+            <div class="icon">05</div>
+            <h3>Canada-wide legal basics</h3>
+            <p>Teaches broad legal concepts that matter across the country, while leaving room for province-specific procedure later.</p>
+          </article>
+          <article class="card">
+            <div class="icon">06</div>
+            <h3>Interactive case summary</h3>
+            <p>Lets users generate a practical written output they can save, print, or refine.</p>
+          </article>
+          <article class="card">
+            <div class="icon">07</div>
+            <h3>Trust-based structure</h3>
+            <p>Built with credibility sections, common mistakes, and plain-language legal teaching.</p>
+          </article>
+          <article class="card">
+            <div class="icon">08</div>
+            <h3>Future AI-ready design</h3>
+            <p>Ready to expand into saved accounts, real AI outputs, subscriptions, and referral tools.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="learn">
+      <div class="container">
+        <div class="section-head">
+          <h2>Learn the basics in plain language</h2>
+          <p>
+            These sections teach the ideas users need across Canada, regardless of province. Later, you can add more detailed province-specific procedure pages on top of this foundation.
+          </p>
+        </div>
+        <div class="grid-2">
+          <article class="card education-box">
+            <span class="mini-label">Negligence</span>
+            <h3>What people usually need to prove</h3>
+            <ul class="bullet-list" style="margin-top:14px;">
+              <li>Was there a duty of care?</li>
+              <li>Was that duty breached by action or inaction?</li>
+              <li>Did the breach cause real harm?</li>
+              <li>Can the harm be described clearly and supported by proof?</li>
+            </ul>
+          </article>
+
+          <article class="card education-box">
+            <span class="mini-label">Charter / State Conduct</span>
+            <h3>What people usually need to think about</h3>
+            <ul class="bullet-list" style="margin-top:14px;">
+              <li>Was the conduct done by a public authority or part of the state?</li>
+              <li>What right is being said to be affected?</li>
+              <li>What action or omission is being challenged?</li>
+              <li>How did the conduct create serious harm or unfairness?</li>
+            </ul>
+          </article>
+
+          <article class="card education-box">
+            <span class="mini-label">Family</span>
+            <h3>What judges often care about</h3>
+            <ul class="bullet-list" style="margin-top:14px;">
+              <li>The child’s best interests</li>
+              <li>Safety, stability, and routine</li>
+              <li>Parenting history and reliability</li>
+              <li>Evidence and conduct, not just accusation</li>
+            </ul>
+          </article>
+
+          <article class="card education-box">
+            <span class="mini-label">Civil / Small Claims</span>
+            <h3>What judges often care about</h3>
+            <ul class="bullet-list" style="margin-top:14px;">
+              <li>What happened and when</li>
+              <li>What agreement, duty, or event is being relied on</li>
+              <li>What evidence supports the position</li>
+              <li>What remedy or money is being requested</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="tool">
+      <div class="container">
+        <div class="section-head">
+          <h2>Province-aware case builder</h2>
+          <p>
+            This tool uses the selected province to produce a more tailored summary. It gives users a better starting point than a generic write-up.
+          </p>
+        </div>
+
+        <div class="tool-layout">
+          <section class="tool-shell">
+            <h3>Case intake</h3>
+            <p>The selected province will be used in the structured output. Users can change it anytime.</p>
+
+            <div class="form-grid" style="margin-top:16px;">
+              <div class="form-row">
+                <div>
+                  <label for="name">Your name</label>
+                  <input id="name" type="text" placeholder="Your full name" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" type="email" placeholder="hello@example.com" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label for="caseType">Type of issue</label>
+                  <select id="caseType">
+                    <option value="Family Law">Family Law</option>
+                    <option value="Civil Matter">Civil Matter</option>
+                    <option value="Small Claims">Small Claims</option>
+                    <option value="Negligence">Negligence</option>
+                    <option value="State Conduct / Charter">State Conduct / Charter</option>
+                    <option value="Not Sure Yet">Not Sure Yet</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="goal">Main goal</label>
+                  <input id="goal" type="text" placeholder="What outcome do you want?" />
+                </div>
+              </div>
+
+              <div>
+                <label for="story">What happened?</label>
+                <textarea id="story" placeholder="Explain the situation in your own words. Include the important events and concerns."></textarea>
+              </div>
+
+              <div>
+                <label for="timeline">Important dates or sequence</label>
+                <textarea id="timeline" placeholder="List dates or key events in order, even if rough."></textarea>
+              </div>
+
+              <div>
+                <label for="evidence">What proof do you have?</label>
+                <textarea id="evidence" placeholder="Messages, records, emails, witnesses, reports, receipts, photos, letters, etc."></textarea>
+              </div>
+
+              <div>
+                <label for="concerns">Main concerns or issues</label>
+                <textarea id="concerns" placeholder="What are the biggest issues the court or decision-maker should understand?"></textarea>
+              </div>
+
+              <div class="tool-buttons">
+                <button class="tool-btn primary" id="generateSummaryBtn">Generate Summary</button>
+                <button class="tool-btn secondary" id="saveSummaryBtn">Save in Browser</button>
+                <button class="tool-btn secondary" id="printSummaryBtn">Print / Save PDF</button>
+                <button class="tool-btn secondary" id="clearSummaryBtn">Clear Form</button>
+              </div>
+
+              <p class="saved-note">This demo saves locally in the browser. Full account-based saving can be added later.</p>
+            </div>
+          </section>
+
+          <section class="output-box">
+            <h3>Structured output</h3>
+            <p>The selected jurisdiction is built directly into the output so the user’s summary feels less generic and more grounded.</p>
+            <div id="summaryOutput" class="output-panel">COURTSIMPLIFIED CASE SUMMARY
+
+Choose a province or territory, fill out the intake form, and generate a structured summary.
+
+This tool is designed to:
+- organize the story
+- identify likely issues
+- create a cleaner starting point
+- keep the selected jurisdiction visible in the output</div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <h2>Simple pricing</h2>
+          <p>
+            Start with easy, clear offers that fit users across Canada, then expand the service model as the platform grows.
+          </p>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card card">
+            <span class="badge">Best first purchase</span>
+            <h3>Single Document</h3>
+            <div class="price">$19 <small>one-time</small></div>
+            <p>For users who want one upgraded summary, draft, or organized output.</p>
+            <ul class="pricing-list" style="margin-top:14px;">
+              <li>Low barrier to buy</li>
+              <li>Good for first-time users</li>
+              <li>Works across multiple matter types</li>
+            </ul>
+            <div class="pricing-actions">
+              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Single%20Document%20Purchase%20Inquiry">Buy by Email</a>
+              <a class="pay-btn secondary" href="mailto:hello@courtsimplified.com?subject=PayPal%20Single%20Document%20Inquiry">PayPal Option</a>
+            </div>
+          </article>
+
+          <article class="pricing-card card featured">
+            <span class="badge">Recommended</span>
+            <h3>Case Workspace</h3>
+            <div class="price">$29 <small>per month</small></div>
+            <p>For people with ongoing matters who need continuing structure, planning, and draft support.</p>
+            <ul class="pricing-list" style="margin-top:14px;">
+              <li>Recurring monthly option</li>
+              <li>Best long-term value</li>
+              <li>Future-ready for saved case workspaces</li>
+            </ul>
+            <div class="pricing-actions">
+              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Case%20Workspace%20Inquiry">Start Monthly Plan</a>
+              <a class="pay-btn secondary" href="#contact">Ask a Question</a>
+            </div>
+          </article>
+
+          <article class="pricing-card card">
+            <span class="badge">Higher-value option</span>
+            <h3>Premium Document Pack</h3>
+            <div class="price">$49 <small>one-time</small></div>
+            <p>For users who want a more complete bundle and stronger organized output.</p>
+            <ul class="pricing-list" style="margin-top:14px;">
+              <li>Stronger upsell option</li>
+              <li>Higher perceived value</li>
+              <li>Fits more complex matters</li>
+            </ul>
+            <div class="pricing-actions">
+              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Premium%20Document%20Pack%20Inquiry">Buy by Email</a>
+              <a class="pay-btn secondary" href="mailto:hello@courtsimplified.com?subject=PayPal%20Premium%20Document%20Pack%20Inquiry">PayPal Option</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2>Frequently asked questions</h2>
+          <p>
+            These answer the main questions users will have before trusting the platform or paying for help.
+          </p>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-card">
+            <h3>Is this only for Ontario?</h3>
+            <p>No. The platform is positioned Canada-wide and is designed to layer province-specific guidance onto Canada-wide legal basics.</p>
+          </article>
+          <article class="faq-card">
+            <h3>Why do I choose a province first?</h3>
+            <p>Because forms, court names, and procedures can differ across provinces and territories, even when the core legal concepts are similar.</p>
+          </article>
+          <article class="faq-card">
+            <h3>Does this replace legal advice?</h3>
+            <p>No. It is a legal preparation and organization platform, not a law firm and not a substitute for case-specific legal advice.</p>
+          </article>
+          <article class="faq-card">
+            <h3>Can this be expanded later?</h3>
+            <p>Yes. Province-specific modules, real payment links, AI drafting, saved user accounts, and referrals can all be layered in later.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container launch-grid">
+        <div class="contact-box">
+          <div class="section-head" style="margin-bottom:12px;">
+            <h2>Ready to start</h2>
+            <p>
+              This version is positioned for users across Canada. It already includes a jurisdiction selector, a stronger visual identity, and a less generic province-aware case builder.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a href="mailto:hello@courtsimplified.com?subject=I%20want%20help%20with%20my%20case" class="btn" style="background: var(--primary); color: #fff;">Contact CourtSimplified</a>
+            <a href="#tool" class="btn" style="background:#fff;color:var(--text);border:1px solid var(--line);">Use the Case Builder</a>
+          </div>
+          <p class="tiny">Business contact: hello@courtsimplified.com</p>
+        </div>
+
+        <div class="contact-box">
+          <h3>What this version improves</h3>
+          <ul class="bullet-list" style="margin-top:14px;">
+            <li>Canada-wide positioning instead of Ontario-only feel</li>
+            <li>Province selection built into the user experience</li>
+            <li>Stronger blue visual identity with a more premium background</li>
+            <li>Less generic output through jurisdiction-aware summaries</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-card">
+      <div class="footer-grid">
+        <div>
+          <h3>CourtSimplified</h3>
+          <p>
+            A Canada-wide legal preparation platform built to help people understand their issue, choose their jurisdiction, and create stronger organized materials.
+          </p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul class="footer-links">
+            <li><a href="#jurisdiction">Jurisdiction</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#learn">Learn</a></li>
+            <li><a href="#tool">Case Builder</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@courtsimplified.com">hello@courtsimplified.com</a></li>
+            <li><a href="https://courtsimplified.com">courtsimplified.com</a></li>
+            <li><a href="https://courtsimplified.ca">courtsimplified.ca</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 CourtSimplified. All rights reserved.</p>
+        <p>Canada-wide legal preparation.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const provinceSelect = document.getElementById('provinceSelect');
+    const selectedProvinceLabel = document.getElementById('selectedProvinceLabel');
+
+    const fields = {
+      name: document.getElementById('name'),
+      email: document.getElementById('email'),
+      caseType: document.getElementById('caseType'),
+      goal: document.getElementById('goal'),
+      story: document.getElementById('story'),
+      timeline: document.getElementById('timeline'),
+      evidence: document.getElementById('evidence'),
+      concerns: document.getElementById('concerns')
+    };
+
+    const output = document.getElementById('summaryOutput');
+
+    function updateProvinceLabel() {
+      selectedProvinceLabel.textContent = provinceSelect.value;
+    }
+
+    function getIssuePrompts(type) {
+      const map = {
+        'Family Law': 'Possible focus areas: the child’s best interests, parenting stability, safety concerns, reliability, and evidence of current conditions.',
+        'Civil Matter': 'Possible focus areas: what happened, what duty or agreement existed, what evidence supports the facts, and what remedy is being requested.',
+        'Small Claims': 'Possible focus areas: clear chronology, money claimed, supporting proof, and a simple explanation of why the claim should succeed.',
+        'Negligence': 'Possible focus areas: duty of care, breach, causation, and damages. The facts should show how the conduct caused the harm.',
+        'State Conduct / Charter': 'Possible focus areas: public authority conduct, rights affected, what action or omission is being challenged, and the impact of that conduct.',
+        'Not Sure Yet': 'Possible focus areas: identifying the legal category first, clarifying the timeline, and separating key facts from background detail.'
+      };
+      return map[type] || map['Not Sure Yet'];
+    }
+
+    function getProvinceNote(province, type) {
+      const generic = `Jurisdiction selected: ${province}. The platform should treat this as the working province for next-step guidance and procedure-aware organization.`;
+      if (type === 'Small Claims') {
+        return `${generic} Small claims procedures and court naming can vary by province, so this selection helps the summary stay grounded.`;
+      }
+      if (type === 'Family Law') {
+        return `${generic} Family-law procedure and form pathways can differ by province, even when core best-interests reasoning overlaps.`;
+      }
+      return generic;
+    }
+
+    function buildSummary() {
+      const province = provinceSelect.value;
+      const name = fields.name.value.trim() || 'Not provided';
+      const email = fields.email.value.trim() || 'Not provided';
+      const caseType = fields.caseType.value.trim() || 'Not Sure Yet';
+      const goal = fields.goal.value.trim() || 'No main goal entered yet.';
+      const story = fields.story.value.trim() || 'No story entered yet.';
+      const timeline = fields.timeline.value.trim() || 'No timeline entered yet.';
+      const evidence = fields.evidence.value.trim() || 'No evidence listed yet.';
+      const concerns = fields.concerns.value.trim() || 'No main concerns listed yet.';
+
+      const summary = `COURTSIMPLIFIED CASE SUMMARY
+
+Jurisdiction:
+${province}
+
+Client Name:
+${name}
+
+Email:
+${email}
+
+Issue Type:
+${caseType}
+
+Main Goal:
+${goal}
+
+1. OVERVIEW OF THE SITUATION
+${story}
+
+2. IMPORTANT TIMELINE OR SEQUENCE
+${timeline}
+
+3. AVAILABLE EVIDENCE OR SUPPORTING MATERIAL
+${evidence}
+
+4. MAIN CONCERNS OR ISSUES TO ADDRESS
+${concerns}
+
+5. PRACTICAL LEGAL FOCUS
+${getIssuePrompts(caseType)}
+
+6. JURISDICTION NOTE
+${getProvinceNote(province, caseType)}
+
+7. SUGGESTED NEXT STEPS
+- Review the timeline and remove anything not directly relevant.
+- Separate facts from conclusions and keep the facts clear.
+- Organize evidence so each major point can be supported.
+- Clarify what document or next step is actually needed.
+- Consider whether province-specific legal advice is needed for strategy or filing.
+
+8. COURTSIMPLIFIED NOTE
+This summary is designed to help organize the case into a more useful structure. It is a preparation and drafting aid, not legal advice.`;
+
+      output.textContent = summary;
+      return summary;
+    }
+
+    provinceSelect.addEventListener('change', function() {
+      updateProvinceLabel();
+      localStorage.setItem('courtsimplified_selected_province', provinceSelect.value);
+    });
+
+    document.getElementById('generateSummaryBtn').addEventListener('click', function() {
+      buildSummary();
+    });
+
+    document.getElementById('saveSummaryBtn').addEventListener('click', function() {
+      const payload = {
+        province: provinceSelect.value,
+        name: fields.name.value,
+        email: fields.email.value,
+        caseType: fields.caseType.value,
+        goal: fields.goal.value,
+        story: fields.story.value,
+        timeline: fields.timeline.value,
+        evidence: fields.evidence.value,
+        concerns: fields.concerns.value,
+        summary: buildSummary()
+      };
+      localStorage.setItem('courtsimplified_case_data', JSON.stringify(payload));
+      alert('Saved in this browser.');
+    });
+
+    document.getElementById('printSummaryBtn').addEventListener('click', function() {
+      buildSummary();
+      window.print();
+    });
+
+    document.getElementById('clearSummaryBtn').addEventListener('click', function() {
+      Object.values(fields).forEach(field => {
+        if (field.tagName === 'SELECT') field.selectedIndex = 0; else field.value = '';
+      });
+      output.textContent = `COURTSIMPLIFIED CASE SUMMARY
+
+Choose a province or territory, fill out the intake form, and generate a structured summary.
+
+This tool is designed to:
+- organize the story
+- identify likely issues
+- create a cleaner starting point
+- keep the selected jurisdiction visible in the output`;
+      localStorage.removeItem('courtsimplified_case_data');
+    });
+
+    window.addEventListener('DOMContentLoaded', function() {
+      const savedProvince = localStorage.getItem('courtsimplified_selected_province');
+      if (savedProvince) provinceSelect.value = savedProvince;
+      updateProvinceLabel();
+
+      const saved = localStorage.getItem('courtsimplified_case_data');
+      if (!saved) return;
+      try {
+        const data = JSON.parse(saved);
+        if (data.province) provinceSelect.value = data.province;
+        updateProvinceLabel();
+        fields.name.value = data.name || '';
+        fields.email.value = data.email || '';
+        fields.caseType.value = data.caseType || 'Family Law';
+        fields.goal.value = data.goal || '';
+        fields.story.value = data.story || '';
+        fields.timeline.value = data.timeline || '';
+        fields.evidence.value = data.evidence || '';
+        fields.concerns.value = data.concerns || '';
+        output.textContent = data.summary || output.textContent;
+      } catch (e) {
+        console.error('Could not load saved case data.', e);
+      }
+    });
+  </script>
+</body>
+</html>
