@@ -1096,6 +1096,7 @@
                 <button class="tool-btn secondary" id="saveSummaryBtn">Save in Browser</button>
                 <button class="tool-btn secondary" id="printSummaryBtn">Print / Save PDF</button>
                 <button class="tool-btn secondary" id="clearSummaryBtn">Clear Form</button>
+                <button onclick="askAI()">Ask AI</button>
               </div>
 
               <p class="saved-note">Saved summaries stay on the same device and browser.</p>
@@ -1631,6 +1632,57 @@ This tool is designed to:
       renderProcessPanel();
     });
 
+    async function askAI() {
+  const story = document.getElementById('story').value;
+  const timeline = document.getElementById('timeline').value;
+  const evidence = document.getElementById('evidence').value;
+  const concerns = document.getElementById('concerns').value;
+  const caseType = document.getElementById('caseType').value;
+  const province = document.getElementById('provinceSelect').value;
+
+  const message = `
+Province: ${province}
+Case Type: ${caseType}
+
+Story:
+${story}
+
+Timeline:
+${timeline}
+
+Evidence:
+${evidence}
+
+Concerns:
+${concerns}
+
+Explain this case clearly and what matters most.
+`;
+
+  output.textContent = "AI is analyzing your case...";
+
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      output.textContent = "Error: " + (data.error || "Something went wrong.");
+      return;
+    }
+
+    output.textContent = data.reply || "No reply received.";
+  } catch (err) {
+    output.textContent = "Error connecting to AI.";
+  }
+}
+
     window.addEventListener('DOMContentLoaded', function() {
       const savedProvince = localStorage.getItem('courtsimplified_selected_province');
       if (savedProvince) provinceSelect.value = savedProvince;
@@ -1657,6 +1709,8 @@ This tool is designed to:
       }
       renderProcessPanel();
     });
+
+    
   </script>
 </body>
 </html>
