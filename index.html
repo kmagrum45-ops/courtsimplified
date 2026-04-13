@@ -3,45 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CourtSimplified | Canada-Wide Legal Preparation Platform</title>
-  <meta name="description" content="CourtSimplified is a Canada-wide legal preparation platform that helps people organize facts, understand key legal issues, and prepare stronger materials for family, civil, and small claims matters." />
+  <title>CourtSimplified | Clear, Affordable Legal Preparation Across Canada</title>
+  <meta name="description" content="CourtSimplified helps people across Canada organize facts, understand their issue, and prepare stronger materials for family, civil, and small claims matters." />
   <style>
     :root {
-      --bg: #f3f7fc;
+      --bg: #f4f8fe;
       --surface: #ffffff;
       --surface-soft: #f8fbff;
-      --text: #132033;
-      --muted: #5c6b7f;
-      --line: #d7e2f1;
-      --primary: #1b4ed8;
-      --primary-dark: #143ca8;
-      --primary-soft: #e9f1ff;
+      --text: #112033;
+      --muted: #5f6f84;
+      --line: #d9e4f2;
+      --primary: #1757d6;
+      --primary-dark: #0f43ad;
+      --primary-soft: #edf3ff;
       --accent: #0f766e;
-      --accent-soft: #eaf9f5;
-      --gold: #c89f45;
-      --hero-a: #0d1b35;
-      --hero-b: #183761;
-      --hero-c: #23529c;
-      --hero-d: #5fa4ff;
-      --warning: #fff8e8;
-      --success-soft: #edf9f5;
-      --shadow: 0 18px 44px rgba(20, 35, 70, 0.08);
+      --accent-soft: #ecfbf7;
+      --hero-a: #0f1f3d;
+      --hero-b: #173868;
+      --hero-c: #2152a2;
+      --hero-d: #69abff;
+      --warning: #fff8e6;
+      --shadow: 0 18px 44px rgba(16, 34, 67, 0.08);
       --radius: 24px;
-      --radius-sm: 14px;
-      --max: 1280px;
+      --max: 1300px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+      font-weight: 500;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(95,164,255,0.12), transparent 26%),
-        radial-gradient(circle at bottom right, rgba(27,78,216,0.08), transparent 22%),
-        linear-gradient(180deg, #f7faff 0%, #f3f7fc 42%, #eef4fb 100%);
+        radial-gradient(circle at top left, rgba(105,171,255,0.12), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(23,87,214,0.08), transparent 20%),
+        linear-gradient(180deg, #f8fbff 0%, #f4f8fe 45%, #edf4fb 100%);
       line-height: 1.6;
+      letter-spacing: 0.01em;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -52,9 +51,9 @@
       position: sticky;
       top: 0;
       z-index: 60;
+      background: rgba(244,248,254,0.94);
       backdrop-filter: blur(12px);
-      background: rgba(243,247,252,0.9);
-      border-bottom: 1px solid rgba(215,226,241,0.9);
+      border-bottom: 1px solid rgba(217,228,242,0.92);
     }
 
     .topbar-inner {
@@ -115,10 +114,10 @@
       overflow: hidden;
       border-radius: 34px;
       background:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.12), transparent 28%),
-        radial-gradient(circle at 100% 100%, rgba(95,164,255,0.16), transparent 24%),
-        linear-gradient(135deg, var(--hero-a) 0%, var(--hero-b) 44%, var(--hero-c) 78%, var(--hero-d) 120%);
-      border: 1px solid rgba(215,226,241,0.4);
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.14), transparent 28%),
+        radial-gradient(circle at 100% 100%, rgba(105,171,255,0.18), transparent 25%),
+        linear-gradient(135deg, var(--hero-a) 0%, var(--hero-b) 42%, var(--hero-c) 78%, var(--hero-d) 120%);
+      border: 1px solid rgba(217,228,242,0.35);
       box-shadow: var(--shadow);
     }
 
@@ -127,8 +126,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(135deg, rgba(255,255,255,0.06), transparent 30%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cg opacity='0.16' fill='none' stroke='%23ffffff' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M800 170v355'/%3E%3Cpath d='M610 240h380'/%3E%3Cpath d='M800 170c0-28 21-49 49-49s49 21 49 49'/%3E%3Cpath d='M800 170c0-28-21-49-49-49s-49 21-49 49'/%3E%3Cpath d='M680 240 560 390'/%3E%3Cpath d='M920 240 1040 390'/%3E%3Cpath d='M520 390h78l48 112H394z'/%3E%3Cpath d='M1080 390h-78l-48 112h252z'/%3E%3Cpath d='M680 240 800 294 920 240'/%3E%3Cpath d='M680 565h240'/%3E%3Cpath d='M620 644h360'/%3E%3Cpath d='M708 565l-36 79h256l-36-79'/%3E%3C/g%3E%3Cg opacity='0.08' fill='%23ffffff'%3E%3Cpath d='M180 690c88-41 180-65 268-65 156 0 248 70 360 70 127 0 181-48 325-48 105 0 210 29 287 62v94H180Z'/%3E%3C/g%3E%3C/svg%3E");
+        linear-gradient(135deg, rgba(255,255,255,0.08), transparent 30%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cg opacity='0.16' fill='none' stroke='%23ffffff' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M800 170v355'/%3E%3Cpath d='M610 240h380'/%3E%3Cpath d='M800 170c0-28 21-49 49-49s49 21 49 49'/%3E%3Cpath d='M800 170c0-28-21-49-49-49s-49 21-49 49'/%3E%3Cpath d='M680 240 560 390'/%3E%3Cpath d='M920 240 1040 390'/%3E%3Cpath d='M520 390h78l48 112H394z'/%3E%3Cpath d='M1080 390h-78l-48 112h252z'/%3E%3Cpath d='M680 240 800 294 920 240'/%3E%3Cpath d='M680 565h240'/%3E%3Cpath d='M620 644h360'/%3E%3Cpath d='M708 565l-36 79h256l-36-79'/%3E%3C/g%3E%3C/svg%3E");
       background-size: cover;
       background-position: center;
       pointer-events: none;
@@ -138,7 +137,7 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1.06fr 0.94fr;
+      grid-template-columns: 1.08fr 0.92fr;
       gap: 24px;
       padding: 54px;
       align-items: stretch;
@@ -158,18 +157,23 @@
       margin-bottom: 18px;
     }
 
-    h1,h2,h3,h4,h5 { margin: 0; line-height: 1.14; }
+    h1,h2,h3,h4,h5 {
+      margin: 0;
+      line-height: 1.14;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
 
     .hero-copy h1 {
       color: #fff;
-      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-size: clamp(2.7rem, 5vw, 5rem);
       letter-spacing: -0.03em;
       margin-bottom: 16px;
-      max-width: 760px;
+      max-width: 780px;
     }
 
     .hero-copy .lead {
-      color: rgba(255,255,255,0.88);
+      color: rgba(255,255,255,0.9);
       font-size: 1.08rem;
       margin: 0 0 24px;
       max-width: 720px;
@@ -195,23 +199,17 @@
       cursor: pointer;
     }
 
-    .btn-primary {
-      background: #fff;
-      color: var(--primary);
-    }
-
+    .btn-primary { background: #fff; color: var(--primary); }
     .btn-primary:hover { background: #edf4ff; }
-
     .btn-secondary {
       background: transparent;
       color: #fff;
       border-color: rgba(255,255,255,0.28);
     }
-
     .btn-secondary:hover { background: rgba(255,255,255,0.08); }
 
     .hero-note {
-      color: rgba(255,255,255,0.76);
+      color: rgba(255,255,255,0.78);
       font-size: 0.95rem;
       max-width: 720px;
     }
@@ -220,8 +218,8 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      background: rgba(255,255,255,0.95);
-      border: 1px solid rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(255,255,255,0.5);
       border-radius: 24px;
       padding: 24px;
       box-shadow: var(--shadow);
@@ -235,32 +233,29 @@
       padding: 18px;
     }
 
-    .hero-block h3 {
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
+    .hero-block h3 { font-size: 1rem; margin-bottom: 10px; }
 
-    .section { padding: 34px 0; }
+    .section { padding: 36px 0; }
     .section-head { max-width: 900px; margin-bottom: 22px; }
     .section-head h2 {
-      font-size: clamp(1.8rem, 3vw, 3rem);
+      font-size: clamp(1.9rem, 3vw, 3rem);
       margin-bottom: 10px;
       letter-spacing: -0.02em;
     }
-
     .section-head p {
       margin: 0;
       color: var(--muted);
       font-size: 1.03rem;
+      font-weight: 500;
     }
 
     .soft-band {
       background: linear-gradient(180deg, rgba(255,255,255,0.58), rgba(248,251,255,0.86));
-      border-top: 1px solid rgba(215,226,241,0.75);
-      border-bottom: 1px solid rgba(215,226,241,0.75);
+      border-top: 1px solid rgba(217,228,242,0.75);
+      border-bottom: 1px solid rgba(217,228,242,0.75);
     }
 
-    .grid-2,.grid-3,.grid-4,.pricing-grid,.faq-grid,.footer-grid,.launch-grid,.tool-layout,.province-cards {
+    .grid-2,.grid-3,.grid-4,.pricing-grid,.faq-grid,.launch-grid,.footer-grid,.tool-layout,.province-cards,.trust-grid,.steps-grid,.audience-grid {
       display: grid;
       gap: 18px;
     }
@@ -274,8 +269,11 @@
     .footer-grid { grid-template-columns: 1.2fr 0.8fr 0.8fr; }
     .tool-layout { grid-template-columns: 1fr 1fr; }
     .province-cards { grid-template-columns: 1.08fr 0.92fr; }
+    .trust-grid { grid-template-columns: repeat(3, 1fr); }
+    .steps-grid { grid-template-columns: repeat(4, 1fr); }
+    .audience-grid { grid-template-columns: repeat(3, 1fr); }
 
-    .card,.pricing-card,.faq-card,.notice,.contact-box,.footer-card,.tool-shell,.output-box,.map-card {
+    .card,.pricing-card,.faq-card,.notice,.contact-box,.footer-card,.tool-shell,.output-box,.map-card,.step-card,.trust-card {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -283,12 +281,12 @@
       padding: 24px;
     }
 
-    .card h3,.pricing-card h3,.faq-card h3,.notice h3,.contact-box h3,.footer-card h3,.tool-shell h3,.output-box h3,.map-card h3 {
+    .card h3,.pricing-card h3,.faq-card h3,.notice h3,.contact-box h3,.footer-card h3,.tool-shell h3,.output-box h3,.map-card h3,.step-card h3,.trust-card h3 {
       font-size: 1.16rem;
       margin-bottom: 10px;
     }
 
-    .card p,.pricing-card p,.faq-card p,.notice p,.contact-box p,.footer-card p,.tool-shell p,.output-box p,.map-card p {
+    .card p,.pricing-card p,.faq-card p,.notice p,.contact-box p,.footer-card p,.tool-shell p,.output-box p,.map-card p,.step-card p,.trust-card p {
       margin: 0;
       color: var(--muted);
     }
@@ -358,9 +356,7 @@
       font-weight: 700;
     }
 
-    .education-box {
-      background: linear-gradient(180deg, #ffffff, #f8fbff);
-    }
+    .education-box { background: linear-gradient(180deg, #ffffff, #f8fbff); }
 
     .province-banner {
       display: flex;
@@ -375,10 +371,7 @@
       box-shadow: var(--shadow);
     }
 
-    .province-banner strong {
-      color: var(--primary);
-    }
-
+    .province-banner strong { color: var(--primary); }
     .province-selector {
       display: flex;
       gap: 10px;
@@ -396,15 +389,11 @@
     }
 
     textarea { min-height: 120px; resize: vertical; }
-
-    .province-select {
-      min-width: 240px;
-      background: white;
-    }
+    .province-select { min-width: 240px; background: white; }
 
     .map-card {
       background:
-        radial-gradient(circle at top right, rgba(27,78,216,0.06), transparent 30%),
+        radial-gradient(circle at top right, rgba(23,87,214,0.06), transparent 30%),
         linear-gradient(180deg, #ffffff, #f8fbff);
     }
 
@@ -433,13 +422,8 @@
       font-size: 0.92rem;
     }
 
-    .tool-layout {
-      align-items: start;
-    }
-
     .form-grid { display: grid; gap: 14px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
     label {
       display: block;
       font-weight: 700;
@@ -466,19 +450,13 @@
       transition: 0.2s ease;
     }
 
-    .tool-btn.primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
+    .tool-btn.primary { background: var(--primary); color: #fff; }
     .tool-btn.primary:hover { background: var(--primary-dark); }
-
     .tool-btn.secondary {
       background: #fff;
       color: var(--text);
       border-color: var(--line);
     }
-
     .tool-btn.secondary:hover { background: #f8fbff; }
 
     .output-box {
@@ -494,7 +472,7 @@
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 18px;
-      min-height: 500px;
+      min-height: 520px;
       margin-top: 14px;
     }
 
@@ -503,6 +481,71 @@
       color: var(--muted);
       font-size: 0.93rem;
     }
+
+    .province-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .province-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eef5ff;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .process-box {
+      margin-top: 18px;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+    }
+
+    .process-grid { display: grid; gap: 14px; margin-top: 14px; }
+    .process-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .process-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .process-label { font-weight: 700; color: var(--text); }
+    .process-value { color: var(--muted); }
+
+    .process-steps {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      display: grid;
+      gap: 8px;
+    }
+
+    .process-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .process-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--primary);
+    }
+
+    .process-link:hover { background: #eef5ff; }
 
     .pricing-card {
       display: flex;
@@ -557,20 +600,27 @@
       transition: 0.2s ease;
     }
 
-    .pay-btn.primary {
-      background: var(--primary);
-      color: white;
-    }
-
+    .pay-btn.primary { background: var(--primary); color: white; }
     .pay-btn.primary:hover { background: var(--primary-dark); }
-
     .pay-btn.secondary {
       background: white;
       color: var(--text);
       border-color: var(--line);
     }
-
     .pay-btn.secondary:hover { background: #f8fbff; }
+
+    .trust-card { background: linear-gradient(180deg, #fff, #f8fbff); }
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
 
     .notice {
       background: var(--warning);
@@ -603,7 +653,10 @@
       .footer-grid,
       .tool-layout,
       .province-cards,
-      .province-grid {
+      .province-grid,
+      .trust-grid,
+      .steps-grid,
+      .audience-grid {
         grid-template-columns: 1fr 1fr;
       }
 
@@ -630,13 +683,17 @@
       .tool-layout,
       .province-cards,
       .province-grid,
+      .trust-grid,
+      .steps-grid,
+      .audience-grid,
       .form-row {
         grid-template-columns: 1fr;
       }
 
       .hero-grid { padding: 28px 20px; }
-      .card,.pricing-card,.faq-card,.notice,.contact-box,.footer-card,.tool-shell,.output-box,.map-card,.hero-panel { padding: 20px; }
+      .card,.pricing-card,.faq-card,.notice,.contact-box,.footer-card,.tool-shell,.output-box,.map-card,.hero-panel,.step-card,.trust-card { padding: 20px; }
       .province-banner { align-items: flex-start; }
+      .process-row { grid-template-columns: 1fr; gap: 8px; }
     }
   </style>
 </head>
@@ -648,10 +705,12 @@
         <span>CourtSimplified</span>
       </a>
       <nav class="nav">
+        <a href="#how">How It Works</a>
+        <a href="#who">Who It Helps</a>
         <a href="#jurisdiction">Jurisdiction</a>
-        <a href="#features">Features</a>
-        <a href="#learn">Learn</a>
+        <a href="#judge">How Cases Work</a>
         <a href="#tool">Case Builder</a>
+        <a href="#pricing">Pricing</a>
         <a href="#contact" class="nav-cta">Get Started</a>
       </nav>
     </div>
@@ -663,42 +722,100 @@
         <div class="hero-grid">
           <div class="hero-copy">
             <div class="eyebrow">Canada-wide legal preparation platform</div>
-            <h1>Understand your case, choose your province, and build stronger materials.</h1>
+            <h1>Clearer legal preparation starts here.</h1>
             <p class="lead">
-              CourtSimplified is built for people across Canada who need structure, clarity, and practical help with family, civil, and small claims matters. It combines Canada-wide legal guidance with province-aware steps, outputs, and next-step thinking.
+              CourtSimplified helps people across Canada organize facts, understand what matters, and prepare stronger materials for family, civil, and small claims matters. It is built for real users who want clearer steps, better structure, and a more confident starting point.
             </p>
             <div class="hero-actions">
-              <a href="#jurisdiction" class="btn btn-primary">Choose Your Province</a>
-              <a href="#tool" class="btn btn-secondary">Use the Case Builder</a>
+              <a href="#tool" class="btn btn-primary">Start Your Case Summary</a>
+              <a href="#pricing" class="btn btn-secondary">View Pricing</a>
             </div>
             <p class="hero-note">
-              Built to feel more like a real platform than a generic template, with blue as the main brand color, a stronger visual identity, and a province-aware workflow from the start.
+              Organized. Affordable. Easy to use. Built to help people move forward with more confidence.
             </p>
           </div>
 
           <aside class="hero-panel">
             <div class="hero-block">
-              <h3>What makes this different</h3>
+              <h3>What you can do here</h3>
               <ul class="checklist">
-                <li>Canada-wide positioning, not one-province branding</li>
-                <li>Province-aware case intake and outputs</li>
-                <li>Clear plain-language teaching with practical structure</li>
-                <li>Built to grow into a full AI legal preparation system</li>
+                <li>Choose your province or territory</li>
+                <li>Organize your story into a stronger summary</li>
+                <li>See likely forms and next steps</li>
+                <li>Prepare before filing or speaking to a lawyer</li>
               </ul>
             </div>
-            <div class="hero-block province-pick">
-              <h3>Built for all provinces and territories</h3>
-              <p>Users can start with their jurisdiction first, then move into tailored guidance and structured outputs.</p>
+            <div class="hero-block">
+              <h3>Built for real legal problems</h3>
+              <p>Whether you are dealing with parenting issues, a money claim, negligence, or a complicated dispute, CourtSimplified helps turn confusion into structure.</p>
               <div class="province-pill-row">
-                <span class="province-pill">Ontario</span>
-                <span class="province-pill">British Columbia</span>
-                <span class="province-pill">Alberta</span>
-                <span class="province-pill">Quebec</span>
-                <span class="province-pill">Nova Scotia</span>
-                <span class="province-pill">And more</span>
+                <span class="province-pill">Family</span>
+                <span class="province-pill">Civil</span>
+                <span class="province-pill">Small Claims</span>
               </div>
             </div>
           </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="how">
+      <div class="container">
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p>
+            CourtSimplified is designed to help users move from scattered information to a cleaner, more useful case summary.
+          </p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">1</div>
+            <h3>Select your province</h3>
+            <p>Start with the right jurisdiction so the site can give more grounded guidance and next steps.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">2</div>
+            <h3>Enter your facts</h3>
+            <p>Add your story, timeline, evidence, concerns, and the outcome you are trying to reach.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">3</div>
+            <h3>Generate a summary</h3>
+            <p>Turn your information into a clearer and more organized case overview.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">4</div>
+            <h3>Move forward better prepared</h3>
+            <p>Use the summary to prepare documents, review your case, or communicate more clearly with a legal professional.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="who">
+      <div class="container">
+        <div class="section-head">
+          <h2>Who CourtSimplified helps</h2>
+          <p>
+            This platform is built for people who need clarity, structure, and a more affordable way to prepare before taking the next legal step.
+          </p>
+        </div>
+        <div class="audience-grid">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>People handling family matters</h3>
+            <p>Useful for parenting, support, access, custody concerns, and situations where facts need to be explained more clearly.</p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>People with civil or money claims</h3>
+            <p>Useful for negligence matters, disputes, damages claims, broken agreements, and small claims issues.</p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>People who feel overwhelmed</h3>
+            <p>Useful for anyone who knows something important happened but does not yet know how to lay it out properly.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -708,14 +825,14 @@
         <div class="section-head">
           <h2>Start with your jurisdiction</h2>
           <p>
-            The strongest version of this platform starts by recognizing that some legal principles are Canada-wide, while forms, court names, filing tracks, and procedural details vary by province or territory.
+            Legal concepts can be similar across Canada, but forms, court names, and filing steps can change by province or territory. Start here for a more accurate path.
           </p>
         </div>
 
         <div class="province-banner">
           <div>
             <div class="status-chip">Current jurisdiction: <strong id="selectedProvinceLabel">Ontario</strong></div>
-            <p class="tiny" style="margin-top:8px; max-width:720px;">This selection affects the wording in the case builder and the jurisdiction summaries shown below. You can change it at any time.</p>
+            <p class="tiny" style="margin-top:8px; max-width:720px;">Ontario includes detailed built-in form guidance, with structured preparation support available across Canada.</p>
           </div>
           <div class="province-selector">
             <select id="provinceSelect" class="province-select">
@@ -738,32 +855,25 @@
 
         <div class="province-cards" style="margin-top:18px;">
           <article class="map-card">
-            <h3>How the site handles Canada-wide vs province-specific information</h3>
+            <h3>Canada-wide support with province-aware guidance</h3>
             <ul class="province-list" style="margin-top:14px;">
-              <li>Canada-wide guidance explains concepts like negligence, evidence, family-law reasoning, and state conduct in plain language.</li>
-              <li>Province-aware logic helps tailor court naming, process language, and next-step structure to the selected jurisdiction.</li>
-              <li>The platform can expand later into province-specific forms, filing guides, and court procedure modules.</li>
+              <li>Plain-language education helps users understand the basics before they draft anything.</li>
+              <li>Province selection helps tailor likely court tracks, likely forms, and next-step guidance.</li>
+              <li>Ontario includes stronger built-in form guidance for this launch version.</li>
             </ul>
-
             <div class="province-grid">
-              <div class="province-tile"><strong>Ontario</strong><span>Family, civil, small claims support</span></div>
-              <div class="province-tile"><strong>British Columbia</strong><span>Province-aware guidance path</span></div>
-              <div class="province-tile"><strong>Alberta</strong><span>Province-aware guidance path</span></div>
-              <div class="province-tile"><strong>Quebec</strong><span>High-level support with future tailoring</span></div>
-              <div class="province-tile"><strong>Atlantic Canada</strong><span>Expandable workflow model</span></div>
-              <div class="province-tile"><strong>Territories</strong><span>Future procedural expansion</span></div>
+              <div class="province-tile"><strong>Ontario</strong><span>Most complete launch guidance</span></div>
+              <div class="province-tile"><strong>British Columbia</strong><span>General guidance path</span></div>
+              <div class="province-tile"><strong>Alberta</strong><span>General guidance path</span></div>
+              <div class="province-tile"><strong>Quebec</strong><span>General guidance path</span></div>
+              <div class="province-tile"><strong>Atlantic Canada</strong><span>General guidance path</span></div>
+              <div class="province-tile"><strong>Territories</strong><span>General guidance path</span></div>
             </div>
           </article>
 
           <article class="card">
-            <h3>Platform approach</h3>
-            <p>This site is designed as a legal preparation system, not a province-limited brochure. The workflow is:</p>
-            <ul class="bullet-list" style="margin-top:14px;">
-              <li>Choose the user’s province or territory</li>
-              <li>Teach the core legal ideas in plain language</li>
-              <li>Help the user build a structured case summary</li>
-              <li>Later layer in more detailed province-specific process guidance</li>
-            </ul>
+            <h3>Why this matters</h3>
+            <p>People need a platform that feels useful and honest. This site gives stronger Ontario guidance now, while still supporting users across Canada with clear and practical structure.</p>
           </article>
         </div>
       </div>
@@ -772,51 +882,51 @@
     <section class="section soft-band" id="features">
       <div class="container">
         <div class="section-head">
-          <h2>Main platform features</h2>
+          <h2>Main features</h2>
           <p>
-            The platform is designed to solve real user problems: uncertainty, weak structure, confusion about what matters, and not knowing what to do next.
+            Everything here is built around making legal preparation feel simpler, clearer, and more useful.
           </p>
         </div>
         <div class="grid-4">
           <article class="card">
             <div class="icon">01</div>
             <h3>Province-aware intake</h3>
-            <p>Users start by choosing their province or territory so the platform can structure guidance around their jurisdiction.</p>
+            <p>Users choose their jurisdiction first so the site can give more grounded outputs.</p>
           </article>
           <article class="card">
             <div class="icon">02</div>
-            <h3>Case Type Finder</h3>
-            <p>Helps people think about whether their issue is family, civil, small claims, negligence-related, or tied to public authority.</p>
+            <h3>Case type guidance</h3>
+            <p>Users can narrow down whether their issue is family, civil, small claims, negligence, or state conduct related.</p>
           </article>
           <article class="card">
             <div class="icon">03</div>
-            <h3>Story Builder</h3>
-            <p>Turns a messy personal story into a cleaner summary, timeline, and issue list.</p>
+            <h3>Case builder</h3>
+            <p>The site turns scattered details into a clearer summary with better structure.</p>
           </article>
           <article class="card">
             <div class="icon">04</div>
-            <h3>Judge’s Perspective</h3>
-            <p>Explains in plain language what judges often look for in different kinds of matters.</p>
+            <h3>Plain-language education</h3>
+            <p>Legal ideas are explained in a way that feels understandable and practical.</p>
           </article>
           <article class="card">
             <div class="icon">05</div>
-            <h3>Canada-wide legal basics</h3>
-            <p>Teaches broad legal concepts that matter across the country, while leaving room for province-specific procedure later.</p>
+            <h3>Likely forms and next steps</h3>
+            <p>Ontario users get stronger built-in guidance for likely forms and filing paths.</p>
           </article>
           <article class="card">
             <div class="icon">06</div>
-            <h3>Interactive case summary</h3>
-            <p>Lets users generate a practical written output they can save, print, or refine.</p>
+            <h3>Save and print</h3>
+            <p>Users can save their work in the browser and print or save their summary as a PDF.</p>
           </article>
           <article class="card">
             <div class="icon">07</div>
-            <h3>Trust-based structure</h3>
-            <p>Built with credibility sections, common mistakes, and plain-language legal teaching.</p>
+            <h3>Trust-focused design</h3>
+            <p>The site is written and designed to feel welcoming, professional, and ready to use.</p>
           </article>
           <article class="card">
             <div class="icon">08</div>
-            <h3>Future AI-ready design</h3>
-            <p>Ready to expand into saved accounts, real AI outputs, subscriptions, and referral tools.</p>
+            <h3>Built to expand</h3>
+            <p>Payments, AI drafting, uploads, and expanded province modules can be connected when you are ready.</p>
           </article>
         </div>
       </div>
@@ -825,72 +935,111 @@
     <section class="section" id="learn">
       <div class="container">
         <div class="section-head">
-          <h2>Learn the basics in plain language</h2>
+          <h2>Understand the basics</h2>
           <p>
-            These sections teach the ideas users need across Canada, regardless of province. Later, you can add more detailed province-specific procedure pages on top of this foundation.
+            Stronger legal preparation starts with knowing what matters most.
           </p>
         </div>
         <div class="grid-2">
           <article class="card education-box">
             <span class="mini-label">Negligence</span>
-            <h3>What people usually need to prove</h3>
+            <h3>What often needs to be shown</h3>
             <ul class="bullet-list" style="margin-top:14px;">
-              <li>Was there a duty of care?</li>
-              <li>Was that duty breached by action or inaction?</li>
-              <li>Did the breach cause real harm?</li>
-              <li>Can the harm be described clearly and supported by proof?</li>
+              <li>There was a duty of care</li>
+              <li>Someone failed to act reasonably</li>
+              <li>That failure caused harm</li>
+              <li>The harm can be explained and supported</li>
             </ul>
           </article>
 
           <article class="card education-box">
-            <span class="mini-label">Charter / State Conduct</span>
-            <h3>What people usually need to think about</h3>
+            <span class="mini-label">State Conduct</span>
+            <h3>What often matters</h3>
             <ul class="bullet-list" style="margin-top:14px;">
-              <li>Was the conduct done by a public authority or part of the state?</li>
-              <li>What right is being said to be affected?</li>
-              <li>What action or omission is being challenged?</li>
-              <li>How did the conduct create serious harm or unfairness?</li>
+              <li>A public authority was involved</li>
+              <li>A right or important interest was affected</li>
+              <li>An action or failure is being challenged</li>
+              <li>The impact can be clearly described</li>
             </ul>
           </article>
 
           <article class="card education-box">
             <span class="mini-label">Family</span>
-            <h3>What judges often care about</h3>
+            <h3>What decision-makers often focus on</h3>
             <ul class="bullet-list" style="margin-top:14px;">
               <li>The child’s best interests</li>
               <li>Safety, stability, and routine</li>
               <li>Parenting history and reliability</li>
-              <li>Evidence and conduct, not just accusation</li>
+              <li>Evidence, not just accusation</li>
             </ul>
           </article>
 
           <article class="card education-box">
             <span class="mini-label">Civil / Small Claims</span>
-            <h3>What judges often care about</h3>
+            <h3>What usually helps most</h3>
             <ul class="bullet-list" style="margin-top:14px;">
-              <li>What happened and when</li>
-              <li>What agreement, duty, or event is being relied on</li>
-              <li>What evidence supports the position</li>
-              <li>What remedy or money is being requested</li>
+              <li>A clean timeline</li>
+              <li>Clear facts</li>
+              <li>Supporting documents</li>
+              <li>A clear explanation of the remedy requested</li>
             </ul>
           </article>
         </div>
       </div>
-    </section>
 
-    <section class="section soft-band" id="tool">
+</section>
+
+<section class="section" id="judge">
+  <div class="container">
+    <div class="section-head">
+      <h2>How judges often look at a case</h2>
+      <p>
+        Strong cases are easier to follow because the facts, issues, proof, and requested outcome are laid out clearly.
+        This section helps users understand how to think about their case before they file anything.
+      </p>
+    </div>
+    <div class="grid-2">
+      <article class="card education-box">
+        <span class="mini-label">What Judges Look For</span>
+        <h3>What usually matters most</h3>
+        <ul class="bullet-list" style="margin-top:14px;">
+          <li>Clear facts that are easy to follow</li>
+          <li>Evidence that supports the main points</li>
+          <li>Who is legally responsible and why</li>
+          <li>What harm occurred</li>
+          <li>A clear outcome or remedy being requested</li>
+        </ul>
+      </article>
+
+      <article class="card education-box">
+        <span class="mini-label">Case Structure</span>
+        <h3>How a strong case is usually organized</h3>
+        <ul class="bullet-list" style="margin-top:14px;">
+          <li>Background of the situation</li>
+          <li>Facts in chronological order</li>
+          <li>The issues that need to be decided</li>
+          <li>The legal concepts that may apply</li>
+          <li>Analysis connecting the facts to the law</li>
+          <li>A conclusion and requested remedy</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section soft-band" id="tool">
       <div class="container">
         <div class="section-head">
-          <h2>Province-aware case builder</h2>
+          <h2>Case builder</h2>
           <p>
-            This tool uses the selected province to produce a more tailored summary. It gives users a better starting point than a generic write-up.
+            Enter your information and generate a stronger, more organized case summary.
           </p>
         </div>
 
         <div class="tool-layout">
           <section class="tool-shell">
             <h3>Case intake</h3>
-            <p>The selected province will be used in the structured output. Users can change it anytime.</p>
+            <p>Your selected province will be built into the output.</p>
 
             <div class="form-grid" style="margin-top:16px;">
               <div class="form-row">
@@ -934,12 +1083,12 @@
 
               <div>
                 <label for="evidence">What proof do you have?</label>
-                <textarea id="evidence" placeholder="Messages, records, emails, witnesses, reports, receipts, photos, letters, etc."></textarea>
+                <textarea id="evidence" placeholder="Messages, emails, reports, witnesses, records, receipts, photos, screenshots, or other proof."></textarea>
               </div>
 
               <div>
                 <label for="concerns">Main concerns or issues</label>
-                <textarea id="concerns" placeholder="What are the biggest issues the court or decision-maker should understand?"></textarea>
+                <textarea id="concerns" placeholder="What should the court or legal professional understand most clearly?"></textarea>
               </div>
 
               <div class="tool-buttons">
@@ -949,13 +1098,13 @@
                 <button class="tool-btn secondary" id="clearSummaryBtn">Clear Form</button>
               </div>
 
-              <p class="saved-note">This demo saves locally in the browser. Full account-based saving can be added later.</p>
+              <p class="saved-note">Saved summaries stay on the same device and browser.</p>
             </div>
           </section>
 
           <section class="output-box">
             <h3>Structured output</h3>
-            <p>The selected jurisdiction is built directly into the output so the user’s summary feels less generic and more grounded.</p>
+            <p>Your case summary appears here once generated.</p>
             <div id="summaryOutput" class="output-panel">COURTSIMPLIFIED CASE SUMMARY
 
 Choose a province or territory, fill out the intake form, and generate a structured summary.
@@ -965,6 +1114,12 @@ This tool is designed to:
 - identify likely issues
 - create a cleaner starting point
 - keep the selected jurisdiction visible in the output</div>
+
+            <div class="card process-box">
+              <h3>Likely forms and next steps</h3>
+              <p>Use this section to see the likely court track and next steps for the selected issue.</p>
+              <div id="processPanel" class="process-grid"></div>
+            </div>
           </section>
         </div>
       </div>
@@ -973,88 +1128,124 @@ This tool is designed to:
     <section class="section" id="pricing">
       <div class="container">
         <div class="section-head">
-          <h2>Simple pricing</h2>
+          <h2>Pricing</h2>
           <p>
-            Start with easy, clear offers that fit users across Canada, then expand the service model as the platform grows.
+            Straightforward options for people who want stronger legal preparation without the cost of full traditional drafting support.
           </p>
         </div>
         <div class="pricing-grid">
           <article class="pricing-card card">
-            <span class="badge">Best first purchase</span>
+            <span class="badge">Popular starting option</span>
             <h3>Single Document</h3>
-            <div class="price">$19 <small>one-time</small></div>
-            <p>For users who want one upgraded summary, draft, or organized output.</p>
+            <div class="price">$25 <small>one-time</small></div>
+            <p>For users who want one organized court-prep document or upgraded summary.</p>
             <ul class="pricing-list" style="margin-top:14px;">
-              <li>Low barrier to buy</li>
-              <li>Good for first-time users</li>
-              <li>Works across multiple matter types</li>
+              <li>One focused written output</li>
+              <li>Simple low-cost entry point</li>
+              <li>Strong option for first-time users</li>
             </ul>
             <div class="pricing-actions">
-              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Single%20Document%20Purchase%20Inquiry">Buy by Email</a>
-              <a class="pay-btn secondary" href="mailto:hello@courtsimplified.com?subject=PayPal%20Single%20Document%20Inquiry">PayPal Option</a>
-            </div>
-          </article>
-
-          <article class="pricing-card card featured">
-            <span class="badge">Recommended</span>
-            <h3>Case Workspace</h3>
-            <div class="price">$29 <small>per month</small></div>
-            <p>For people with ongoing matters who need continuing structure, planning, and draft support.</p>
-            <ul class="pricing-list" style="margin-top:14px;">
-              <li>Recurring monthly option</li>
-              <li>Best long-term value</li>
-              <li>Future-ready for saved case workspaces</li>
-            </ul>
-            <div class="pricing-actions">
-              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Case%20Workspace%20Inquiry">Start Monthly Plan</a>
+              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Single%20Document%20Purchase">Buy This Option</a>
               <a class="pay-btn secondary" href="#contact">Ask a Question</a>
             </div>
           </article>
 
-          <article class="pricing-card card">
-            <span class="badge">Higher-value option</span>
-            <h3>Premium Document Pack</h3>
-            <div class="price">$49 <small>one-time</small></div>
-            <p>For users who want a more complete bundle and stronger organized output.</p>
+          <article class="pricing-card card featured">
+            <span class="badge">Best value</span>
+            <h3>Case Builder Plus</h3>
+            <div class="price">$79 <small>one-time</small></div>
+            <p>For users who want stronger organization, more detail, and a more complete case-prep package.</p>
             <ul class="pricing-list" style="margin-top:14px;">
-              <li>Stronger upsell option</li>
-              <li>Higher perceived value</li>
-              <li>Fits more complex matters</li>
+              <li>Expanded support for facts and evidence</li>
+              <li>Better preparation before filing or review</li>
+              <li>High-value option for more involved matters</li>
             </ul>
             <div class="pricing-actions">
-              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Premium%20Document%20Pack%20Inquiry">Buy by Email</a>
-              <a class="pay-btn secondary" href="mailto:hello@courtsimplified.com?subject=PayPal%20Premium%20Document%20Pack%20Inquiry">PayPal Option</a>
+              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Case%20Builder%20Plus%20Purchase">Choose This Option</a>
+              <a class="pay-btn secondary" href="#contact">Learn More</a>
+            </div>
+          </article>
+
+          <article class="pricing-card card">
+            <span class="badge">Premium package</span>
+            <h3>Ultimate Case Package</h3>
+            <div class="price">$249 <small>starting price</small></div>
+            <p>For bigger matters where the user wants deeper organization and a stronger overall prep package.</p>
+            <ul class="pricing-list" style="margin-top:14px;">
+              <li>More complete organization support</li>
+              <li>Stronger premium offer</li>
+              <li>Designed for complex or ongoing matters</li>
+            </ul>
+            <div class="pricing-actions">
+              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Ultimate%20Case%20Package%20Inquiry">Request This Package</a>
+              <a class="pay-btn secondary" href="#contact">Contact Us</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section soft-band" id="faq">
+    <section class="section soft-band" id="trust">
+      <div class="container">
+        <div class="section-head">
+          <h2>Why people choose CourtSimplified</h2>
+          <p>
+            CourtSimplified is built to feel clear, useful, and supportive from the first click.
+          </p>
+        </div>
+        <div class="trust-grid">
+          <article class="trust-card">
+            <h3>Easy to understand</h3>
+            <p>Everything is written in plain language so users can focus on what matters.</p>
+          </article>
+          <article class="trust-card">
+            <h3>Practical and organized</h3>
+            <p>The platform is designed to turn scattered information into something more useful.</p>
+          </article>
+          <article class="trust-card">
+            <h3>Built for real users</h3>
+            <p>The site focuses on clarity, structure, and affordability instead of confusing legal language.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
       <div class="container">
         <div class="section-head">
           <h2>Frequently asked questions</h2>
           <p>
-            These answer the main questions users will have before trusting the platform or paying for help.
+            Clear answers to common questions before getting started.
           </p>
         </div>
         <div class="faq-grid">
           <article class="faq-card">
             <h3>Is this only for Ontario?</h3>
-            <p>No. The platform is positioned Canada-wide and is designed to layer province-specific guidance onto Canada-wide legal basics.</p>
-          </article>
-          <article class="faq-card">
-            <h3>Why do I choose a province first?</h3>
-            <p>Because forms, court names, and procedures can differ across provinces and territories, even when the core legal concepts are similar.</p>
+            <p>No. CourtSimplified is designed for users across Canada. Ontario currently includes the strongest built-in form guidance.</p>
           </article>
           <article class="faq-card">
             <h3>Does this replace legal advice?</h3>
-            <p>No. It is a legal preparation and organization platform, not a law firm and not a substitute for case-specific legal advice.</p>
+            <p>No. CourtSimplified is a legal preparation and organization platform. It is not a law firm and does not provide legal advice.</p>
           </article>
           <article class="faq-card">
-            <h3>Can this be expanded later?</h3>
-            <p>Yes. Province-specific modules, real payment links, AI drafting, saved user accounts, and referrals can all be layered in later.</p>
+            <h3>Can I save my work?</h3>
+            <p>Yes. Your summary can be saved in the browser on the same device so you can return to it later.</p>
           </article>
+          <article class="faq-card">
+            <h3>Can I print my summary?</h3>
+            <p>Yes. You can print or save the generated summary as a PDF from your browser.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="safety">
+      <div class="container">
+        <div class="notice">
+          <h3>Important information</h3>
+          <p>
+            CourtSimplified is a legal preparation and organization platform. It is not a law firm, does not provide legal advice, and does not create a lawyer-client relationship. Users should confirm forms, filing requirements, deadlines, and court rules from official sources before filing anything.
+          </p>
         </div>
       </div>
     </section>
@@ -1063,9 +1254,9 @@ This tool is designed to:
       <div class="container launch-grid">
         <div class="contact-box">
           <div class="section-head" style="margin-bottom:12px;">
-            <h2>Ready to start</h2>
+            <h2>Get started today</h2>
             <p>
-              This version is positioned for users across Canada. It already includes a jurisdiction selector, a stronger visual identity, and a less generic province-aware case builder.
+              Build a stronger summary, get organized, and take the next step with more confidence.
             </p>
           </div>
           <div class="hero-actions">
@@ -1076,12 +1267,13 @@ This tool is designed to:
         </div>
 
         <div class="contact-box">
-          <h3>What this version improves</h3>
+          <h3>What this platform includes</h3>
           <ul class="bullet-list" style="margin-top:14px;">
-            <li>Canada-wide positioning instead of Ontario-only feel</li>
-            <li>Province selection built into the user experience</li>
-            <li>Stronger blue visual identity with a more premium background</li>
-            <li>Less generic output through jurisdiction-aware summaries</li>
+            <li>Finished public-facing copy throughout the site</li>
+            <li>Province-aware case builder</li>
+            <li>Ontario form guidance built in</li>
+            <li>Print and save functionality</li>
+            <li>Launch-ready structure and design</li>
           </ul>
         </div>
       </div>
@@ -1094,16 +1286,16 @@ This tool is designed to:
         <div>
           <h3>CourtSimplified</h3>
           <p>
-            A Canada-wide legal preparation platform built to help people understand their issue, choose their jurisdiction, and create stronger organized materials.
+            CourtSimplified helps people across Canada organize their case, understand their issue, and prepare stronger materials with more clarity and confidence.
           </p>
         </div>
         <div>
           <h3>Explore</h3>
           <ul class="footer-links">
-            <li><a href="#jurisdiction">Jurisdiction</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#learn">Learn</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#who">Who It Helps</a></li>
             <li><a href="#tool">Case Builder</a></li>
+            <li><a href="#pricing">Pricing</a></li>
           </ul>
         </div>
         <div>
@@ -1125,6 +1317,7 @@ This tool is designed to:
   <script>
     const provinceSelect = document.getElementById('provinceSelect');
     const selectedProvinceLabel = document.getElementById('selectedProvinceLabel');
+    const processPanel = document.getElementById('processPanel');
 
     const fields = {
       name: document.getElementById('name'),
@@ -1139,31 +1332,186 @@ This tool is designed to:
 
     const output = document.getElementById('summaryOutput');
 
+    const guidance = {
+      "Ontario": {
+        "Civil Matter": {
+          court: "Ontario Superior Court of Justice",
+          likelyForm: "Form 14A – Statement of Claim (General), often used with Form 4A and Form 4C.",
+          steps: [
+            "Prepare the claim with the correct heading and details.",
+            "File the claim using the Ontario civil filing process.",
+            "Serve the issued claim on each defendant.",
+            "File proof of service and track the response deadline."
+          ],
+          filing: "Use Ontario civil procedure forms and confirm the exact filing route before submitting.",
+          links: [
+            { label: "Ontario Form 14A", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/14a/" },
+            { label: "Ontario Civil Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/" }
+          ],
+          note: "This is general filing guidance only. Civil procedure can vary depending on the claim."
+        },
+        "Small Claims": {
+          court: "Ontario Small Claims Court",
+          likelyForm: "Form 7A – Plaintiff’s Claim.",
+          steps: [
+            "Prepare the Plaintiff’s Claim with the facts and amount claimed.",
+            "File the claim online, by mail, or in person where permitted.",
+            "Serve the issued claim on the defendant.",
+            "File proof of service and watch the defence deadline."
+          ],
+          filing: "Ontario Small Claims documents may be filed online, by mail, or in person where allowed.",
+          links: [
+            { label: "Ontario Form 7A", url: "https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/7a/" },
+            { label: "Ontario Small Claims Filing", url: "https://www.ontariocourts.ca/scj/filing-procedures/filing/filing-for-small-claims/" }
+          ],
+          note: "Make sure the claim amount fits the current Small Claims Court limit before filing."
+        },
+        "Family Law": {
+          court: "Ontario family court pathway",
+          likelyForm: "Form 8 – Application is commonly used to start a family court case. Form 8A is used for divorce applications.",
+          steps: [
+            "Identify the issue and the correct court location.",
+            "Prepare the opening form and required supporting materials.",
+            "File the materials with the proper family court office.",
+            "Serve the other party and complete service requirements."
+          ],
+          filing: "Ontario family procedure depends on the exact issue, such as parenting, support, property, or divorce.",
+          links: [
+            { label: "Ontario Family Form 8", url: "https://ontariocourtforms.on.ca/en/family-law-rules-forms/8/" },
+            { label: "Ontario Family Case Steps", url: "https://www.ontariocourts.ca/ocj/family-court/family-case-step-by-step/" }
+          ],
+          note: "Family cases often require additional documents beyond the first application form."
+        },
+        "Negligence": {
+          court: "Usually Ontario Superior Court of Justice, but sometimes Small Claims Court depending on the amount and remedy.",
+          likelyForm: "Often Form 14A for a Superior Court claim, or Form 7A if the matter fits Small Claims Court.",
+          steps: [
+            "Figure out whether the claim belongs in Small Claims Court or the Superior Court.",
+            "Draft the facts around duty, breach, causation, and damages.",
+            "Use the correct form for the chosen court track.",
+            "File, serve, and preserve the evidence supporting the claim."
+          ],
+          filing: "The correct path depends on the amount claimed and the remedy requested.",
+          links: [
+            { label: "Ontario Civil Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/" },
+            { label: "Ontario Small Claims Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/" }
+          ],
+          note: "The correct form depends on the court track that applies."
+        },
+        "State Conduct / Charter": {
+          court: "Usually Ontario Superior Court of Justice",
+          likelyForm: "The correct route depends on the remedy sought and may involve a civil claim or another application path.",
+          steps: [
+            "Clarify whether the matter involves damages, declarations, review, or another remedy.",
+            "Choose the right court track before drafting.",
+            "Organize the facts around the public authority conduct at issue.",
+            "Get legal advice if the matter is urgent or complex."
+          ],
+          filing: "This category can involve different procedures depending on the relief sought.",
+          links: [
+            { label: "Ontario Civil Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/" }
+          ],
+          note: "This category needs extra care because procedure can vary significantly."
+        },
+        "Not Sure Yet": {
+          court: "To be determined after the issue is narrowed down.",
+          likelyForm: "The right starting form depends on whether the matter is family, civil, small claims, or another process.",
+          steps: [
+            "Use the summary to narrow down the issue first.",
+            "Decide which court track fits the problem.",
+            "Then match the issue to the correct starting form and filing path."
+          ],
+          filing: "Start with issue identification before choosing a court form.",
+          links: [
+            { label: "Ontario Court Forms", url: "https://ontariocourtforms.on.ca/en/" }
+          ],
+          note: "The platform does not guess a form when the issue is still unclear."
+        }
+      }
+    };
+
     function updateProvinceLabel() {
       selectedProvinceLabel.textContent = provinceSelect.value;
     }
 
     function getIssuePrompts(type) {
       const map = {
-        'Family Law': 'Possible focus areas: the child’s best interests, parenting stability, safety concerns, reliability, and evidence of current conditions.',
+        'Family Law': 'Possible focus areas: the child’s best interests, parenting stability, safety concerns, reliability, and current evidence.',
         'Civil Matter': 'Possible focus areas: what happened, what duty or agreement existed, what evidence supports the facts, and what remedy is being requested.',
         'Small Claims': 'Possible focus areas: clear chronology, money claimed, supporting proof, and a simple explanation of why the claim should succeed.',
-        'Negligence': 'Possible focus areas: duty of care, breach, causation, and damages. The facts should show how the conduct caused the harm.',
-        'State Conduct / Charter': 'Possible focus areas: public authority conduct, rights affected, what action or omission is being challenged, and the impact of that conduct.',
+        'Negligence': 'Possible focus areas: duty of care, breach, causation, and damages.',
+        'State Conduct / Charter': 'Possible focus areas: public authority conduct, rights affected, the action or omission being challenged, and the impact of that conduct.',
         'Not Sure Yet': 'Possible focus areas: identifying the legal category first, clarifying the timeline, and separating key facts from background detail.'
       };
       return map[type] || map['Not Sure Yet'];
     }
 
+    function getProvinceGuidance(province, type) {
+      const provinceGuidance = guidance[province];
+      if (provinceGuidance && provinceGuidance[type]) return provinceGuidance[type];
+
+      return {
+        court: `${province} guidance coming next`,
+        likelyForm: `This section provides general guidance based on the selected jurisdiction.`,
+        steps: [
+          `Keep the case summary organized around facts, timeline, evidence, and the outcome wanted.`,
+          `Confirm the exact forms and filing path for ${province} from official sources before filing.`,
+          `Use the summary as a preparation draft for the next legal step.`
+        ],
+        filing: `Confirm the exact filing steps for ${province} from official court or government sources before filing.`,
+        links: [],
+        note: `This platform provides structured general guidance for ${province}.`
+      };
+    }
+
     function getProvinceNote(province, type) {
-      const generic = `Jurisdiction selected: ${province}. The platform should treat this as the working province for next-step guidance and procedure-aware organization.`;
-      if (type === 'Small Claims') {
-        return `${generic} Small claims procedures and court naming can vary by province, so this selection helps the summary stay grounded.`;
-      }
-      if (type === 'Family Law') {
-        return `${generic} Family-law procedure and form pathways can differ by province, even when core best-interests reasoning overlaps.`;
-      }
-      return generic;
+      const base = getProvinceGuidance(province, type);
+      return `${base.note} Selected jurisdiction: ${province}.`;
+    }
+
+    function renderProcessPanel() {
+      const province = provinceSelect.value;
+      const caseType = fields.caseType.value.trim() || 'Not Sure Yet';
+      const info = getProvinceGuidance(province, caseType);
+
+      const links = info.links.length
+        ? `<div class="process-links">${info.links.map(link => `<a class="process-link" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label}</a>`).join('')}</div>`
+        : '';
+
+      processPanel.innerHTML = `
+        <div class="process-row">
+          <div class="process-label">Province</div>
+          <div class="process-value">${province}</div>
+        </div>
+        <div class="process-row">
+          <div class="process-label">Issue Type</div>
+          <div class="process-value">${caseType}</div>
+        </div>
+        <div class="process-row">
+          <div class="process-label">Likely Court</div>
+          <div class="process-value">${info.court}</div>
+        </div>
+        <div class="process-row">
+          <div class="process-label">Likely Form</div>
+          <div class="process-value">${info.likelyForm}</div>
+        </div>
+        <div class="process-row">
+          <div class="process-label">Basic Steps</div>
+          <div class="process-value">
+            <ol class="process-steps">
+              ${info.steps.map(step => `<li>${step}</li>`).join('')}
+            </ol>
+          </div>
+        </div>
+        <div class="process-row">
+          <div class="process-label">Filing Note</div>
+          <div class="process-value">${info.filing}</div>
+        </div>
+        <div class="process-row">
+          <div class="process-label">Important</div>
+          <div class="process-value">${info.note}${links}</div>
+        </div>
+      `;
     }
 
     function buildSummary() {
@@ -1176,6 +1524,7 @@ This tool is designed to:
       const timeline = fields.timeline.value.trim() || 'No timeline entered yet.';
       const evidence = fields.evidence.value.trim() || 'No evidence listed yet.';
       const concerns = fields.concerns.value.trim() || 'No main concerns listed yet.';
+      const info = getProvinceGuidance(province, caseType);
 
       const summary = `COURTSIMPLIFIED CASE SUMMARY
 
@@ -1209,27 +1558,35 @@ ${concerns}
 5. PRACTICAL LEGAL FOCUS
 ${getIssuePrompts(caseType)}
 
-6. JURISDICTION NOTE
+6. LIKELY COURT AND FORM
+Court: ${info.court}
+Likely form or starting document: ${info.likelyForm}
+
+7. JURISDICTION NOTE
 ${getProvinceNote(province, caseType)}
 
-7. SUGGESTED NEXT STEPS
+8. SUGGESTED NEXT STEPS
 - Review the timeline and remove anything not directly relevant.
 - Separate facts from conclusions and keep the facts clear.
 - Organize evidence so each major point can be supported.
 - Clarify what document or next step is actually needed.
-- Consider whether province-specific legal advice is needed for strategy or filing.
+- Confirm the exact form and filing path from official sources before filing.
 
-8. COURTSIMPLIFIED NOTE
+9. COURTSIMPLIFIED NOTE
 This summary is designed to help organize the case into a more useful structure. It is a preparation and drafting aid, not legal advice.`;
 
       output.textContent = summary;
+      renderProcessPanel();
       return summary;
     }
 
     provinceSelect.addEventListener('change', function() {
       updateProvinceLabel();
+      renderProcessPanel();
       localStorage.setItem('courtsimplified_selected_province', provinceSelect.value);
     });
+
+    fields.caseType.addEventListener('change', renderProcessPanel);
 
     document.getElementById('generateSummaryBtn').addEventListener('click', function() {
       buildSummary();
@@ -1271,6 +1628,7 @@ This tool is designed to:
 - create a cleaner starting point
 - keep the selected jurisdiction visible in the output`;
       localStorage.removeItem('courtsimplified_case_data');
+      renderProcessPanel();
     });
 
     window.addEventListener('DOMContentLoaded', function() {
@@ -1279,23 +1637,25 @@ This tool is designed to:
       updateProvinceLabel();
 
       const saved = localStorage.getItem('courtsimplified_case_data');
-      if (!saved) return;
-      try {
-        const data = JSON.parse(saved);
-        if (data.province) provinceSelect.value = data.province;
-        updateProvinceLabel();
-        fields.name.value = data.name || '';
-        fields.email.value = data.email || '';
-        fields.caseType.value = data.caseType || 'Family Law';
-        fields.goal.value = data.goal || '';
-        fields.story.value = data.story || '';
-        fields.timeline.value = data.timeline || '';
-        fields.evidence.value = data.evidence || '';
-        fields.concerns.value = data.concerns || '';
-        output.textContent = data.summary || output.textContent;
-      } catch (e) {
-        console.error('Could not load saved case data.', e);
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          if (data.province) provinceSelect.value = data.province;
+          updateProvinceLabel();
+          fields.name.value = data.name || '';
+          fields.email.value = data.email || '';
+          fields.caseType.value = data.caseType || 'Family Law';
+          fields.goal.value = data.goal || '';
+          fields.story.value = data.story || '';
+          fields.timeline.value = data.timeline || '';
+          fields.evidence.value = data.evidence || '';
+          fields.concerns.value = data.concerns || '';
+          output.textContent = data.summary || output.textContent;
+        } catch (e) {
+          console.error('Could not load saved case data.', e);
+        }
       }
+      renderProcessPanel();
     });
   </script>
 </body>
