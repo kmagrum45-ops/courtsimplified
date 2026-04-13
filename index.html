@@ -1026,7 +1026,49 @@
     </div>
   </div>
 </section>
+<section class="section" id="account">
+  <div class="container">
+    <div class="section-head">
+      <h2>Account</h2>
+      <p>Create an account or log in to save your cases.</p>
+    </div>
 
+    <div class="grid-2">
+      <div class="card">
+        <h3>Sign up or log in</h3>
+
+        <div class="form-grid" style="margin-top:16px;">
+          <div>
+            <label for="authEmail">Email</label>
+            <input id="authEmail" type="email" placeholder="you@example.com" />
+          </div>
+
+          <div>
+            <label for="authPassword">Password</label>
+            <input id="authPassword" type="password" placeholder="Enter password" />
+          </div>
+
+          <div class="tool-buttons">
+            <button class="tool-btn primary" onclick="signUpUser()">Sign Up</button>
+            <button class="tool-btn secondary" onclick="loginUser()">Log In</button>
+            <button class="tool-btn secondary" onclick="logoutUser()">Log Out</button>
+          </div>
+
+          <p><strong>Current user:</strong> <span id="currentUser">Not logged in</span></p>
+          <p id="authMessage" class="saved-note"></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Saved cases</h3>
+        <p>Your saved case summaries will appear here.</p>
+        <ul id="savedCasesList" class="bullet-list" style="margin-top:14px;">
+          <li>Log in to see saved cases.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="section soft-band" id="tool">
       <div class="container">
         <div class="section-head">
