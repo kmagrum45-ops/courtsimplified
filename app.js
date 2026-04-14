@@ -3,12 +3,8 @@ console.log("app.js started");
 const SUPABASE_URL = "https://ffymjxjcnwakgdmdlpne.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_pOwKiwY1s3gc9-soS3jo8Q_UzB1T8b6";
 
-if (!window.supabase) {
-  alert("Supabase failed to load. Check the script order in index.html.");
-  throw new Error("window.supabase is missing");
-}
 
-const supabaseClient = window.supabase.createClient(
+const supabaseClient = supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
