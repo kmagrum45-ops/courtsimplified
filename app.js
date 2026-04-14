@@ -1,4 +1,3 @@
-alert("app.js loaded");
 console.log("app.js started");
 
 const SUPABASE_URL = "https://ffymjxjcnwakgdmdlpne.supabase.co";
