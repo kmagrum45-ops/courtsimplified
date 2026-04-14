@@ -1,196 +1,54 @@
 console.log("app.js started");
 
-const SUPABASE_URL = "https://ffymjxjcnwakgdmldpne.supabase.co"; 
+const SUPABASE_URL = "https://ffymjxjcnwakgdmldpne.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_pOwKiwY1s3gc9-soS3jo8Q_UzB1T8b6";
 
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const supabaseClient = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
+const DEFAULT_SUMMARY = `COURTSIMPLIFIED CASE SUMMARY
 
-window.signUpUser = async function () {
-  const emailEl = document.getElementById("authEmail");
-  const passwordEl = document.getElementById("authPassword");
-  const authMessage = document.getElementById("authMessage");
+Choose a province or territory, fill out the intake form, and generate a structured summary.
 
-  if (!emailEl || !passwordEl || !authMessage) {
-    alert("Account section elements are missing in index.html");
-    return;
-  }
+This tool is designed to:
+- organize the story
+- identify likely issues
+- create a cleaner starting point
+- keep the selected jurisdiction visible in the output`;
 
-  const email = emailEl.value.trim();
-  const password = passwordEl.value.trim();
+const fields = {};
+let selectedPlan = null;
+let selectedCaseId = null;
 
-  if (!email || !password) {
-    authMessage.textContent = "Enter email and password.";
-    return;
-  }
-
-  const { error } = await supabaseClient.auth.signUp({
-    email,
-    password
-  });
-
-  if (error) {
-    authMessage.textContent = error.message;
-    return;
-  }
-
-  authMessage.textContent = "Signup successful. Check your email if confirmation is required.";
-  await window.loadCurrentUser();
-  await window.loadSavedCases();
-};
-
-window.loginUser = async function () {
-  const emailEl = document.getElementById("authEmail");
-  const passwordEl = document.getElementById("authPassword");
-  const authMessage = document.getElementById("authMessage");
-
-  if (!emailEl || !passwordEl || !authMessage) {
-    alert("Account section elements are missing in index.html");
-    return;
-  }
-
-  const email = emailEl.value.trim();
-  const password = passwordEl.value.trim();
-
-  if (!email || !password) {
-    authMessage.textContent = "Enter email and password.";
-    return;
-  }
-
-  const { error } = await supabaseClient.auth.signInWithPassword({
-    email,
-    password
-  });
-
-  if (error) {
-    authMessage.textContent = error.message;
-    return;
-  }
-
-  authMessage.textContent = "Logged in successfully.";
-  await window.loadCurrentUser();
-  await window.loadSavedCases();
-};
-
-window.logoutUser = async function () {
-  const authMessage = document.getElementById("authMessage");
-  await supabaseClient.auth.signOut();
-
-  const currentUser = document.getElementById("currentUser");
-  if (currentUser) currentUser.textContent = "Not logged in";
-  if (authMessage) authMessage.textContent = "Logged out.";
-
-  await window.loadSavedCases();
-};
-
-window.loadCurrentUser = async function () {
-  const currentUser = document.getElementById("currentUser");
-  if (!currentUser) return;
-
-  const {
-    data: { user },
-    error
-  } = await supabaseClient.auth.getUser();
-
-  if (error) {
-    currentUser.textContent = "Error loading user";
-    return;
-  }
-
-  currentUser.textContent = user ? user.email : "Not logged in";
-};
-
-window.saveCaseToDatabase = async function () {
-  const saveMessage = document.getElementById("saveMessage");
-  if (!saveMessage) {
-    alert("saveMessage element is missing in index.html");
-    return;
-  }
-
-  const {
-    data: { user }
-  } = await supabaseClient.auth.getUser();
-
-  if (!user) {
-    saveMessage.textContent = "You must be logged in to save.";
-    return;
-  }
-
-  const province = document.getElementById("provinceSelect")?.value || "";
-  const caseType = document.getElementById("caseType")?.value || "";
-  const goal = document.getElementById("goal")?.value.trim() || "";
-  const story = document.getElementById("story")?.value.trim() || "";
-  const timeline = document.getElementById("timeline")?.value.trim() || "";
-  const evidence = document.getElementById("evidence")?.value.trim() || "";
-  const concerns = document.getElementById("concerns")?.value.trim() || "";
-  const summary = document.getElementById("summaryOutput")?.textContent || "";
-
-  const { error } = await supabaseClient.from("cases").insert([
-    {
-      user_id: user.id,
-      province,
-      case_type: caseType,
-      goal,
-      story,
-      timeline,
-      evidence,
-      concerns,
-      summary
-    }
-  ]);
-
-  if (error) {
-    saveMessage.textContent = "Save failed: " + error.message;
-    return;
-  }
-
-  saveMessage.textContent = "Case saved successfully.";
-  await window.loadSavedCases();
-};
-
-window.loadSavedCases = async function () {
-  const savedCasesList = document.getElementById("savedCasesList");
-  if (!savedCasesList) return;
-
-  savedCasesList.innerHTML = "";
-
-  const {
-    data: { user }
-  } = await supabaseClient.auth.getUser();
-
-  if (!user) {
-    savedCasesList.innerHTML = "<li>Log in to see saved cases.</li>";
-    return;
-  }
-
-  const { data, error } = await supabaseClient
-    .from("cases")
-    .select("*")
-    .eq("user_id", user.id)
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    savedCasesList.innerHTML = `<li>Error loading cases: ${error.message}</li>`;
-    return;
-  }
-
-  if (!data || data.length === 0) {
-    savedCasesList.innerHTML = "<li>No saved cases yet.</li>";
-    return;
-  }
-
-  data.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = `${item.case_type} | ${item.province} | ${item.goal || "No goal entered"}`;
-    savedCasesList.appendChild(li);
-  });
-};
-
-window.addEventListener("DOMContentLoaded", async () => {
-  console.log("DOMContentLoaded in app.js");
-  await window.loadCurrentUser();
-  await window.loadSavedCases();
+const guidance = {
+  Ontario: {
+    "Civil Matter": {
+      court: "Ontario Superior Court of Justice",
+      likelyForm: "Form 14A – Statement of Claim (General), often used with Form 4A and Form 4C.",
+      steps: [
+        "Prepare the claim with the correct heading and details.",
+        "File the claim using the Ontario civil filing process.",
+        "Serve the issued claim on each defendant.",
+        "File proof of service and track the response deadline."
+      ],
+      filing: "Use Ontario civil procedure forms and confirm the exact filing route before submitting.",
+      links: [
+        { label: "Ontario Form 14A", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/14a/" },
+        { label: "Ontario Civil Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/" }
+      ],
+      note: "This is general filing guidance only. Civil procedure can vary depending on the claim."
+    },
+    "Small Claims": {
+      court: "Ontario Small Claims Court",
+      likelyForm: "Form 7A – Plaintiff’s Claim.",
+      steps: [
+        "Prepare the Plaintiff’s Claim with the facts and amount claimed.",
+        "File the claim online, by mail, or in person where permitted.",
+        "Serve the issued claim on the defendant.",
+        "File proof of service and watch the defence deadline."
+      ],
+      filing: "Ontario Small Claims documents may be filed online, by mail, or in person where allowed.",
+      links: [
+        { label: "Ontario Form 7A", url: "https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/7a/" },
+        { label: "Ontario Small Claims Filing", url: "https://www.ontariocourts.ca/scj/filing-procedures/filing/filing-for-small-claims/" }
+      ],
 });
