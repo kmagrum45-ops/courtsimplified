@@ -1684,22 +1684,6 @@ This tool is designed to:
   const province = document.getElementById('provinceSelect').value;
 
   const message = `
-Province: ${province}
-Case Type: ${caseType}
-
-Story:
-${story}
-
-Timeline:
-${timeline}
-
-Evidence:
-${evidence}
-
-Concerns:
-${concerns}
-
-const message = `
 You are a legal case organization assistant for Canada.
 
 Your job is NOT to give legal advice.
@@ -1762,8 +1746,6 @@ ${evidence}
 Concerns:
 ${concerns}
 `;
-`;
-
   output.textContent = "AI is analyzing your case...";
 
   try {
@@ -1814,6 +1796,8 @@ ${concerns}
       }
       renderProcessPanel();
     });
+
+  </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
