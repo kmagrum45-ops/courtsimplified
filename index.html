@@ -1133,16 +1133,17 @@
                 <textarea id="concerns" placeholder="What should the court or legal professional understand most clearly?"></textarea>
               </div>
 
-              <div class="tool-buttons">
-                <button class="tool-btn primary" id="generateSummaryBtn">Generate Summary</button>
-                <button class="tool-btn secondary" id="saveSummaryBtn">Save in Browser</button>
-                <button class="tool-btn secondary" onclick="saveCaseToDatabase()">Save to Account</button>
-                <button class="tool-btn secondary" id="printSummaryBtn">Print / Save PDF</button>
-                <button class="tool-btn secondary" id="clearSummaryBtn">Clear Form</button>
-                <button onclick="askAI()">Ask AI</button>
-              </div>
+             <div class="tool-buttons">
+  <button class="tool-btn primary" id="generateSummaryBtn">Generate Summary</button>
+  <button class="tool-btn secondary" id="saveSummaryBtn">Save in Browser</button>
+  <button class="tool-btn secondary" onclick="saveCaseToDatabase()">Save to Account</button>
+  <button class="tool-btn secondary" id="printSummaryBtn">Print / Save PDF</button>
+  <button class="tool-btn secondary" id="clearSummaryBtn">Clear Form</button>
+  <button onclick="askAI()">Ask AI</button>
+</div>
 
-              <p class="saved-note">Saved summaries stay on the same device and browser.</p>
+<p id="saveMessage" class="saved-note"></p>
+<p class="saved-note">Saved summaries stay on the same device and browser.</p> 
             </div>
           </section>
 
