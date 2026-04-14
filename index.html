@@ -379,7 +379,7 @@
       align-items: center;
     }
 
-    select, input[type="text"], input[type="email"], textarea {
+    select, input[type="text"], input[type="email"], input[type="password"], textarea {
       width: 100%;
       padding: 12px 14px;
       border: 1px solid var(--line);
@@ -598,6 +598,7 @@
       font-weight: 700;
       border: 1px solid transparent;
       transition: 0.2s ease;
+      cursor: pointer;
     }
 
     .pay-btn.primary { background: var(--primary); color: white; }
@@ -785,8 +786,8 @@
           </article>
           <article class="step-card">
             <div class="step-number">4</div>
-            <h3>Move forward better prepared</h3>
-            <p>Use the summary to prepare documents, review your case, or communicate more clearly with a legal professional.</p>
+            <h3>Choose a package</h3>
+            <p>Select the level of help you want and continue through a real on-site workflow instead of a dead-end page.</p>
           </article>
         </div>
       </div>
@@ -920,13 +921,13 @@
           </article>
           <article class="card">
             <div class="icon">07</div>
-            <h3>Trust-focused design</h3>
-            <p>The site is written and designed to feel welcoming, professional, and ready to use.</p>
+            <h3>Account-based saving</h3>
+            <p>Logged-in users can save cases to their account and reopen them later.</p>
           </article>
           <article class="card">
             <div class="icon">08</div>
-            <h3>Built to expand</h3>
-            <p>Payments, AI drafting, uploads, and expanded province modules can be connected when you are ready.</p>
+            <h3>Plan selection flow</h3>
+            <p>Packages now stay inside the site and lead into a real next-step section rather than a dead end.</p>
           </article>
         </div>
       </div>
@@ -986,90 +987,90 @@
           </article>
         </div>
       </div>
+    </section>
 
-</section>
+    <section class="section" id="judge">
+      <div class="container">
+        <div class="section-head">
+          <h2>How judges often look at a case</h2>
+          <p>
+            Strong cases are easier to follow because the facts, issues, proof, and requested outcome are laid out clearly.
+            This section helps users understand how to think about their case before they file anything.
+          </p>
+        </div>
+        <div class="grid-2">
+          <article class="card education-box">
+            <span class="mini-label">What Judges Look For</span>
+            <h3>What usually matters most</h3>
+            <ul class="bullet-list" style="margin-top:14px;">
+              <li>Clear facts that are easy to follow</li>
+              <li>Evidence that supports the main points</li>
+              <li>Who is legally responsible and why</li>
+              <li>What harm occurred</li>
+              <li>A clear outcome or remedy being requested</li>
+            </ul>
+          </article>
 
-<section class="section" id="judge">
-  <div class="container">
-    <div class="section-head">
-      <h2>How judges often look at a case</h2>
-      <p>
-        Strong cases are easier to follow because the facts, issues, proof, and requested outcome are laid out clearly.
-        This section helps users understand how to think about their case before they file anything.
-      </p>
-    </div>
-    <div class="grid-2">
-      <article class="card education-box">
-        <span class="mini-label">What Judges Look For</span>
-        <h3>What usually matters most</h3>
-        <ul class="bullet-list" style="margin-top:14px;">
-          <li>Clear facts that are easy to follow</li>
-          <li>Evidence that supports the main points</li>
-          <li>Who is legally responsible and why</li>
-          <li>What harm occurred</li>
-          <li>A clear outcome or remedy being requested</li>
-        </ul>
-      </article>
-
-      <article class="card education-box">
-        <span class="mini-label">Case Structure</span>
-        <h3>How a strong case is usually organized</h3>
-        <ul class="bullet-list" style="margin-top:14px;">
-          <li>Background of the situation</li>
-          <li>Facts in chronological order</li>
-          <li>The issues that need to be decided</li>
-          <li>The legal concepts that may apply</li>
-          <li>Analysis connecting the facts to the law</li>
-          <li>A conclusion and requested remedy</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-<section class="section" id="account">
-  <div class="container">
-    <div class="section-head">
-      <h2>Account</h2>
-      <p>Create an account or log in to save your cases.</p>
-    </div>
-
-    <div class="grid-2">
-      <div class="card">
-        <h3>Sign up or log in</h3>
-
-        <div class="form-grid" style="margin-top:16px;">
-          <div>
-            <label for="authEmail">Email</label>
-            <input id="authEmail" type="email" placeholder="you@example.com" />
-          </div>
-
-          <div>
-            <label for="authPassword">Password</label>
-            <input id="authPassword" type="password" placeholder="Enter password" />
-          </div>
-
-          <div class="tool-buttons">
-            <button class="tool-btn primary" onclick="signUpUser()">Sign Up</button>
-            <button class="tool-btn secondary" onclick="loginUser()">Log In</button>
-            <button class="tool-btn secondary" onclick="logoutUser()">Log Out</button>
-          </div>
-
-          <p><strong>Current user:</strong> <span id="currentUser">Not logged in</span></p>
-          <p id="authMessage" class="saved-note"></p>
+          <article class="card education-box">
+            <span class="mini-label">Case Structure</span>
+            <h3>How a strong case is usually organized</h3>
+            <ul class="bullet-list" style="margin-top:14px;">
+              <li>Background of the situation</li>
+              <li>Facts in chronological order</li>
+              <li>The issues that need to be decided</li>
+              <li>The legal concepts that may apply</li>
+              <li>Analysis connecting the facts to the law</li>
+              <li>A conclusion and requested remedy</li>
+            </ul>
+          </article>
         </div>
       </div>
+    </section>
 
-      <div class="card">
-        <h3>Saved cases</h3>
-        <p>Your saved case summaries will appear here.</p>
-        <ul id="savedCasesList" class="bullet-list" style="margin-top:14px;">
-          <li>Log in to see saved cases.</li>
-        </ul>
+    <section class="section" id="account">
+      <div class="container">
+        <div class="section-head">
+          <h2>Account</h2>
+          <p>Create an account or log in to save your cases.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Sign up or log in</h3>
+            <div class="form-grid" style="margin-top:16px;">
+              <div>
+                <label for="authEmail">Email</label>
+                <input id="authEmail" type="email" placeholder="you@example.com" />
+              </div>
+
+              <div>
+                <label for="authPassword">Password</label>
+                <input id="authPassword" type="password" placeholder="Enter password" />
+              </div>
+
+              <div class="tool-buttons">
+                <button class="tool-btn primary" onclick="signUpUser()" type="button">Sign Up</button>
+                <button class="tool-btn secondary" onclick="loginUser()" type="button">Log In</button>
+                <button class="tool-btn secondary" onclick="logoutUser()" type="button">Log Out</button>
+              </div>
+
+              <p><strong>Current user:</strong> <span id="currentUser">Not logged in</span></p>
+              <p id="authMessage" class="saved-note"></p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Saved cases</h3>
+            <p>Your saved case summaries will appear here.</p>
+            <ul id="savedCasesList" class="bullet-list" style="margin-top:14px;">
+              <li>Log in to see saved cases.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-<section class="section soft-band" id="tool">
+    </section>
+
+    <section class="section soft-band" id="tool">
       <div class="container">
         <div class="section-head">
           <h2>Case builder</h2>
@@ -1091,7 +1092,7 @@
                 </div>
                 <div>
                   <label for="email">Email</label>
-                  <input id="email" type="email" placeholder="hello@example.com" />
+                  <input id="email" type="email" placeholder="courtsimplified@gmail.com" />
                 </div>
               </div>
 
@@ -1133,17 +1134,17 @@
                 <textarea id="concerns" placeholder="What should the court or legal professional understand most clearly?"></textarea>
               </div>
 
-             <div class="tool-buttons">
-  <button class="tool-btn primary" id="generateSummaryBtn">Generate Summary</button>
-  <button class="tool-btn secondary" id="saveSummaryBtn">Save in Browser</button>
-  <button class="tool-btn secondary" onclick="saveCaseToDatabase()">Save to Account</button>
-  <button class="tool-btn secondary" id="printSummaryBtn">Print / Save PDF</button>
-  <button class="tool-btn secondary" id="clearSummaryBtn">Clear Form</button>
-  <button onclick="askAI()">Ask AI</button>
-</div>
+              <div class="tool-buttons">
+                <button class="tool-btn primary" id="generateSummaryBtn" type="button">Generate Summary</button>
+                <button class="tool-btn secondary" id="saveSummaryBtn" type="button">Save in Browser</button>
+                <button class="tool-btn secondary" onclick="saveCaseToDatabase()" type="button">Save to Account</button>
+                <button class="tool-btn secondary" id="printSummaryBtn" type="button">Print / Save PDF</button>
+                <button class="tool-btn secondary" id="clearSummaryBtn" type="button">Clear Form</button>
+                <button class="tool-btn secondary" id="askAiBtn" onclick="askAI()" type="button">Ask AI</button>
+              </div>
 
-<p id="saveMessage" class="saved-note"></p>
-<p class="saved-note">Saved summaries stay on the same device and browser.</p> 
+              <p id="saveMessage" class="saved-note"></p>
+              <p class="saved-note">Saved summaries stay on the same device and browser unless you save to your account.</p>
             </div>
           </section>
 
@@ -1190,8 +1191,8 @@ This tool is designed to:
               <li>Strong option for first-time users</li>
             </ul>
             <div class="pricing-actions">
-              <a class="pay-btn primary" href="mailto:courtsimplified@gmail.com?subject=Single%20Document%20Purchase">Buy This Option</a>
-              <a class="pay-btn secondary" href="#contact">Ask a Question</a>
+              <button class="pay-btn primary" type="button" data-plan-id="single">Choose This Plan</button>
+              <a class="pay-btn secondary" href="#purchaseFlow">View Next Step</a>
             </div>
           </article>
 
@@ -1206,8 +1207,8 @@ This tool is designed to:
               <li>High-value option for more involved matters</li>
             </ul>
             <div class="pricing-actions">
-              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Case%20Builder%20Plus%20Purchase">Choose This Option</a>
-              <a class="pay-btn secondary" href="#contact">Learn More</a>
+              <button class="pay-btn primary" type="button" data-plan-id="plus">Choose This Plan</button>
+              <a class="pay-btn secondary" href="#purchaseFlow">View Next Step</a>
             </div>
           </article>
 
@@ -1222,9 +1223,39 @@ This tool is designed to:
               <li>Designed for complex or ongoing matters</li>
             </ul>
             <div class="pricing-actions">
-              <a class="pay-btn primary" href="mailto:hello@courtsimplified.com?subject=Ultimate%20Case%20Package%20Inquiry">Request This Package</a>
-              <a class="pay-btn secondary" href="#contact">Contact Us</a>
+              <button class="pay-btn primary" type="button" data-plan-id="ultimate">Choose This Plan</button>
+              <a class="pay-btn secondary" href="#purchaseFlow">View Next Step</a>
             </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="purchaseFlow">
+      <div class="container">
+        <div class="section-head">
+          <h2>Continue with your selected plan</h2>
+          <p>This section replaces the dead-end plan flow and keeps the user inside the site.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3 id="selectedPlanName">No plan selected yet</h3>
+            <p id="selectedPlanPrice">Choose a plan above to continue.</p>
+            <p id="selectedPlanDescription" style="margin-top:12px;">When a user picks a plan, it will show here instead of sending them away to a blank page or broken flow.</p>
+            <ul id="selectedPlanDeliverables" class="bullet-list" style="margin-top:14px;">
+              <li>Pick a plan to start checkout flow</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Next step</h3>
+            <p>Use this block for Stripe checkout, payment links, or manual order intake.</p>
+            <div class="tool-buttons" style="margin-top:16px;">
+              <button class="tool-btn primary" type="button" onclick="beginCheckout()">Continue to Checkout</button>
+              <a class="tool-btn secondary" href="#tool">Go Back to Case Builder</a>
+            </div>
+            <p id="purchaseMessage" class="saved-note"></p>
           </article>
         </div>
       </div>
@@ -1274,7 +1305,7 @@ This tool is designed to:
           </article>
           <article class="faq-card">
             <h3>Can I save my work?</h3>
-            <p>Yes. Your summary can be saved in the browser on the same device so you can return to it later.</p>
+            <p>Yes. Your summary can be saved in the browser on the same device so you can return to it later, or saved to your account if you log in.</p>
           </article>
           <article class="faq-card">
             <h3>Can I print my summary?</h3>
@@ -1305,10 +1336,10 @@ This tool is designed to:
             </p>
           </div>
           <div class="hero-actions">
-            <a href="mailto:hello@courtsimplified.com?subject=I%20want%20help%20with%20my%20case" class="btn" style="background: var(--primary); color: #fff;">Contact CourtSimplified</a>
+            <a href="mailto:courtsimplified@gmail.com?subject=I%20want%20help%20with%20my%20case" class="btn" style="background: var(--primary); color: #fff;">Contact CourtSimplified</a>
             <a href="#tool" class="btn" style="background:#fff;color:var(--text);border:1px solid var(--line);">Use the Case Builder</a>
           </div>
-          <p class="tiny">Business contact: hello@courtsimplified.com</p>
+          <p class="tiny">Business contact: courtsimplified@gmail.com</p>
         </div>
 
         <div class="contact-box">
@@ -1346,9 +1377,9 @@ This tool is designed to:
         <div>
           <h3>Contact</h3>
           <ul class="footer-links">
-            <li><a href="mailto:hello@courtsimplified.com">hello@courtsimplified.com</a></li>
-            <li><a href="https://courtsimplified.com">courtsimplified.com</a></li>
-            <li><a href="https://courtsimplified.ca">courtsimplified.ca</a></li>
+            <li><a href="mailto:courtsimplified@gmail.com">courtsimplified@gmail.com</a></li>
+            <li><a href="https://courtsimplified.com" target="_blank" rel="noopener noreferrer">courtsimplified.com</a></li>
+            <li><a href="https://courtsimplified.ca" target="_blank" rel="noopener noreferrer">courtsimplified.ca</a></li>
           </ul>
         </div>
       </div>
@@ -1359,448 +1390,7 @@ This tool is designed to:
     </div>
   </footer>
 
-  <script>
-    const provinceSelect = document.getElementById('provinceSelect');
-    const selectedProvinceLabel = document.getElementById('selectedProvinceLabel');
-    const processPanel = document.getElementById('processPanel');
-
-    const fields = {
-      name: document.getElementById('name'),
-      email: document.getElementById('email'),
-      caseType: document.getElementById('caseType'),
-      goal: document.getElementById('goal'),
-      story: document.getElementById('story'),
-      timeline: document.getElementById('timeline'),
-      evidence: document.getElementById('evidence'),
-      concerns: document.getElementById('concerns')
-    };
-
-    const output = document.getElementById('summaryOutput');
-
-    const guidance = {
-      "Ontario": {
-        "Civil Matter": {
-          court: "Ontario Superior Court of Justice",
-          likelyForm: "Form 14A – Statement of Claim (General), often used with Form 4A and Form 4C.",
-          steps: [
-            "Prepare the claim with the correct heading and details.",
-            "File the claim using the Ontario civil filing process.",
-            "Serve the issued claim on each defendant.",
-            "File proof of service and track the response deadline."
-          ],
-          filing: "Use Ontario civil procedure forms and confirm the exact filing route before submitting.",
-          links: [
-            { label: "Ontario Form 14A", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/14a/" },
-            { label: "Ontario Civil Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/" }
-          ],
-          note: "This is general filing guidance only. Civil procedure can vary depending on the claim."
-        },
-        "Small Claims": {
-          court: "Ontario Small Claims Court",
-          likelyForm: "Form 7A – Plaintiff’s Claim.",
-          steps: [
-            "Prepare the Plaintiff’s Claim with the facts and amount claimed.",
-            "File the claim online, by mail, or in person where permitted.",
-            "Serve the issued claim on the defendant.",
-            "File proof of service and watch the defence deadline."
-          ],
-          filing: "Ontario Small Claims documents may be filed online, by mail, or in person where allowed.",
-          links: [
-            { label: "Ontario Form 7A", url: "https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/7a/" },
-            { label: "Ontario Small Claims Filing", url: "https://www.ontariocourts.ca/scj/filing-procedures/filing/filing-for-small-claims/" }
-          ],
-          note: "Make sure the claim amount fits the current Small Claims Court limit before filing."
-        },
-        "Family Law": {
-          court: "Ontario family court pathway",
-          likelyForm: "Form 8 – Application is commonly used to start a family court case. Form 8A is used for divorce applications.",
-          steps: [
-            "Identify the issue and the correct court location.",
-            "Prepare the opening form and required supporting materials.",
-            "File the materials with the proper family court office.",
-            "Serve the other party and complete service requirements."
-          ],
-          filing: "Ontario family procedure depends on the exact issue, such as parenting, support, property, or divorce.",
-          links: [
-            { label: "Ontario Family Form 8", url: "https://ontariocourtforms.on.ca/en/family-law-rules-forms/8/" },
-            { label: "Ontario Family Case Steps", url: "https://www.ontariocourts.ca/ocj/family-court/family-case-step-by-step/" }
-          ],
-          note: "Family cases often require additional documents beyond the first application form."
-        },
-        "Negligence": {
-          court: "Usually Ontario Superior Court of Justice, but sometimes Small Claims Court depending on the amount and remedy.",
-          likelyForm: "Often Form 14A for a Superior Court claim, or Form 7A if the matter fits Small Claims Court.",
-          steps: [
-            "Figure out whether the claim belongs in Small Claims Court or the Superior Court.",
-            "Draft the facts around duty, breach, causation, and damages.",
-            "Use the correct form for the chosen court track.",
-            "File, serve, and preserve the evidence supporting the claim."
-          ],
-          filing: "The correct path depends on the amount claimed and the remedy requested.",
-          links: [
-            { label: "Ontario Civil Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/" },
-            { label: "Ontario Small Claims Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/" }
-          ],
-          note: "The correct form depends on the court track that applies."
-        },
-        "State Conduct / Charter": {
-          court: "Usually Ontario Superior Court of Justice",
-          likelyForm: "The correct route depends on the remedy sought and may involve a civil claim or another application path.",
-          steps: [
-            "Clarify whether the matter involves damages, declarations, review, or another remedy.",
-            "Choose the right court track before drafting.",
-            "Organize the facts around the public authority conduct at issue.",
-            "Get legal advice if the matter is urgent or complex."
-          ],
-          filing: "This category can involve different procedures depending on the relief sought.",
-          links: [
-            { label: "Ontario Civil Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/" }
-          ],
-          note: "This category needs extra care because procedure can vary significantly."
-        },
-        "Not Sure Yet": {
-          court: "To be determined after the issue is narrowed down.",
-          likelyForm: "The right starting form depends on whether the matter is family, civil, small claims, or another process.",
-          steps: [
-            "Use the summary to narrow down the issue first.",
-            "Decide which court track fits the problem.",
-            "Then match the issue to the correct starting form and filing path."
-          ],
-          filing: "Start with issue identification before choosing a court form.",
-          links: [
-            { label: "Ontario Court Forms", url: "https://ontariocourtforms.on.ca/en/" }
-          ],
-          note: "The platform does not guess a form when the issue is still unclear."
-        }
-      }
-    };
-
-    function updateProvinceLabel() {
-      selectedProvinceLabel.textContent = provinceSelect.value;
-    }
-
-    function getIssuePrompts(type) {
-      const map = {
-        'Family Law': 'Possible focus areas: the child’s best interests, parenting stability, safety concerns, reliability, and current evidence.',
-        'Civil Matter': 'Possible focus areas: what happened, what duty or agreement existed, what evidence supports the facts, and what remedy is being requested.',
-        'Small Claims': 'Possible focus areas: clear chronology, money claimed, supporting proof, and a simple explanation of why the claim should succeed.',
-        'Negligence': 'Possible focus areas: duty of care, breach, causation, and damages.',
-        'State Conduct / Charter': 'Possible focus areas: public authority conduct, rights affected, the action or omission being challenged, and the impact of that conduct.',
-        'Not Sure Yet': 'Possible focus areas: identifying the legal category first, clarifying the timeline, and separating key facts from background detail.'
-      };
-      return map[type] || map['Not Sure Yet'];
-    }
-
-    function getProvinceGuidance(province, type) {
-      const provinceGuidance = guidance[province];
-      if (provinceGuidance && provinceGuidance[type]) return provinceGuidance[type];
-
-      return {
-        court: `${province} guidance coming next`,
-        likelyForm: `This section provides general guidance based on the selected jurisdiction.`,
-        steps: [
-          `Keep the case summary organized around facts, timeline, evidence, and the outcome wanted.`,
-          `Confirm the exact forms and filing path for ${province} from official sources before filing.`,
-          `Use the summary as a preparation draft for the next legal step.`
-        ],
-        filing: `Confirm the exact filing steps for ${province} from official court or government sources before filing.`,
-        links: [],
-        note: `This platform provides structured general guidance for ${province}.`
-      };
-    }
-
-    function getProvinceNote(province, type) {
-      const base = getProvinceGuidance(province, type);
-      return `${base.note} Selected jurisdiction: ${province}.`;
-    }
-
-    function renderProcessPanel() {
-      const province = provinceSelect.value;
-      const caseType = fields.caseType.value.trim() || 'Not Sure Yet';
-      const info = getProvinceGuidance(province, caseType);
-
-      const links = info.links.length
-        ? `<div class="process-links">${info.links.map(link => `<a class="process-link" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label}</a>`).join('')}</div>`
-        : '';
-
-      processPanel.innerHTML = `
-        <div class="process-row">
-          <div class="process-label">Province</div>
-          <div class="process-value">${province}</div>
-        </div>
-        <div class="process-row">
-          <div class="process-label">Issue Type</div>
-          <div class="process-value">${caseType}</div>
-        </div>
-        <div class="process-row">
-          <div class="process-label">Likely Court</div>
-          <div class="process-value">${info.court}</div>
-        </div>
-        <div class="process-row">
-          <div class="process-label">Likely Form</div>
-          <div class="process-value">${info.likelyForm}</div>
-        </div>
-        <div class="process-row">
-          <div class="process-label">Basic Steps</div>
-          <div class="process-value">
-            <ol class="process-steps">
-              ${info.steps.map(step => `<li>${step}</li>`).join('')}
-            </ol>
-          </div>
-        </div>
-        <div class="process-row">
-          <div class="process-label">Filing Note</div>
-          <div class="process-value">${info.filing}</div>
-        </div>
-        <div class="process-row">
-          <div class="process-label">Important</div>
-          <div class="process-value">${info.note}${links}</div>
-        </div>
-      `;
-    }
-
-    function buildSummary() {
-      const province = provinceSelect.value;
-      const name = fields.name.value.trim() || 'Not provided';
-      const email = fields.email.value.trim() || 'Not provided';
-      const caseType = fields.caseType.value.trim() || 'Not Sure Yet';
-      const goal = fields.goal.value.trim() || 'No main goal entered yet.';
-      const story = fields.story.value.trim() || 'No story entered yet.';
-      const timeline = fields.timeline.value.trim() || 'No timeline entered yet.';
-      const evidence = fields.evidence.value.trim() || 'No evidence listed yet.';
-      const concerns = fields.concerns.value.trim() || 'No main concerns listed yet.';
-      const info = getProvinceGuidance(province, caseType);
-
-      const summary = `COURTSIMPLIFIED CASE SUMMARY
-
-Jurisdiction:
-${province}
-
-Client Name:
-${name}
-
-Email:
-${email}
-
-Issue Type:
-${caseType}
-
-Main Goal:
-${goal}
-
-1. OVERVIEW OF THE SITUATION
-${story}
-
-2. IMPORTANT TIMELINE OR SEQUENCE
-${timeline}
-
-3. AVAILABLE EVIDENCE OR SUPPORTING MATERIAL
-${evidence}
-
-4. MAIN CONCERNS OR ISSUES TO ADDRESS
-${concerns}
-
-5. PRACTICAL LEGAL FOCUS
-${getIssuePrompts(caseType)}
-
-6. LIKELY COURT AND FORM
-Court: ${info.court}
-Likely form or starting document: ${info.likelyForm}
-
-7. JURISDICTION NOTE
-${getProvinceNote(province, caseType)}
-
-8. SUGGESTED NEXT STEPS
-- Review the timeline and remove anything not directly relevant.
-- Separate facts from conclusions and keep the facts clear.
-- Organize evidence so each major point can be supported.
-- Clarify what document or next step is actually needed.
-- Confirm the exact form and filing path from official sources before filing.
-
-9. COURTSIMPLIFIED NOTE
-This summary is designed to help organize the case into a more useful structure. It is a preparation and drafting aid, not legal advice.`;
-
-      output.textContent = summary;
-      renderProcessPanel();
-      return summary;
-    }
-
-    provinceSelect.addEventListener('change', function() {
-      updateProvinceLabel();
-      renderProcessPanel();
-      localStorage.setItem('courtsimplified_selected_province', provinceSelect.value);
-    });
-
-    fields.caseType.addEventListener('change', renderProcessPanel);
-
-    document.getElementById('generateSummaryBtn').addEventListener('click', function() {
-      buildSummary();
-    });
-
-    document.getElementById('saveSummaryBtn').addEventListener('click', function() {
-      const payload = {
-        province: provinceSelect.value,
-        name: fields.name.value,
-        email: fields.email.value,
-        caseType: fields.caseType.value,
-        goal: fields.goal.value,
-        story: fields.story.value,
-        timeline: fields.timeline.value,
-        evidence: fields.evidence.value,
-        concerns: fields.concerns.value,
-        summary: buildSummary()
-      };
-      localStorage.setItem('courtsimplified_case_data', JSON.stringify(payload));
-      alert('Saved in this browser.');
-    });
-
-    document.getElementById('printSummaryBtn').addEventListener('click', function() {
-      buildSummary();
-      window.print();
-    });
-
-    document.getElementById('clearSummaryBtn').addEventListener('click', function() {
-      Object.values(fields).forEach(field => {
-        if (field.tagName === 'SELECT') field.selectedIndex = 0; else field.value = '';
-      });
-      output.textContent = `COURTSIMPLIFIED CASE SUMMARY
-
-Choose a province or territory, fill out the intake form, and generate a structured summary.
-
-This tool is designed to:
-- organize the story
-- identify likely issues
-- create a cleaner starting point
-- keep the selected jurisdiction visible in the output`;
-      localStorage.removeItem('courtsimplified_case_data');
-      renderProcessPanel();
-    });
-
-    async function askAI() {
-  const story = document.getElementById('story').value;
-  const timeline = document.getElementById('timeline').value;
-  const evidence = document.getElementById('evidence').value;
-  const concerns = document.getElementById('concerns').value;
-  const caseType = document.getElementById('caseType').value;
-  const province = document.getElementById('provinceSelect').value;
-
-  const message = `
-You are a legal case organization assistant for Canada.
-
-Your job is NOT to give legal advice.
-Your job is to organize, structure, and analyze the information clearly like a professional.
-
-Follow these rules strictly:
-- Do NOT guess the type of case incorrectly
-- Do NOT recommend a court unless clearly supported
-- Do NOT give legal advice
-- Focus on structure, clarity, and evidence
-
-OUTPUT FORMAT:
-
-1. CASE TYPE ANALYSIS
-- Based on the facts, what type of legal issue this appears to be (with reasoning)
-- If unclear, say "uncertain" and explain why
-
-2. FACT SUMMARY (ONLY FACTS)
-- List clear facts only (no opinions)
-
-3. TIMELINE (ORDERED)
-- Put events in order
-
-4. EVIDENCE BREAKDOWN
-- What evidence supports each part
-- What is missing
-
-5. KEY ISSUES
-- What problems or legal issues appear to exist (general only)
-
-6. WEAKNESSES / GAPS
-- Missing proof
-- Unclear areas
-- Risks
-
-7. WHAT NEEDS TO BE CLARIFIED
-- Questions the user should answer
-
-DO NOT:
-- give legal advice
-- tell the user what to file
-- assume facts not stated
-
----
-
-USER INPUT:
-
-Province: ${province}
-Case Type: ${caseType}
-
-Story:
-${story}
-
-Timeline:
-${timeline}
-
-Evidence:
-${evidence}
-
-Concerns:
-${concerns}
-`;
-  output.textContent = "AI is analyzing your case...";
-
-  try {
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ message })
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      output.textContent = "Error: " + (data.error || "Something went wrong.");
-      return;
-    }
-
-    output.textContent = data.reply || "No reply received.";
-  } catch (err) {
-    output.textContent = "Error connecting to AI.";
-  }
-}
-
-    window.addEventListener('DOMContentLoaded', function() {
-      const savedProvince = localStorage.getItem('courtsimplified_selected_province');
-      if (savedProvince) provinceSelect.value = savedProvince;
-      updateProvinceLabel();
-
-      const saved = localStorage.getItem('courtsimplified_case_data');
-      if (saved) {
-        try {
-          const data = JSON.parse(saved);
-          if (data.province) provinceSelect.value = data.province;
-          updateProvinceLabel();
-          fields.name.value = data.name || '';
-          fields.email.value = data.email || '';
-          fields.caseType.value = data.caseType || 'Family Law';
-          fields.goal.value = data.goal || '';
-          fields.story.value = data.story || '';
-          fields.timeline.value = data.timeline || '';
-          fields.evidence.value = data.evidence || '';
-          fields.concerns.value = data.concerns || '';
-          output.textContent = data.summary || output.textContent;
-        } catch (e) {
-          console.error('Could not load saved case data.', e);
-        }
-      }
-      renderProcessPanel();
-    });
-
-  </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/app.js"></script>
 </body>
 </html>
