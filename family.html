@@ -3,768 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CourtSimplified | Court-Ready Legal Preparation</title>
-  <meta
-    name="description"
-    content="CourtSimplified helps people organize facts, evidence, and timelines for family law, civil, and small claims matters."
-  />
-  <style>
-    :root {
-      --bg: #fffaf2;
-      --surface: #ffffff;
-      --surface-soft: #fff7ea;
-      --text: #2f2419;
-      --muted: #725f4d;
-      --line: #eadfce;
-
-      --primary: #d97706;
-      --primary-dark: #b45309;
-      --primary-soft: #fff1dd;
-
-      --accent: #f59e0b;
-      --accent-soft: #fff6e6;
-
-      --family-a: #fff2cc;
-      --family-b: #ffd58a;
-      --family-c: #f59e0b;
-
-      --justice-a: #23395d;
-      --justice-b: #355b8c;
-      --justice-c: #6b90c9;
-
-      --success: #166534;
-      --warning-bg: #ffefb8;
-      --warning-border: #e0b300;
-
-      --shadow: 0 16px 40px rgba(80, 52, 22, 0.10);
-      --radius: 22px;
-      --max: 1280px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Inter, "Segoe UI", Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(245,158,11,0.10), transparent 20%),
-        radial-gradient(circle at bottom right, rgba(217,119,6,0.08), transparent 22%),
-        linear-gradient(180deg, #fffdf9 0%, #fffaf2 45%, #fff6ea 100%);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font: inherit; }
-
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .dev-banner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 9999;
-      text-align: center;
-      padding: 14px 18px;
-      background: var(--warning-bg);
-      border-bottom: 1px solid var(--warning-border);
-      color: #3a2c00;
-      font-weight: 800;
-      font-size: 1rem;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    }
-
-    .banner-spacer {
-      height: 58px;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 58px;
-      z-index: 200;
-      background: rgba(255,250,242,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(234,223,206,0.95);
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 1.06rem;
-    }
-
-    .brand-mark {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      box-shadow: var(--shadow);
-    }
-
-    .nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .nav a {
-      color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .nav a:hover {
-      color: var(--primary);
-    }
-
-    .nav-cta {
-      padding: 11px 16px;
-      border-radius: 12px;
-      background: var(--primary);
-      color: white !important;
-      font-weight: 800;
-    }
-
-    .hero {
-      padding: 26px 0 28px;
-    }
-
-    .hero-shell {
-      position: relative;
-      overflow: hidden;
-      border-radius: 34px;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.16), transparent 28%),
-        radial-gradient(circle at 100% 100%, rgba(255,220,160,0.15), transparent 25%),
-        linear-gradient(135deg, #6b4a21 0%, #b96b14 42%, #e49a24 76%, #ffd07a 120%);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.35);
-    }
-
-    .hero-shell::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.08), transparent 30%);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.06fr 0.94fr;
-      gap: 24px;
-      padding: 52px;
-      align-items: stretch;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.16);
-      color: #fff8eb;
-      font-size: 0.82rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    h1,h2,h3,h4 {
-      margin: 0;
-      line-height: 1.14;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-copy h1 {
-      color: white;
-      font-size: clamp(2.5rem, 5vw, 4.8rem);
-      margin-bottom: 16px;
-    }
-
-    .hero-copy .lead {
-      color: rgba(255,255,255,0.92);
-      font-size: 1.06rem;
-      margin: 0 0 24px;
-      max-width: 720px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .btn,
-    .tool-btn,
-    .pay-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 18px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      font-weight: 800;
-      cursor: pointer;
-      transition: 0.2s ease;
-      text-decoration: none;
-    }
-
-    .btn-primary,
-    .tool-btn.primary,
-    .pay-btn.primary {
-      background: white;
-      color: var(--primary-dark);
-    }
-
-    .btn-primary:hover,
-    .tool-btn.primary:hover,
-    .pay-btn.primary:hover {
-      background: #fff6ea;
-    }
-
-    .btn-secondary,
-    .tool-btn.secondary,
-    .pay-btn.secondary {
-      background: transparent;
-      color: white;
-      border-color: rgba(255,255,255,0.30);
-    }
-
-    .btn-secondary:hover,
-    .tool-btn.secondary:hover,
-    .pay-btn.secondary:hover {
-      background: rgba(255,255,255,0.08);
-    }
-
-    .hero-note {
-      color: rgba(255,255,255,0.82);
-      font-size: 0.95rem;
-    }
-
-    .hero-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      background: rgba(255,255,255,0.96);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-block,
-    .card,
-    .pricing-card,
-    .faq-card,
-    .notice,
-    .contact-box,
-    .footer-card,
-    .tool-shell,
-    .output-box,
-    .step-card,
-    .trust-card,
-    .law-card,
-    .resource-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
-    }
-
-    .hero-block h3,
-    .card h3,
-    .pricing-card h3,
-    .faq-card h3,
-    .notice h3,
-    .contact-box h3,
-    .tool-shell h3,
-    .output-box h3,
-    .step-card h3,
-    .trust-card h3,
-    .law-card h3,
-    .resource-card h3 {
-      font-size: 1.14rem;
-      margin-bottom: 10px;
-    }
-
-    .hero-block p,
-    .card p,
-    .pricing-card p,
-    .faq-card p,
-    .notice p,
-    .contact-box p,
-    .tool-shell p,
-    .output-box p,
-    .step-card p,
-    .trust-card p,
-    .law-card p,
-    .resource-card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .section {
-      padding: 38px 0;
-    }
-
-    .section-head {
-      max-width: 940px;
-      margin-bottom: 22px;
-    }
-
-    .section-head h2 {
-      font-size: clamp(1.9rem, 3vw, 3rem);
-      margin-bottom: 10px;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
-    .soft-band {
-      background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(255,247,234,0.88));
-      border-top: 1px solid rgba(234,223,206,0.8);
-      border-bottom: 1px solid rgba(234,223,206,0.8);
-    }
-
-    .grid-2,
-    .grid-3,
-    .grid-4,
-    .pricing-grid,
-    .faq-grid,
-    .footer-grid,
-    .tool-layout,
-    .trust-grid,
-    .steps-grid,
-    .audience-grid,
-    .law-grid,
-    .resource-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
-    .pricing-grid { grid-template-columns: repeat(3, 1fr); }
-    .faq-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1.2fr 0.8fr 0.8fr; }
-    .tool-layout { grid-template-columns: 1fr 1fr; }
-    .trust-grid { grid-template-columns: repeat(3, 1fr); }
-    .steps-grid { grid-template-columns: repeat(4, 1fr); }
-    .audience-grid { grid-template-columns: repeat(3, 1fr); }
-    .law-grid { grid-template-columns: repeat(3, 1fr); }
-    .resource-grid { grid-template-columns: repeat(3, 1fr); }
-
-    .icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
-
-    .mini-label,
-    .badge,
-    .status-chip,
-    .province-pill {
-      display: inline-block;
-      padding: 7px 11px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 800;
-    }
-
-    .mini-label,
-    .badge,
-    .province-pill {
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-    }
-
-    .status-chip {
-      background: #eef8ef;
-      color: var(--success);
-    }
-
-    .family-card {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,247,220,0.96)),
-        url("https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
-      background-blend-mode: lighten;
-    }
-
-    .civil-card,
-    .small-claims-card {
-      color: white;
-      background:
-        linear-gradient(rgba(35,57,93,0.82), rgba(35,57,93,0.82)),
-        url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
-      border-color: rgba(255,255,255,0.14);
-    }
-
-    .civil-card p,
-    .small-claims-card p {
-      color: rgba(255,255,255,0.88);
-    }
-
-    .family-card .mini-label {
-      background: rgba(255,255,255,0.86);
-    }
-
-    .family-card h3,
-    .family-card p {
-      position: relative;
-      z-index: 1;
-    }
-
-    .checklist,
-    .bullet-list,
-    .pricing-list,
-    .footer-links,
-    .resource-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .checklist li,
-    .bullet-list li,
-    .pricing-list li,
-    .resource-list li {
-      position: relative;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .checklist li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--success);
-      font-weight: 900;
-    }
-
-    .bullet-list li::before,
-    .pricing-list li::before,
-    .resource-list li::before {
-      content: "•";
-      position: absolute;
-      left: 3px;
-      color: var(--primary);
-      font-weight: 900;
-    }
-
-    .account-grid,
-    .process-grid,
-    .form-grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    label {
-      display: block;
-      font-weight: 800;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    select,
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: white;
-      color: var(--text);
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .tool-buttons,
-    .pricing-actions,
-    .process-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .tool-btn.primary,
-    .pay-btn.primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .tool-btn.primary:hover,
-    .pay-btn.primary:hover {
-      background: var(--primary-dark);
-    }
-
-    .tool-btn.secondary,
-    .pay-btn.secondary {
-      background: white;
-      color: var(--text);
-      border-color: var(--line);
-    }
-
-    .tool-btn.secondary:hover,
-    .pay-btn.secondary:hover {
-      background: #fffaf4;
-    }
-
-    .output-panel {
-      white-space: pre-wrap;
-      line-height: 1.65;
-      color: var(--text);
-      background: #fffdf9;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
-      min-height: 520px;
-      margin-top: 14px;
-    }
-
-    .saved-note,
-    .tiny {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    .process-box {
-      margin-top: 18px;
-      background: linear-gradient(180deg, #ffffff, #fffaf2);
-    }
-
-    .process-row {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .process-row:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .process-label {
-      font-weight: 800;
-      color: var(--text);
-    }
-
-    .process-value {
-      color: var(--muted);
-    }
-
-    .process-steps {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      display: grid;
-      gap: 8px;
-    }
-
-    .process-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 14px;
-      border-radius: 12px;
-      font-weight: 800;
-      background: white;
-      border: 1px solid var(--line);
-      color: var(--primary-dark);
-    }
-
-    .process-link:hover {
-      background: var(--primary-soft);
-    }
-
-    .pricing-card.featured {
-      border: 2px solid var(--primary);
-      transform: translateY(-4px);
-    }
-
-    .price {
-      font-size: 2.2rem;
-      font-weight: 900;
-      margin: 2px 0;
-      color: var(--text);
-    }
-
-    .price small {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--muted);
-    }
-
-    .step-number {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      margin-bottom: 12px;
-    }
-
-    .notice {
-      background: #fff7d8;
-      border-color: #ead18c;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-    }
-
-    .footer-links a:hover {
-      color: var(--primary-dark);
-    }
-
-    .footer-bottom {
-      margin-top: 20px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .footer-bottom p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid,
-      .grid-3,
-      .grid-4,
-      .pricing-grid,
-      .faq-grid,
-      .footer-grid,
-      .tool-layout,
-      .trust-grid,
-      .steps-grid,
-      .audience-grid,
-      .law-grid,
-      .resource-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .hero-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 760px) {
-      .topbar {
-        top: 58px;
-      }
-
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav {
-        gap: 12px;
-      }
-
-      .hero-grid,
-      .grid-2,
-      .grid-3,
-      .grid-4,
-      .pricing-grid,
-      .faq-grid,
-      .footer-grid,
-      .tool-layout,
-      .trust-grid,
-      .steps-grid,
-      .audience-grid,
-      .law-grid,
-      .resource-grid,
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-grid { padding: 28px 20px; }
-
-      .hero-block,
-      .card,
-      .pricing-card,
-      .faq-card,
-      .notice,
-      .contact-box,
-      .footer-card,
-      .tool-shell,
-      .output-box,
-      .step-card,
-      .trust-card,
-      .law-card,
-      .resource-card {
-        padding: 20px;
-      }
-
-      .process-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-    }
-  </style>
+  <title>Family Law | CourtSimplified</title>
+  <meta name="description" content="Family law guidance, forms, conferences, and a family-specific intake and summary builder." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="family-page" data-page-type="family">
   <div class="dev-banner">
     🚧 CourtSimplified is currently under development. Services are not active yet. Launching in the coming months.
   </div>
@@ -772,251 +15,112 @@
 
   <header class="topbar">
     <div class="container topbar-inner">
-      <a href="#top" class="brand">
+      <a href="index.html" class="brand">
         <span class="brand-mark">CS</span>
         <span>CourtSimplified</span>
       </a>
       <nav class="nav">
-        <a href="#how">How It Works</a>
-        <a href="#case-types">Case Types</a>
-        <a href="#resources">Resources</a>
-        <a href="#tool">Case Builder</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact" class="nav-cta">Get Started</a>
+        <a href="index.html">Home</a>
+        <a href="#learn">Learn</a>
+        <a href="#tool">Intake</a>
+        <a href="#links" class="nav-cta">Official Links</a>
       </nav>
     </div>
   </header>
 
-  <main id="top">
+  <main>
     <section class="hero">
-      <div class="container hero-shell">
+      <div class="container hero-shell family-hero">
         <div class="hero-grid">
           <div class="hero-copy">
-            <div class="eyebrow">Court-ready preparation made clearer</div>
-            <h1>Turn your evidence into a cleaner, stronger legal case file.</h1>
+            <div class="eyebrow">Family law guidance and preparation</div>
+            <h1>Build a clearer family law file.</h1>
             <p class="lead">
-              CourtSimplified helps people organize facts, timelines, issues, and evidence for family law, civil, and small claims matters. It is designed to feel easier, more professional, and more structured from the start.
+              This section is for parenting, support, decision-making, safety concerns, access issues, and other family matters where the court often cares about facts, stability, credibility, and the child’s best interests.
             </p>
             <div class="hero-actions">
-              <a href="#tool" class="btn btn-primary">Start Building Your Case</a>
-              <a href="#pricing" class="btn btn-secondary">View Plans</a>
+              <a href="#tool" class="btn btn-primary">Start Family Intake</a>
+              <a href="#learn" class="btn btn-secondary">Learn the Basics</a>
             </div>
-            <p class="hero-note">
-              Built for people who need something more organized than random notes, screenshots, and scattered files.
-            </p>
+            <p class="hero-note">Softer tone. Clearer structure. Still serious.</p>
           </div>
 
           <aside class="hero-panel">
-            <div class="hero-block">
-              <h3>What this site helps you do</h3>
+            <div class="page-card">
+              <h3>What family judges often focus on</h3>
               <ul class="checklist">
-                <li>Organize facts in a more professional way</li>
-                <li>Build a stronger timeline</li>
-                <li>Track likely forms and next steps</li>
-                <li>Save, print, and keep working on your file</li>
+                <li>Best interests of the child</li>
+                <li>Safety, stability, and routine</li>
+                <li>Credibility and consistency</li>
+                <li>Evidence, not just accusation</li>
               </ul>
             </div>
 
-            <div class="hero-block">
-              <h3>Built for real legal situations</h3>
-              <p>Whether you are dealing with parenting issues, a money claim, a civil dispute, or a confusing situation with lots of documents, CourtSimplified is designed to help bring order to it.</p>
+            <div class="page-card">
+              <h3>What helps most</h3>
+              <p>Specific examples, a clean chronology, and records connected to the actual issues in dispute.</p>
             </div>
           </aside>
         </div>
       </div>
     </section>
 
-    <section class="section soft-band" id="how">
+    <section class="section soft-band" id="learn">
       <div class="container">
         <div class="section-head">
-          <h2>How it works</h2>
-          <p>
-            The goal is to help users move from scattered information to a cleaner, more useful, court-ready package.
-          </p>
+          <h2>Important things people often do not know</h2>
+          <p>Family matters can involve different conference stages, and each stage has different purposes and documents. :contentReference[oaicite:1]{index=1}</p>
         </div>
 
-        <div class="steps-grid">
-          <article class="step-card">
-            <div class="step-number">1</div>
-            <h3>Select your province</h3>
-            <p>Start with the right jurisdiction so the site can tailor the guidance and next-step flow.</p>
-          </article>
-          <article class="step-card">
-            <div class="step-number">2</div>
-            <h3>Enter your facts and goals</h3>
-            <p>Add your story, timeline, concerns, and the result you are trying to reach.</p>
-          </article>
-          <article class="step-card">
-            <div class="step-number">3</div>
-            <h3>Generate a structured summary</h3>
-            <p>Turn your information into something clearer and easier to review.</p>
-          </article>
-          <article class="step-card">
-            <div class="step-number">4</div>
-            <h3>Save and keep building</h3>
-            <p>Store your work in the browser or save it to your account while the site develops further.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="case-types">
-      <div class="container">
-        <div class="section-head">
-          <h2>Built for the case types people struggle to organize most</h2>
-          <p>
-            Each part of the site should feel specific, trustworthy, and easier to understand.
-          </p>
-        </div>
-
-        <div class="law-grid">
-          <article class="law-card family-card">
-            <span class="mini-label">Family Law</span>
-            <h3>Calmer, more supportive guidance for family matters</h3>
-            <p>Built for parenting disputes, support, safety concerns, access issues, and situations where consistency, child-focused evidence, and chronology matter.</p>
-          </article>
-
-          <article class="law-card civil-card">
-            <span class="mini-label">Civil Law</span>
-            <h3>Structured preparation for more serious disputes</h3>
-            <p>Useful for negligence claims, damages matters, agreements gone wrong, and disputes where facts, responsibility, and harm need to be laid out clearly.</p>
-          </article>
-
-          <article class="law-card small-claims-card">
-            <span class="mini-label">Small Claims</span>
-            <h3>Simple, organized help for money and property disputes</h3>
-            <p>Best for debt, unpaid invoices, damaged property, broken promises, and other claims where the court needs a clear story with proof attached.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft-band" id="resources">
-      <div class="container">
-        <div class="section-head">
-          <h2>Helpful legal information</h2>
-          <p>
-            This section is here to make the site feel more complete and useful while you keep building out the full platform.
-          </p>
-        </div>
-
-        <div class="resource-grid">
+        <div class="grid-3">
           <article class="resource-card">
-            <span class="mini-label">Family Law</span>
-            <h3>What courts usually care about</h3>
-            <ul class="resource-list" style="margin-top:14px;">
-              <li>Best interests of the child</li>
-              <li>Stability and routine</li>
-              <li>Credibility and consistency</li>
-              <li>Proof, not just accusations</li>
-            </ul>
+            <span class="mini-label">Case Conference</span>
+            <h3>Usually an early meaningful appearance</h3>
+            <p>Ontario says a case conference is usually the first meaningful appearance before a judge after first appearance court. :contentReference[oaicite:2]{index=2}</p>
           </article>
 
           <article class="resource-card">
-            <span class="mini-label">Civil Law</span>
-            <h3>What usually matters most</h3>
-            <ul class="resource-list" style="margin-top:14px;">
-              <li>Clear facts and sequence</li>
-              <li>Responsibility and causation</li>
-              <li>Documents, records, and witnesses</li>
-              <li>What outcome is being requested</li>
-            </ul>
+            <span class="mini-label">Settlement Conference</span>
+            <h3>Focused on narrowing or resolving issues</h3>
+            <p>Ontario says settlement conferences include exploring settlement, narrowing issues, ensuring disclosure, and even obtaining a view of how the court might decide the case. :contentReference[oaicite:3]{index=3}</p>
           </article>
 
           <article class="resource-card">
-            <span class="mini-label">Small Claims</span>
-            <h3>What helps most</h3>
-            <ul class="resource-list" style="margin-top:14px;">
-              <li>A clean timeline</li>
-              <li>Receipts, invoices, messages, and photos</li>
-              <li>The amount claimed and why</li>
-              <li>A simple, organized explanation</li>
-            </ul>
+            <span class="mini-label">Trial Management</span>
+            <h3>Used to get the case ready for trial</h3>
+            <p>Ontario says trial management conferences are intended to get everyone ready for trial and deal with evidence, witnesses, timing, and trial planning. :contentReference[oaicite:4]{index=4}</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="jurisdiction">
+    <section class="section" id="forms">
       <div class="container">
         <div class="section-head">
-          <h2>Choose your jurisdiction</h2>
-          <p>
-            Forms, court names, and filing paths change by province. Start here so the guidance matches the right place.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="form-row">
-            <div>
-              <label for="provinceSelect">Province or territory</label>
-              <select id="provinceSelect">
-                <option>Ontario</option>
-                <option>British Columbia</option>
-                <option>Alberta</option>
-                <option>Saskatchewan</option>
-                <option>Manitoba</option>
-                <option>Quebec</option>
-                <option>New Brunswick</option>
-                <option>Nova Scotia</option>
-                <option>Prince Edward Island</option>
-                <option>Newfoundland and Labrador</option>
-                <option>Yukon</option>
-                <option>Northwest Territories</option>
-                <option>Nunavut</option>
-              </select>
-            </div>
-            <div>
-              <label>Current jurisdiction</label>
-              <div class="status-chip">
-                <span id="selectedProvinceLabel">Ontario</span>
-              </div>
-            </div>
-          </div>
-          <p class="tiny">Ontario currently has the strongest built-in guidance in this version. Other provinces still work with general structure and summary support.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="account">
-      <div class="container">
-        <div class="section-head">
-          <h2>Account</h2>
-          <p>Create an account or log in to save your cases.</p>
+          <h2>Common family court forms and process points</h2>
+          <p>Ontario’s Family Law Rules forms page includes conference and motion-related family forms, including Forms 14, 14A, 14B, 14C, and 17-series conference forms. :contentReference[oaicite:5]{index=5}</p>
         </div>
 
         <div class="grid-2">
-          <div class="card">
-            <h3>Sign up or log in</h3>
-            <div class="form-grid" style="margin-top:16px;">
-              <div>
-                <label for="authEmail">Email</label>
-                <input id="authEmail" type="email" placeholder="you@example.com" />
-              </div>
-
-              <div>
-                <label for="authPassword">Password</label>
-                <input id="authPassword" type="password" placeholder="Enter password" />
-              </div>
-
-              <div class="tool-buttons">
-                <button class="tool-btn primary" onclick="signUpUser()" type="button">Sign Up</button>
-                <button class="tool-btn secondary" onclick="loginUser()" type="button">Log In</button>
-                <button class="tool-btn secondary" onclick="logoutUser()" type="button">Log Out</button>
-              </div>
-
-              <p><strong>Current user:</strong> <span id="currentUser">Not logged in</span></p>
-              <p id="authMessage" class="saved-note"></p>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Saved cases</h3>
-            <p>Your saved case summaries will appear here.</p>
-            <ul id="savedCasesList" class="bullet-list" style="margin-top:14px;">
-              <li>Log in to see saved cases.</li>
+          <article class="page-card">
+            <span class="mini-label">Common forms</span>
+            <ul class="resource-list" style="margin-top:14px;">
+              <li>Form 14 — Notice of Motion</li>
+              <li>Form 14A — Affidavit (General)</li>
+              <li>Form 14B — Motion Form</li>
+              <li>Form 17-series conference forms</li>
             </ul>
-          </div>
+          </article>
+
+          <article class="page-card">
+            <span class="mini-label">What usually helps most</span>
+            <ul class="resource-list" style="margin-top:14px;">
+              <li>A clean chronology</li>
+              <li>Specific examples, not broad accusations</li>
+              <li>Messages, schedules, records, and proof tied to events</li>
+              <li>A child-focused explanation of what order is sought and why</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -1024,17 +128,13 @@
     <section class="section soft-band" id="tool">
       <div class="container">
         <div class="section-head">
-          <h2>Case builder</h2>
-          <p>
-            Enter your details and generate a stronger, cleaner summary you can keep building on.
-          </p>
+          <h2>Family law intake and summary builder</h2>
+          <p>Enter your facts and generate a family-specific summary you can save, print, and keep improving.</p>
         </div>
 
         <div class="tool-layout">
           <section class="tool-shell">
-            <h3>Case intake</h3>
-            <p>Your selected province will be built into the output.</p>
-
+            <h3>Family intake</h3>
             <div class="form-grid" style="margin-top:16px;">
               <div class="form-row">
                 <div>
@@ -1043,78 +143,65 @@
                 </div>
                 <div>
                   <label for="email">Email</label>
-                  <input id="email" type="email" placeholder="k.magrum45@gmail.com" />
+                  <input id="email" type="email" placeholder="you@example.com" />
                 </div>
               </div>
 
               <div class="form-row">
                 <div>
-                  <label for="caseType">Type of issue</label>
-                  <select id="caseType">
-                    <option value="Family Law">Family Law</option>
-                    <option value="Civil Matter">Civil Matter</option>
-                    <option value="Small Claims">Small Claims</option>
-                    <option value="Negligence">Negligence</option>
-                    <option value="State Conduct / Charter">State Conduct / Charter</option>
-                    <option value="Not Sure Yet">Not Sure Yet</option>
+                  <label for="provinceSelect">Province</label>
+                  <select id="provinceSelect">
+                    <option>Ontario</option>
                   </select>
                 </div>
                 <div>
                   <label for="goal">Main goal</label>
-                  <input id="goal" type="text" placeholder="What outcome do you want?" />
+                  <input id="goal" type="text" placeholder="What order or result do you want?" />
                 </div>
               </div>
 
               <div>
                 <label for="story">What happened?</label>
-                <textarea id="story" placeholder="Explain the situation in your own words. Include the important events and concerns."></textarea>
+                <textarea id="story" placeholder="Describe the family situation clearly and factually."></textarea>
               </div>
 
               <div>
-                <label for="timeline">Important dates or sequence</label>
-                <textarea id="timeline" placeholder="List dates or key events in order, even if rough."></textarea>
+                <label for="timeline">Important dates and sequence</label>
+                <textarea id="timeline" placeholder="List the events in order."></textarea>
               </div>
 
               <div>
                 <label for="evidence">What proof do you have?</label>
-                <textarea id="evidence" placeholder="Messages, emails, reports, witnesses, records, receipts, photos, screenshots, videos, or other proof."></textarea>
+                <textarea id="evidence" placeholder="Messages, schedules, school records, medical records, court papers, screenshots, emails, etc."></textarea>
               </div>
 
               <div>
-                <label for="concerns">Main concerns or issues</label>
-                <textarea id="concerns" placeholder="What should the court or legal professional understand most clearly?"></textarea>
+                <label for="concerns">Main concerns</label>
+                <textarea id="concerns" placeholder="Safety concerns, parenting reliability, communication issues, support issues, etc."></textarea>
               </div>
+
+              <input id="caseType" type="hidden" value="Family Law" />
 
               <div class="tool-buttons">
                 <button class="tool-btn primary" id="generateSummaryBtn" type="button">Generate Summary</button>
                 <button class="tool-btn secondary" id="saveSummaryBtn" type="button">Save in Browser</button>
-                <button class="tool-btn secondary" onclick="saveCaseToDatabase()" type="button">Save to Account</button>
                 <button class="tool-btn secondary" id="printSummaryBtn" type="button">Print / Save PDF</button>
                 <button class="tool-btn secondary" id="clearSummaryBtn" type="button">Clear Form</button>
-                <button class="tool-btn secondary" id="askAiBtn" onclick="askAI()" type="button">Ask AI</button>
               </div>
 
               <p id="saveMessage" class="saved-note"></p>
-              <p class="saved-note">Browser saves stay on the same device and browser unless you save to your account.</p>
             </div>
           </section>
 
           <section class="output-box">
-            <h3>Structured output</h3>
-            <p>Your case summary appears here once generated.</p>
-            <div id="summaryOutput" class="output-panel">COURTSIMPLIFIED CASE SUMMARY
+            <h3>Structured family output</h3>
+            <p>Your family law summary appears here.</p>
+            <div id="summaryOutput" class="output-panel">COURTSIMPLIFIED FAMILY LAW SUMMARY
 
-Choose a province or territory, fill out the intake form, and generate a structured summary.
+Fill out the intake and generate a structured summary.</div>
 
-This tool is designed to:
-- organize the story
-- identify likely issues
-- create a cleaner starting point
-- keep the selected jurisdiction visible in the output</div>
-
-            <div class="card process-box">
+            <div class="page-card process-box">
               <h3>Likely forms and next steps</h3>
-              <p>Use this section to see likely court track and next steps for the selected issue.</p>
               <div id="processPanel" class="process-grid"></div>
             </div>
           </section>
@@ -1122,232 +209,42 @@ This tool is designed to:
       </div>
     </section>
 
-    <section class="section" id="pricing">
+    <section class="section" id="links">
       <div class="container">
         <div class="section-head">
-          <h2>Pricing</h2>
-          <p>
-            Payment is not active yet, but the plan flow is ready so users do not hit a dead end.
-          </p>
+          <h2>Official family law links</h2>
+          <p>Ontario’s family court pages include conference guides and its court forms site includes the Family Law Rules forms. :contentReference[oaicite:6]{index=6}</p>
         </div>
 
-        <div class="pricing-grid">
-          <article class="pricing-card featured">
-            <span class="badge">Starter</span>
-            <h3>Single Document</h3>
-            <div class="price">$25 <small>one-time</small></div>
-            <p>For users who want one organized court-prep document or upgraded summary.</p>
-            <ul class="pricing-list" style="margin-top:14px;">
-              <li>One focused written output</li>
-              <li>Simple entry point</li>
-              <li>Great for first-time users</li>
-            </ul>
-            <div class="pricing-actions">
-              <button class="pay-btn primary" type="button" data-plan-id="single">Choose This Plan</button>
-              <a class="pay-btn secondary" href="#purchaseFlow">View Next Step</a>
+        <div class="grid-3">
+          <article class="resource-card">
+            <h3>Family Law Rules Forms</h3>
+            <p>Official Ontario family forms page.</p>
+            <div class="hero-actions" style="margin-top:16px;">
+              <a class="tool-btn primary" href="https://ontariocourtforms.on.ca/en/family-law-rules-forms/" target="_blank" rel="noopener noreferrer">Open Family Forms</a>
             </div>
           </article>
 
-          <article class="pricing-card">
-            <span class="badge">Most popular</span>
-            <h3>Case Builder Plus</h3>
-            <div class="price">$79 <small>one-time</small></div>
-            <p>For users who want stronger organization, more detail, and a more complete prep package.</p>
-            <ul class="pricing-list" style="margin-top:14px;">
-              <li>Expanded support for facts and evidence</li>
-              <li>Better preparation before filing</li>
-              <li>High-value option for larger matters</li>
-            </ul>
-            <div class="pricing-actions">
-              <button class="pay-btn primary" type="button" data-plan-id="plus">Choose This Plan</button>
-              <a class="pay-btn secondary" href="#purchaseFlow">View Next Step</a>
+          <article class="resource-card">
+            <h3>Case Conferences</h3>
+            <p>Official Ontario information on case conferences.</p>
+            <div class="hero-actions" style="margin-top:16px;">
+              <a class="tool-btn primary" href="https://www.ontariocourts.ca/ocj/family-court/going-to-court/case-conferences/" target="_blank" rel="noopener noreferrer">Open Case Conference Info</a>
             </div>
           </article>
 
-          <article class="pricing-card">
-            <span class="badge">Premium</span>
-            <h3>Ultimate Case Package</h3>
-            <div class="price">$249 <small>starting price</small></div>
-            <p>For more involved matters where the user wants deeper organization and stronger preparation.</p>
-            <ul class="pricing-list" style="margin-top:14px;">
-              <li>More complete organization support</li>
-              <li>Premium package feel</li>
-              <li>Designed for complex matters</li>
-            </ul>
-            <div class="pricing-actions">
-              <button class="pay-btn primary" type="button" data-plan-id="ultimate">Choose This Plan</button>
-              <a class="pay-btn secondary" href="#purchaseFlow">View Next Step</a>
+          <article class="resource-card">
+            <h3>Settlement Conferences</h3>
+            <p>Official Ontario information on settlement conferences.</p>
+            <div class="hero-actions" style="margin-top:16px;">
+              <a class="tool-btn primary" href="https://www.ontariocourts.ca/ocj/family-court/going-to-court/settlement-conferences/" target="_blank" rel="noopener noreferrer">Open Settlement Conference Info</a>
             </div>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft-band" id="purchaseFlow">
-      <div class="container">
-        <div class="section-head">
-          <h2>Continue with your selected plan</h2>
-          <p>This section keeps the user inside the site instead of leading to a broken flow.</p>
-        </div>
-
-        <div class="grid-2">
-          <article class="card">
-            <h3 id="selectedPlanName">No plan selected yet</h3>
-            <p id="selectedPlanPrice">Choose a plan above to continue.</p>
-            <p id="selectedPlanDescription" style="margin-top:12px;">When a user picks a plan, it will appear here with a clearer summary of what comes next.</p>
-            <ul id="selectedPlanDeliverables" class="bullet-list" style="margin-top:14px;">
-              <li>Pick a plan to start the next-step flow</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Next step</h3>
-            <p>Payment is not live yet. This block is ready for future checkout or manual order intake.</p>
-            <div class="tool-buttons" style="margin-top:16px;">
-              <button class="tool-btn primary" type="button" onclick="beginCheckout()">Continue to Checkout</button>
-              <a class="tool-btn secondary" href="#tool">Go Back to Case Builder</a>
-            </div>
-            <p id="purchaseMessage" class="saved-note"></p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft-band" id="trust">
-      <div class="container">
-        <div class="section-head">
-          <h2>Why CourtSimplified can stand out</h2>
-          <p>
-            The goal is not just to look nice. It is to help people organize a case properly and more professionally.
-          </p>
-        </div>
-
-        <div class="trust-grid">
-          <article class="trust-card">
-            <h3>Friendly but professional</h3>
-            <p>The design is meant to feel easier to approach without feeling sloppy or basic.</p>
-          </article>
-          <article class="trust-card">
-            <h3>More structure from the start</h3>
-            <p>Users are guided into cleaner facts, timelines, issues, and next steps instead of one giant text dump.</p>
-          </article>
-          <article class="trust-card">
-            <h3>Built to grow into a full case-prep platform</h3>
-            <p>This version creates the foundation for uploads, chronology tools, evidence linking, and document generation later.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section-head">
-          <h2>Frequently asked questions</h2>
-          <p>
-            Clear answers before people get started.
-          </p>
-        </div>
-
-        <div class="faq-grid">
-          <article class="faq-card">
-            <h3>Does this replace legal advice?</h3>
-            <p>No. CourtSimplified is a legal preparation and organization platform. It is not a law firm and does not provide legal advice.</p>
-          </article>
-
-          <article class="faq-card">
-            <h3>Can I save my work?</h3>
-            <p>Yes. You can save in the browser or to your account if your database tables are set up in Supabase.</p>
-          </article>
-
-          <article class="faq-card">
-            <h3>Can I print my summary?</h3>
-            <p>Yes. Use the print button to print or save your summary as a PDF from the browser.</p>
-          </article>
-
-          <article class="faq-card">
-            <h3>Is payment active?</h3>
-            <p>No. The payment flow is intentionally not active yet, but the plan-selection path is ready for later.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft-band" id="safety">
-      <div class="container">
-        <div class="notice">
-          <h3>Important information</h3>
-          <p>
-            CourtSimplified is a legal preparation and organization platform. It is not a law firm, does not provide legal advice, and does not create a lawyer-client relationship. Users should confirm forms, filing requirements, deadlines, and court rules from official sources before filing anything.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container grid-2">
-        <div class="contact-box">
-          <div class="section-head" style="margin-bottom:12px;">
-            <h2>Get started today</h2>
-            <p>
-              Build a stronger summary, get organized, and take the next step with more confidence.
-            </p>
-          </div>
-          <div class="hero-actions">
-            <a href="mailto:k.magrum45@gmail.com?subject=I%20want%20help%20with%20my%20case" class="btn" style="background: var(--primary); color: #fff;">Contact CourtSimplified</a>
-            <a href="#tool" class="btn" style="background:#fff;color:var(--text);border:1px solid var(--line);">Use the Case Builder</a>
-          </div>
-          <p class="tiny">Business contact: k.magrum45@gmail.com</p>
-        </div>
-
-        <div class="contact-box">
-          <h3>What this version includes</h3>
-          <ul class="bullet-list" style="margin-top:14px;">
-            <li>Working public-facing site structure</li>
-            <li>Province-aware case builder</li>
-            <li>Built-in summary generator</li>
-            <li>Browser save and print functions</li>
-            <li>Supabase auth and save hooks</li>
-          </ul>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-card">
-      <div class="footer-grid">
-        <div>
-          <h3>CourtSimplified</h3>
-          <p>
-            CourtSimplified helps people organize their case, understand their issue, and prepare stronger materials with more clarity and confidence.
-          </p>
-        </div>
-        <div>
-          <h3>Explore</h3>
-          <ul class="footer-links">
-            <li><a href="#how">How It Works</a></li>
-            <li><a href="#case-types">Case Types</a></li>
-            <li><a href="#tool">Case Builder</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3>Contact</h3>
-          <ul class="footer-links">
-            <li><a href="mailto:k.magrum45@gmail.com">k.magrum45@gmail.com</a></li>
-            <li><a href="https://courtsimplified.com" target="_blank" rel="noopener noreferrer">courtsimplified.com</a></li>
-            <li><a href="https://courtsimplified.ca" target="_blank" rel="noopener noreferrer">courtsimplified.ca</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 CourtSimplified. All rights reserved.</p>
-        <p>Legal preparation with clearer structure.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="/app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
