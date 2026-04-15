@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Small Claims | CourtSimplified</title>
+  <meta
+    name="description"
+    content="Small Claims Court guidance, stages, forms, and a small-claims intake and summary builder."
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="small-theme" data-page-type="small-claims">
+  <div class="dev-banner">
+    🚧 CourtSimplified is currently under development. Services are not active yet. Launching in the coming months.
+  </div>
+  <div class="banner-spacer"></div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">CS</span>
+        <span>CourtSimplified</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="#learn">Learn</a>
+        <a href="#tool">Intake</a>
+        <a href="#links" class="nav-cta">Official Links</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-shell small-hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Small Claims Court guidance and preparation</div>
+            <h1>Prepare a cleaner Small Claims Court file.</h1>
+            <p class="lead">
+              This section is for money claims, unpaid invoices, damaged property, broken agreements, and other disputes where the key is a clear story, simple proof, and an organized explanation of what you are claiming.
+            </p>
+            <div class="hero-actions">
+              <a href="#tool" class="btn btn-primary">Start Small Claims Intake</a>
+              <a href="#learn" class="btn btn-secondary">Learn the Basics</a>
+            </div>
+            <p class="hero-note">
+              Practical, direct, and focused on simple structure that actually helps.
+            </p>
+          </div>
+
+          <aside class="hero-panel">
+            <div class="page-card">
+              <h3>What usually matters most</h3>
+              <ul class="checklist">
+                <li>A simple timeline</li>
+                <li>Receipts, invoices, messages, and photos</li>
+                <li>The amount claimed and why</li>
+                <li>A direct explanation without too much extra detail</li>
+              </ul>
+            </div>
+
+            <div class="page-card">
+              <h3>Important reality</h3>
+              <p>People often assume Small Claims is casual, but the court still expects organized facts, proper forms, and proof that supports the amount claimed.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="learn">
+      <div class="container">
+        <div class="section-head">
+          <h2>Important things people often do not know</h2>
+          <p>
+            Small Claims Court has stages, and one of the important ones is the settlement conference before trial.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="resource-card">
+            <span class="mini-label">Settlement Conference</span>
+            <h3>A standard stage in the case</h3>
+            <p>Used to explore settlement, narrow issues, and avoid unnecessary trial expense where possible.</p>
+          </article>
+
+          <article class="resource-card">
+            <span class="mini-label">Plaintiff’s Claim</span>
+            <h3>The case still needs to be set out clearly</h3>
+            <p>You still need a clean explanation of what happened, what amount is claimed, and why the other side is responsible.</p>
+          </article>
+
+          <article class="resource-card">
+            <span class="mini-label">Trial Costs</span>
+            <h3>Simple does not mean careless</h3>
+            <p>Parties should still think ahead about whether their evidence and claim are organized enough to justify going further.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="forms">
+      <div class="container">
+        <div class="section-head">
+          <h2>Common small claims forms and process points</h2>
+          <p>
+            These are examples of common forms and practical things users should understand.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="page-card">
+            <span class="mini-label">Common Forms</span>
+            <ul class="resource-list" style="margin-top:14px;">
+              <li>Form 7A — Plaintiff’s Claim</li>
+              <li>Other Small Claims Court forms depending on the stage</li>
+              <li>Settlement conference materials and evidence organization matter</li>
+              <li>Service and filing steps still need to be followed carefully</li>
+            </ul>
+          </article>
+
+          <article class="page-card">
+            <span class="mini-label">What usually helps most</span>
+            <ul class="resource-list" style="margin-top:14px;">
+              <li>A short, clear timeline</li>
+              <li>Messages, invoices, receipts, and photos</li>
+              <li>The exact amount claimed and how it was calculated</li>
+              <li>A simple explanation that is easy for the judge to follow</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="tool">
+      <div class="container">
+        <div class="section-head">
+          <h2>Small claims intake and summary builder</h2>
+          <p>
+            Enter your information and generate a Small Claims Court summary you can save, print, and keep improving.
+          </p>
+        </div>
+
+        <div class="tool-layout">
+          <section class="tool-shell">
+            <h3>Small claims intake</h3>
+
+            <div class="form-grid" style="margin-top:16px;">
+              <div class="form-row">
+                <div>
+                  <label for="name">Your name</label>
+                  <input id="name" type="text" placeholder="Your full name" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" type="email" placeholder="you@example.com" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label for="provinceSelect">Province</label>
+                  <select id="provinceSelect">
+                    <option>Ontario</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="goal">Main goal</label>
+                  <input id="goal" type="text" placeholder="What amount or outcome do you want?" />
+                </div>
+              </div>
+
+              <div>
+                <label for="story">What happened?</label>
+                <textarea id="story" placeholder="Explain the dispute simply and clearly."></textarea>
+              </div>
+
+              <div>
+                <label for="timeline">Important dates and sequence</label>
+                <textarea id="timeline" placeholder="List the events in order."></textarea>
+              </div>
+
+              <div>
+                <label for="evidence">What proof do you have?</label>
+                <textarea id="evidence" placeholder="Invoices, receipts, messages, photos, contracts, quotations, repair records, etc."></textarea>
+              </div>
+
+              <div>
+                <label for="concerns">Main issues</label>
+                <textarea id="concerns" placeholder="Amount owed, damage, broken promise, non-payment, missing property, or other issues."></textarea>
+              </div>
+
+              <input id="caseType" type="hidden" value="Small Claims" />
+
+              <div class="tool-buttons">
+                <button class="tool-btn primary" id="generateSummaryBtn" type="button">Generate Summary</button>
+                <button class="tool-btn secondary" id="saveSummaryBtn" type="button">Save in Browser</button>
+                <button class="tool-btn secondary" id="printSummaryBtn" type="button">Print / Save PDF</button>
+                <button class="tool-btn secondary" id="clearSummaryBtn" type="button">Clear Form</button>
+              </div>
+
+              <p id="saveMessage" class="saved-note"></p>
+            </div>
+          </section>
+
+          <section class="output-box">
+            <h3>Structured small claims output</h3>
+            <p>Your Small Claims Court summary will appear here.</p>
+            <div id="summaryOutput" class="output-panel">COURTSIMPLIFIED SMALL CLAIMS SUMMARY
+
+Fill out the intake and generate a structured summary.</div>
+
+            <div class="page-card process-box">
+              <h3>Likely forms and next steps</h3>
+              <div id="processPanel" class="process-grid"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="links">
+      <div class="container">
+        <div class="section-head">
+          <h2>Official small claims links</h2>
+          <p>
+            Use official court information together with the intake page so users can understand both process and preparation.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="resource-card">
+            <h3>Small Claims Court Forms</h3>
+            <p>Official Ontario Small Claims Court forms page.</p>
+            <div class="hero-actions" style="margin-top:16px;">
+              <a class="tool-btn primary" href="https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/" target="_blank" rel="noopener noreferrer">Open Small Claims Forms</a>
+            </div>
+          </article>
+
+          <article class="resource-card">
+            <h3>Settlement Conferences</h3>
+            <p>Official information about settlement conference and trial management conference stages in Small Claims Court.</p>
+            <div class="hero-actions" style="margin-top:16px;">
+              <a class="tool-btn primary" href="https://www.ontariocourts.ca/scj/areas-of-law/small-claims-court/settlement-conference-trial-management-conferences/" target="_blank" rel="noopener noreferrer">Open Settlement Conference Info</a>
+            </div>
+          </article>
+
+          <article class="resource-card">
+            <h3>Small Claims Court Overview</h3>
+            <p>Official Ontario Small Claims Court area-of-law page.</p>
+            <div class="hero-actions" style="margin-top:16px;">
+              <a class="tool-btn primary" href="https://www.ontariocourts.ca/scj/areas-of-law/small-claims-court/" target="_blank" rel="noopener noreferrer">Open Small Claims Info</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
