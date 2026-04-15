@@ -1,115 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CourtSimplified</title>
-
-<style>
-body {
-  font-family: Arial;
-  margin: 0;
-  background: #fffaf2;
-}
-
-.header {
-  padding: 20px;
-  background: #d97706;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-}
-
-.nav a {
-  margin-left: 15px;
-  color: white;
-  text-decoration: none;
-}
-
-.hero {
-  padding: 60px;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 40px;
-}
-
-.section {
-  padding: 40px;
-  text-align: center;
-}
-
-.cards {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.card {
-  width: 300px;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-.button {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 15px;
-  background: #d97706;
-  color: white;
-  text-decoration: none;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CourtSimplified | Navigate court with more clarity</title>
+  <meta
+    name="description"
+    content="CourtSimplified helps people without lawyers organize facts, evidence, and timelines for Family, Civil, and Small Claims matters."
+  />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-
-<div style="background:yellow;padding:10px;text-align:center;font-weight:bold;">
-🚧 Site under development. Tools not active yet.
-</div>
-
-<div class="header">
-  <h2>CourtSimplified</h2>
-  <div class="nav">
-    <a href="family.html">Family</a>
-    <a href="civil.html">Civil</a>
-    <a href="small-claims.html">Small Claims</a>
+  <div class="dev-banner">
+    🚧 CourtSimplified is currently under development. Services are not active yet. Launching in the coming months.
   </div>
-</div>
+  <div class="banner-spacer"></div>
 
-<div class="hero">
-  <h1>Navigate the legal system without a lawyer.</h1>
-  <p>Organize your case, understand the process, and prepare like a professional.</p>
-</div>
-
-<div class="section">
-  <h2>Choose your case type</h2>
-
-  <div class="cards">
-
-    <div class="card">
-      <h3>Family Law</h3>
-      <p>Custody, support, parenting, safety issues</p>
-      <a class="button" href="family.html">Start</a>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">CS</span>
+        <span>CourtSimplified</span>
+      </a>
+      <nav class="nav">
+        <a href="#why">Why</a>
+        <a href="#how">How It Works</a>
+        <a href="#paths">Case Types</a>
+        <a href="#contact" class="nav-cta">Get Started</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="card">
-      <h3>Civil Law</h3>
-      <p>Negligence, disputes, damages</p>
-      <a class="button" href="civil.html">Start</a>
+  <main>
+    <section class="hero">
+      <div class="container hero-shell home-hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Legal preparation for people without lawyers</div>
+            <h1>Navigate the justice system with more structure and less confusion.</h1>
+            <p class="lead">
+              CourtSimplified is built for people trying to move through court without a lawyer, or before they can afford one. The goal is to turn scattered facts, screenshots, records, and notes into something clearer, more organized, and easier to work with.
+            </p>
+            <div class="hero-actions">
+              <a href="#paths" class="btn btn-primary">Choose Your Case Type</a>
+              <a href="#why" class="btn btn-secondary">Why We Built This</a>
+            </div>
+            <p class="hero-note">
+              Clearer intake. Better summaries. A stronger starting point.
+            </p>
+          </div>
+
+          <aside class="hero-panel">
+            <div class="page-card">
+              <h3>What CourtSimplified is meant to do</h3>
+              <ul class="checklist">
+                <li>Help self-represented people understand the process better</li>
+                <li>Organize facts, timelines, and evidence more professionally</li>
+                <li>Give each case type its own guidance and intake system</li>
+                <li>Create a better foundation before filing or speaking to a lawyer</li>
+              </ul>
+            </div>
+
+            <div class="page-card">
+              <h3>Who it is for</h3>
+              <p>People handling Family, Civil, and Small Claims matters who need more clarity, more structure, and a more useful starting point than random notes and screenshots.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="why">
+      <div class="container">
+        <div class="section-head">
+          <h2>Why this site exists</h2>
+          <p>
+            Most people do not lose confidence because their case is unimportant. They lose confidence because the system is hard to follow, the forms feel overwhelming, and their evidence is not organized in a way that makes sense.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="page-card">
+            <div class="icon">01</div>
+            <h3>Too much confusion</h3>
+            <p>People often do not know what form they need, what stage they are in, or what a judge will actually focus on.</p>
+          </article>
+
+          <article class="page-card">
+            <div class="icon">02</div>
+            <h3>Too much disorder</h3>
+            <p>Important facts get buried inside photos, documents, notes, messages, and screenshots with no clean structure.</p>
+          </article>
+
+          <article class="page-card">
+            <div class="icon">03</div>
+            <h3>Too little practical help</h3>
+            <p>Most sites either provide legal information or software. CourtSimplified is designed to connect those two things together.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p>
+            Instead of one long page trying to do everything, each case type has its own page with practical information, official links, and a dedicated intake and summary system.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="page-card">
+            <div class="step-number">1</div>
+            <h3>Choose your case type</h3>
+            <p>Start with Family Law, Civil Law, or Small Claims based on what your problem is actually about.</p>
+          </article>
+
+          <article class="page-card">
+            <div class="step-number">2</div>
+            <h3>Learn the basics</h3>
+            <p>Read process notes, common forms, and the things people often do not know until it is too late.</p>
+          </article>
+
+          <article class="page-card">
+            <div class="step-number">3</div>
+            <h3>Use the intake</h3>
+            <p>Enter your facts, timeline, concerns, and evidence in a cleaner and more structured way.</p>
+          </article>
+
+          <article class="page-card">
+            <div class="step-number">4</div>
+            <h3>Generate your summary</h3>
+            <p>Create a stronger case summary you can save, print, and continue improving.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-band" id="paths">
+      <div class="container">
+        <div class="section-head">
+          <h2>Choose your path</h2>
+          <p>
+            Each section is built to feel more complete and more useful for that kind of matter.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="page-card law-card family-card">
+            <span class="mini-label">Family Law</span>
+            <h3>Supportive and structured</h3>
+            <p>Parenting, support, decision-making, safety concerns, and family court process guidance.</p>
+            <div class="hero-actions" style="margin-top:18px;">
+              <a href="family.html" class="btn btn-primary">Go to Family Law</a>
+            </div>
+          </article>
+
+          <article class="page-card law-card civil-card">
+            <span class="mini-label">Civil Law</span>
+            <h3>More formal and evidence-focused</h3>
+            <p>Negligence, damages, disputes, and a clearer structure for larger claims and responsibility issues.</p>
+            <div class="hero-actions" style="margin-top:18px;">
+              <a href="civil.html" class="btn btn-primary">Go to Civil Law</a>
+            </div>
+          </article>
+
+          <article class="page-card law-card small-card">
+            <span class="mini-label">Small Claims</span>
+            <h3>Practical and direct</h3>
+            <p>Money, property, unpaid bills, broken agreements, and simple process guidance that actually helps.</p>
+            <div class="hero-actions" style="margin-top:18px;">
+              <a href="small-claims.html" class="btn btn-primary">Go to Small Claims</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container grid-2">
+        <div class="page-card">
+          <h2>Start with the section that fits your case</h2>
+          <p>
+            The site is strongest when users go straight to the case type that matches their issue, then build from there.
+          </p>
+          <div class="hero-actions" style="margin-top:16px;">
+            <a href="family.html" class="btn" style="background: var(--brand); color: white;">Family Law</a>
+            <a href="civil.html" class="btn" style="background: var(--civil); color: white;">Civil Law</a>
+            <a href="small-claims.html" class="btn" style="background: var(--small); color: white;">Small Claims</a>
+          </div>
+        </div>
+
+        <div class="page-card">
+          <h3>Important note</h3>
+          <p>
+            CourtSimplified is a legal preparation and organization platform. It is not a law firm and does not provide legal advice.
+          </p>
+          <p class="tiny">Current contact placeholder: k.magrum45@gmail.com</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-card">
+      <div class="grid-3">
+        <div>
+          <h3>CourtSimplified</h3>
+          <p>Built to help people navigate court with more clarity and better structure.</p>
+        </div>
+        <div>
+          <h3>Sections</h3>
+          <ul class="footer-links">
+            <li><a href="family.html">Family Law</a></li>
+            <li><a href="civil.html">Civil Law</a></li>
+            <li><a href="small-claims.html">Small Claims</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Homepage</h3>
+          <ul class="footer-links">
+            <li><a href="#why">Why</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#paths">Case Types</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 CourtSimplified. All rights reserved.</p>
+        <p>Under active development.</p>
+      </div>
     </div>
-
-    <div class="card">
-      <h3>Small Claims</h3>
-      <p>Money, property, contracts</p>
-      <a class="button" href="small-claims.html">Start</a>
-    </div>
-
-  </div>
-</div>
-
+  </footer>
 </body>
 </html>
