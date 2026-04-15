@@ -1,6 +1,6 @@
-console.log("CourtSimplified app.js loaded");
+console.log("CourtSimplified app loaded");
 
-const DEFAULT_OUTPUTS = {
+const defaultOutputs = {
   family: `COURTSIMPLIFIED FAMILY LAW SUMMARY
 
 Fill out the intake and generate a structured summary.`,
@@ -16,14 +16,14 @@ const guidance = {
   Ontario: {
     "Family Law": {
       court: "Ontario Court of Justice or Superior Court of Justice, depending on the issue",
-      likelyForm: "Family court forms vary by the step and the issue. Common conference forms include Form 17, 17A, 17C, and 17F.",
+      likelyForm: "Family forms vary by issue and stage. Conference and motion forms are commonly involved.",
       steps: [
         "Identify the main issue clearly, such as parenting, support, decision-making, or safety.",
-        "Organize the facts in date order and focus on specifics.",
-        "Gather documents, messages, schedules, records, and other proof tied to the issues.",
+        "Organize facts in date order and focus on specifics.",
+        "Gather messages, schedules, records, and other proof tied to the real issues.",
         "Confirm the exact forms and filing steps for the court and stage you are dealing with."
       ],
-      filing: "Family court procedure depends on the issue and stage. Conference forms and timing requirements matter.",
+      filing: "Family court procedure depends on the issue and stage. Conference briefs and filing timelines matter.",
       links: [
         { label: "Family Law Rules Forms", url: "https://ontariocourtforms.on.ca/en/family-law-rules-forms/" },
         { label: "Case Conferences", url: "https://www.ontariocourts.ca/ocj/family-court/going-to-court/case-conferences/" },
@@ -33,14 +33,14 @@ const guidance = {
     },
     "Civil Matter": {
       court: "Ontario Superior Court of Justice",
-      likelyForm: "Form 14A – Statement of Claim (General) is a common civil starting form.",
+      likelyForm: "A typical civil claim may involve Form 4A, Form 14A, and Form 4C together.",
       steps: [
         "Identify what happened, who is responsible, and what remedy is being requested.",
         "Organize events in order and connect each key point to proof.",
-        "Gather contracts, letters, invoices, records, reports, and other supporting material.",
+        "Gather letters, contracts, invoices, reports, and other supporting records.",
         "Confirm the proper filing process and any special procedure that may apply."
       ],
-      filing: "Civil procedure varies by claim type and court process. Do not assume one path fits every civil case.",
+      filing: "Civil procedure varies by claim type and process. Do not assume one path fits every civil matter.",
       links: [
         { label: "Rules of Civil Procedure Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/" },
         { label: "Form 14A", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/14a/" },
@@ -60,8 +60,8 @@ const guidance = {
       filing: "Small Claims Court still expects organized facts, proper forms, and supporting proof.",
       links: [
         { label: "Small Claims Court Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/" },
-        { label: "Settlement Conference Info", url: "https://www.ontariocourts.ca/scj/areas-of-law/small-claims-court/settlement-conference-trial-management-conferences/" },
-        { label: "Small Claims Court Overview", url: "https://www.ontariocourts.ca/scj/areas-of-law/small-claims-court/" }
+        { label: "Settlement Conferences", url: "https://www.ontariocourts.ca/scj/areas-of-law/small-claims-court/settlement-conference-trial-management-conferences/" },
+        { label: "Steps in a Case", url: "https://www.ontariocourts.ca/scj/areas-of-law/small-claims-court/steps-in-a-case/" }
       ],
       note: "Simple, clear, and supported usually works better than overloading the court with extra detail."
     }
@@ -120,7 +120,7 @@ function getStorageKey() {
 }
 
 function getDefaultOutput() {
-  return DEFAULT_OUTPUTS[pageType] || "Fill out the intake and generate a structured summary.";
+  return defaultOutputs[pageType] || "Fill out the intake and generate a structured summary.";
 }
 
 function getGuidance() {
@@ -137,7 +137,7 @@ function getGuidance() {
     steps: ["Complete the intake, then confirm the proper court process from official sources."],
     filing: "Confirm the exact process before filing.",
     links: [],
-    note: "This page needs more guidance content for that selection."
+    note: "More guidance can be added here later."
   };
 }
 
