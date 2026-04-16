@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ontario Small Claims Court | CourtSimplified</title>
+  <meta name="description" content="Ontario Small Claims Court guide for claims up to $50,000. Learn the basic steps, forms, timelines, service rules, settlement conferences, and what to prepare next." />
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --bg-soft: #fff3df;
+      --panel: #fffdf9;
+      --panel-2: #fff6e8;
+      --text: #2e241b;
+      --muted: #6b5b4c;
+      --line: #ecd9be;
+      --primary: #d97b17;
+      --primary-dark: #b86208;
+      --accent: #f3b24d;
+      --accent-soft: #ffe4b8;
+      --success: #4f7d55;
+      --shadow: 0 10px 30px rgba(117, 76, 22, 0.10);
+      --radius: 22px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fff8ef 0%, #fff4e4 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 248, 239, 0.9);
+      border-bottom: 1px solid rgba(236, 217, 190, 0.75);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover { color: var(--primary-dark); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: 0.96rem;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: 0 12px 24px rgba(205, 110, 11, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.62);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .hero { padding: 58px 0 26px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-side {
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(236, 217, 190, 0.9);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy { padding: 36px; }
+    .hero-side { padding: 22px; display: grid; gap: 16px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8d520d;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      margin: 0 0 18px;
+      max-width: 66ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .stat-card,
+    .mini-card,
+    .card {
+      background: linear-gradient(180deg, #fffdf9 0%, #fff6ea 100%);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card { padding: 18px; }
+    .stat-card strong {
+      display: block;
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+    .stat-card span { color: var(--muted); font-size: 0.92rem; }
+
+    section { padding: 24px 0 34px; }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 22px;
+    }
+
+    .section-head .label {
+      color: var(--primary-dark);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .card { padding: 22px; }
+    .card h3 { margin: 0 0 10px; font-size: 1.08rem; line-height: 1.2; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+
+    .icon-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffe4b8 0%, #f6c46f 100%);
+      color: #8d520d;
+      font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(217, 123, 23, 0.15);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-step {
+      background: rgba(255,255,255,0.68);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .timeline-step .step-no {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      font-size: 0.82rem;
+      font-weight: 900;
+      color: #b68d52;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-step h3 { margin: 0 0 10px; font-size: 1.12rem; }
+    .timeline-step p { margin: 0; color: var(--muted); }
+
+    .feature-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .feature-list li { margin-bottom: 8px; }
+
+    .callout {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: #fff1d9;
+      border: 1px solid #efcf93;
+      color: #7d5410;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .forms-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+    }
+
+    .forms-table th,
+    .forms-table td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(236, 217, 190, 0.75);
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+
+    .forms-table th {
+      background: #fff3dd;
+      color: var(--text);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .forms-table tr:last-child td { border-bottom: 0; }
+
+    .quick-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quick-link {
+      display: block;
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.76);
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .quick-link small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.87rem;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .grid-4,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      .hero-copy,
+      .hero-side,
+      .card,
+      .timeline-step,
+      .stat-card { padding: 18px; }
+      h1 { font-size: 2.35rem; }
+      .forms-table,
+      .forms-table thead,
+      .forms-table tbody,
+      .forms-table th,
+      .forms-table td,
+      .forms-table tr {
+        display: block;
+        width: 100%;
+      }
+      .forms-table thead { display: none; }
+      .forms-table td {
+        border-bottom: 1px solid rgba(236, 217, 190, 0.75);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="CourtSimplified home">
+        <div class="brand-mark">CS</div>
+        <span>CourtSimplified</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="start-case.html">Start Your Case</a>
+        <a href="ontario-civil.html">Ontario Civil</a>
+        <a href="#forms">Forms</a>
+      </nav>
+      <a class="btn btn-primary" href="start-case.html">Start Your Case</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Ontario guide page</div>
+          <h1>Ontario Small Claims Court, explained in a clearer way.</h1>
+          <p>
+            This page is built to help users understand the basic path of a Small Claims Court case in Ontario, what forms are commonly involved, what steps usually happen next, and what information should be organized before filing or responding.
+          </p>
+          <p>
+            Ontario Small Claims Court can generally handle claims for money or recovery of personal property up to <strong>$50,000</strong>, excluding interest and costs. The official Ontario guide also points users to Plaintiff’s Claim <strong>Form 7A</strong> to start a claim and Defence <strong>Form 9A</strong> to respond. ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/making-claim?utm_source=chatgpt.com))
+          </p>
+          <div class="hero-actions">
+            <a href="#steps" class="btn btn-primary">See the Steps</a>
+            <a href="#forms" class="btn btn-secondary">See Main Forms</a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="stat-card">
+            <strong>$50,000</strong>
+            <span>Current Small Claims Court monetary limit in Ontario, excluding interest and costs. ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/making-claim?utm_source=chatgpt.com))</span>
+          </div>
+          <div class="stat-card">
+            <strong>Form 7A</strong>
+            <span>Plaintiff’s Claim form used to start many Small Claims actions. ([ontariocourtforms.on.ca](https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/7a/?utm_source=chatgpt.com))</span>
+          </div>
+          <div class="stat-card">
+            <strong>Form 9A</strong>
+            <span>Defence form used to dispute a claim. Ontario’s guide says a defence is generally filed within 20 days after receiving the claim. ([ontariocourtforms.on.ca](https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/9a/?utm_source=chatgpt.com))</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="label">What this court is for</span>
+          <h2>A practical starting point for lower-value civil disputes.</h2>
+          <p>
+            Small Claims Court is often used for money disputes, unpaid invoices, property damage, contract issues, refund disputes, and claims to recover personal property. It is designed to be more streamlined than ordinary Superior Court civil litigation. Ontario’s official rules state that the rules aim for the just, most expeditious, and least expensive determination of proceedings on their merits. ([ontario.ca](https://www.ontario.ca/laws/regulation/980258?utm_source=chatgpt.com))
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon-badge">A</div>
+            <h3>Good for organized money disputes</h3>
+            <p>Useful where the issue can be explained with documents, dates, communications, invoices, receipts, photographs, or other records.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">B</div>
+            <h3>Still requires careful preparation</h3>
+            <p>Even though the process is simplified, users still need to name the right parties, explain what happened clearly, and follow filing and service steps correctly.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">C</div>
+            <h3>Not the same as legal advice</h3>
+            <p>This page shows the court path and legal structure. It does not decide whether a person should sue or what result they will get.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Main path</span>
+          <h2>The usual Small Claims Court flow in Ontario.</h2>
+          <p>
+            Ontario’s official Small Claims Court materials describe a basic sequence: file a claim, serve the defendant, wait for a defence, attend a settlement conference if defended, and go to trial if necessary. If there is no defence, the plaintiff may be able to seek default steps. ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/making-claim?utm_source=chatgpt.com))
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="step-no">STEP 01</div>
+            <h3>Prepare the claim</h3>
+            <p>
+              The claimant needs to explain who is suing, who is being sued, what happened, and what remedy is being requested. Ontario’s guide says a Plaintiff’s Claim (Form 7A) is used to start a claim. ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/making-claim?utm_source=chatgpt.com))
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 02</div>
+            <h3>File in the proper court location</h3>
+            <p>
+              Ontario’s guide says a plaintiff can generally file where the event happened or where the defendant lives or carries on business. Claims may be filed online through the Small Claims Court portal, or in person or by mail depending on the document and step involved. ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/making-claim?utm_source=chatgpt.com))
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 03</div>
+            <h3>Serve the filed claim</h3>
+            <p>
+              After filing, the stamped claim must be served on each defendant. Ontario’s guide has a separate section on serving documents and explains that proof of service may later be needed through an Affidavit of Service (Form 8A). ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/serving-documents?utm_source=chatgpt.com))
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 04</div>
+            <h3>Wait for a defence</h3>
+            <p>
+              If the defendant wants to dispute the claim, Ontario’s guide says they generally need to file a Defence (Form 9A) within 20 days after receiving the claim. ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/replying-claim?utm_source=chatgpt.com))
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 05</div>
+            <h3>Attend a settlement conference</h3>
+            <p>
+              If a defence is filed, the matter will usually move to a mandatory settlement conference, where the parties meet with a judge to discuss settlement, narrowing issues, and readiness. Ontario’s guide says a settlement conference should generally be held within 90 days after the first defence is filed. ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/getting-ready-court?utm_source=chatgpt.com))
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 06</div>
+            <h3>Trial or default steps</h3>
+            <p>
+              If the case does not settle and remains disputed, it may proceed toward trial. If no defence is filed and the requirements are met, the plaintiff may pursue default procedures such as a request for default judgment or an assessment process, depending on the claim. ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/making-claim?utm_source=chatgpt.com))
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="forms">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Main forms</span>
+          <h2>The forms users most often need first.</h2>
+          <p>
+            These are the main starting forms users commonly need to know about on a Small Claims page. Official Ontario form pages identify the current versions for Form 7A, Form 9A, and the Small Claims forms collection. ([ontariocourtforms.on.ca](https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/7a/?utm_source=chatgpt.com))
+          </p>
+        </div>
+
+        <table class="forms-table" aria-label="Key Ontario Small Claims forms">
+          <thead>
+            <tr>
+              <th>Form</th>
+              <th>What it is for</th>
+              <th>When it usually matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Form 7A</strong><br>Plaintiff’s Claim</td>
+              <td>Starts the claim and explains what happened, what is being claimed, and against whom.</td>
+              <td>Used by a person or business starting a Small Claims Court case. ([ontariocourtforms.on.ca](https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/7a/?utm_source=chatgpt.com))</td>
+            </tr>
+            <tr>
+              <td><strong>Form 9A</strong><br>Defence</td>
+              <td>Lets a defendant respond and explain what is disputed or denied.</td>
+              <td>Usually filed when a defendant wants to contest the claim. ([ontariocourtforms.on.ca](https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/9a/?utm_source=chatgpt.com))</td>
+            </tr>
+            <tr>
+              <td><strong>Form 8A</strong><br>Affidavit of Service</td>
+              <td>Records who was served, how they were served, and when service happened.</td>
+              <td>Important when proving service for later procedural steps. ([ontariocourtforms.on.ca](https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/?utm_source=chatgpt.com))</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="card">
+          <h3>What users should gather before filing</h3>
+          <ul class="feature-list">
+            <li>Full legal names and addresses for the parties.</li>
+            <li>A short, dated timeline of what happened.</li>
+            <li>Invoices, receipts, contracts, messages, letters, photos, and other records.</li>
+            <li>The exact amount claimed, or a clear explanation of the property being sought.</li>
+            <li>Any deadline, demand letter, or previous payment discussion that matters.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>How courts usually look at a Small Claims dispute</h3>
+          <ul class="feature-list">
+            <li>What exactly happened, and when.</li>
+            <li>What records support that version of events.</li>
+            <li>Whether the correct parties were named.</li>
+            <li>What money or property is actually being claimed.</li>
+            <li>Whether the steps, service, and deadlines were followed properly.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="callout">
+          Ontario’s official fee pages say the filing fee for a Small Claims Court claim by an infrequent claimant is currently $108, the fee to file a defence is $77, and the fee for setting a date for a trial or assessment hearing by an infrequent claimant is $308. Users should always verify fees before filing because fees can change. ([ontario.ca](https://www.ontario.ca/page/fees-small-claims-court?utm_source=chatgpt.com))
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div>
+          <div class="section-head">
+            <span class="label">Official starting points</span>
+            <h2>Useful links this page should connect to.</h2>
+            <p>
+              These are the official Ontario resources this page is built around, and they are the best places to verify the live process before filing. ([ontario.ca](https://www.ontario.ca/document/guide-procedures-small-claims-court/making-claim?utm_source=chatgpt.com))
+            </p>
+          </div>
+          <div class="quick-links">
+            <a class="quick-link" href="https://www.ontario.ca/page/suing-someone-small-claims-court">
+              Ontario guide: suing someone in Small Claims Court
+              <small>Official overview for starting a claim.</small>
+            </a>
+            <a class="quick-link" href="https://www.ontario.ca/page/being-sued-small-claims-court">
+              Ontario guide: being sued in Small Claims Court
+              <small>Official overview for responding to a claim.</small>
+            </a>
+            <a class="quick-link" href="https://www.ontario.ca/page/file-small-claims-court-documents-online">
+              File Small Claims Court documents online
+              <small>Official online filing information and fee references.</small>
+            </a>
+            <a class="quick-link" href="https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/">
+              Ontario Small Claims forms bank
+              <small>Current official forms including 7A, 8A, and 9A.</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Important notice for your site</h3>
+          <p>
+            This page should be presented as a court-process and preparation guide. It should not say a user definitely has a case, should definitely sue, or will win. The safer and stronger framing is to explain the court path, the forms, the doctrine, and the records courts commonly expect.
+          </p>
+          <div class="footer-note">
+            This page summarizes official Ontario guidance and forms for user convenience. It is not legal advice, and users should verify the current rules, forms, and fees through official Ontario sources before filing. ([ontario.ca](https://www.ontario.ca/laws/regulation/980258?utm_source=chatgpt.com))
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
