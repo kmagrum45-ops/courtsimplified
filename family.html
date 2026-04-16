@@ -4,247 +4,807 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Family Law | CourtSimplified</title>
-  <meta name="description" content="Family law guidance, forms, conferences, and a family-specific intake and summary builder." />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body class="family-page" data-page-type="family">
-  <div class="dev-banner">
-    🚧 CourtSimplified is currently under development. Services are not active yet. Launching in the coming months.
-  </div>
-  <div class="banner-spacer"></div>
+  <meta name="description" content="Choose your province or territory to continue with family law guidance, forms, and court process information across Canada." />
+  <meta name="theme-color" content="#35cfd0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --aqua: #35cfd0;
+      --aqua-deep: #19b6bb;
+      --aqua-soft: #dff9f7;
+      --mint: #effcfb;
+      --cream: #fbf8f2;
+      --card: #ffffff;
+      --text: #213235;
+      --muted: #607376;
+      --line: #dceceb;
+      --shadow: 0 12px 30px rgba(32, 75, 79, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1200px;
+    }
 
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="index.html" class="brand">
-        <span class="brand-mark">CS</span>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fffe 0%, var(--cream) 100%);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.86);
+      border-bottom: 1px solid rgba(220, 236, 235, 0.9);
+    }
+
+    .nav-wrap {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.35rem;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--aqua) 0%, var(--aqua-deep) 100%);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .desktop-nav a:hover,
+    .desktop-nav a:focus-visible,
+    .desktop-nav a.active {
+      color: var(--text);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.8rem 0.95rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.95rem 1.35rem;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--aqua) 0%, var(--aqua-deep) 100%);
+      color: white;
+      box-shadow: 0 14px 30px rgba(53, 207, 208, 0.28);
+    }
+
+    .button-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid #bdebea;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 3rem 0 2rem;
+    }
+
+    .hero-shell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at top left, rgba(53, 207, 208, 0.2), transparent 34%),
+        linear-gradient(135deg, #f3fffe 0%, #fdfaf5 100%);
+      border: 1px solid #d7efee;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-shell::before,
+    .hero-shell::after {
+      content: "";
+      position: absolute;
+      inset: auto auto 0 -4%;
+      width: 60%;
+      height: 130px;
+      background: linear-gradient(90deg, rgba(53, 207, 208, 0.28), rgba(53, 207, 208, 0.05));
+      border-top-right-radius: 120px;
+      transform: skewY(-4deg);
+      pointer-events: none;
+    }
+
+    .hero-shell::after {
+      width: 46%;
+      height: 90px;
+      left: -2%;
+      bottom: 18px;
+      opacity: 0.55;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 2rem;
+      min-height: 520px;
+      padding: 3rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--aqua-deep);
+      background: rgba(53, 207, 208, 0.1);
+      border: 1px solid rgba(53, 207, 208, 0.15);
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 { line-height: 1.1; letter-spacing: -0.04em; margin: 0 0 1rem; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); max-width: 10ch; }
+    h2 { font-size: clamp(2rem, 3.2vw, 2.9rem); text-align: center; }
+    h3 { font-size: 1.28rem; }
+
+    .lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 58ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin: 1.8rem 0 1.65rem;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .mini-point {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .mini-point strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .mini-point span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .hero-media {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .hero-image {
+      width: 100%;
+      min-height: 420px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(53, 207, 208, 0.12), rgba(53, 207, 208, 0.04)), url('assets/images/family-hero.jpg') center/cover no-repeat;
+      border: 1px solid rgba(255,255,255,0.65);
+    }
+
+    .section {
+      padding: 2.2rem 0;
+    }
+
+    .section-sub {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .province-shell,
+    .focus-shell,
+    .feature-shell,
+    .next-shell,
+    .official-shell {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+    }
+
+    .province-grid,
+    .focus-grid,
+    .feature-grid,
+    .next-grid,
+    .official-grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .province-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .focus-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .next-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .official-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .province-button,
+    .focus-card,
+    .feature-card,
+    .next-card,
+    .official-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f4ffff 100%);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .province-button:hover,
+    .focus-card:hover,
+    .feature-card:hover,
+    .next-card:hover,
+    .official-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(32, 75, 79, 0.12);
+    }
+
+    .province-button {
+      display: block;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .card-pad {
+      padding: 1.3rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--aqua-deep);
+      background: rgba(53, 207, 208, 0.1);
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 0.8rem;
+    }
+
+    .focus-card p,
+    .feature-card p,
+    .next-card p,
+    .official-card p,
+    .intro-copy,
+    .note-box,
+    .backend-box {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .intro-copy {
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.08rem;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin-top: 2rem;
+    }
+
+    .note-box,
+    .backend-box {
+      background: linear-gradient(180deg, rgba(223,249,247,0.45), rgba(255,255,255,0.96));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .site-footer {
+      margin-top: 3rem;
+      padding: 2.7rem 0 2.2rem;
+      background: linear-gradient(180deg, #14292b 0%, #1e383b 100%);
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.03em;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 0.65rem;
+      color: rgba(255,255,255,0.76);
+    }
+
+    .footer-links a:hover { color: white; }
+
+    .footer-note {
+      margin-top: 1.6rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.65);
+      font-size: 0.92rem;
+    }
+
+    .mobile-panel {
+      display: none;
+      padding: 0 0 1rem;
+    }
+
+    .mobile-links {
+      display: grid;
+      gap: 0.65rem;
+      padding-top: 1rem;
+    }
+
+    .mobile-links a {
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      background: rgba(53, 207, 208, 0.07);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    @media (max-width: 1080px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .hero-grid,
+      .note-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-grid { min-height: unset; }
+      .hero-image { min-height: 320px; }
+      .province-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .focus-grid,
+      .feature-grid,
+      .next-grid,
+      .official-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 820px) {
+      .hero-grid { padding: 2rem 1.35rem; }
+      .hero-points,
+      .province-grid,
+      .focus-grid,
+      .feature-grid,
+      .next-grid,
+      .official-grid { grid-template-columns: 1fr; }
+      .nav-actions .button-primary { display: none; }
+      .mobile-panel[data-open="true"] { display: block; }
+      .hero { padding-top: 1.5rem; }
+      .section { padding: 1.55rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="CourtSimplified home">
+        <span class="brand-mark">⚖</span>
         <span>CourtSimplified</span>
       </a>
-      <nav class="nav">
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
-        <a href="#learn">Learn</a>
-        <a href="#tool">Intake</a>
-        <a href="#links" class="nav-cta">Official Links</a>
+        <a href="start-case.html">Start Your Case</a>
+        <a class="active" href="family.html">Family</a>
+        <a href="small-claims.html">Small Claims</a>
+        <a href="civil.html">Civil</a>
+        <a href="forms.html">Forms &amp; Documents</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="button button-primary" href="start-case.html">Start Your Case</a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobilePanel">☰</button>
+      </div>
+    </div>
+
+    <div class="container mobile-panel" id="mobilePanel" data-open="false">
+      <nav class="mobile-links" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="start-case.html">Start Your Case</a>
+        <a href="family.html">Family</a>
+        <a href="small-claims.html">Small Claims</a>
+        <a href="civil.html">Civil</a>
+        <a href="forms.html">Forms &amp; Documents</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
       </nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container hero-shell family-hero">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="eyebrow">Family law guidance and preparation</div>
-            <h1>Build a clearer family law file.</h1>
-            <p class="lead">
-              This section is for parenting, support, decision-making, safety concerns, access issues, and other family matters where the court often cares about facts, stability, credibility, and the child’s best interests.
-            </p>
-            <div class="hero-actions">
-              <a href="#tool" class="btn btn-primary">Start Family Intake</a>
-              <a href="#learn" class="btn btn-secondary">Learn the Basics</a>
+      <div class="container">
+        <div class="hero-shell">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">Family law across Canada</div>
+              <h1>Choose Your Province to Continue</h1>
+              <p class="lead">
+                Family court rules, forms, filing steps, and official resources are different across Canada.
+                Start by choosing your province or territory so CourtSimplified can guide you into the right family law path for your area.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#province-picker">Choose Province</a>
+                <a class="button button-secondary" href="start-case.html">Start Your Case</a>
+              </div>
+              <div class="hero-points">
+                <div class="mini-point">
+                  <strong>Province-first flow</strong>
+                  <span>Users should not see mixed family law steps from different regions.</span>
+                </div>
+                <div class="mini-point">
+                  <strong>Official links later</strong>
+                  <span>Each province page will connect to real court forms and resources.</span>
+                </div>
+                <div class="mini-point">
+                  <strong>Built to scale</strong>
+                  <span>This page is the entry point for every province-specific family path.</span>
+                </div>
+              </div>
             </div>
-            <p class="hero-note">Softer tone. Clearer structure. Still serious.</p>
+
+            <div class="hero-media" aria-hidden="true">
+              <div class="hero-image"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>What This Section Will Help With</h2>
+        <p class="intro-copy">
+          This family section is meant to guide users into the correct local court process before they start reading steps, downloading forms, or preparing documents.
+          Instead of one generic family law page, the user should pick their region first and continue from there.
+        </p>
+
+        <div class="focus-shell">
+          <div class="focus-grid">
+            <article class="focus-card">
+              <div class="card-pad">
+                <span class="tag">Common family issues</span>
+                <h3>Parenting and decision-making</h3>
+                <p>Province-specific pages can later explain parenting arrangements, parenting time, decision-making responsibility, and related court steps.</p>
+              </div>
+            </article>
+
+            <article class="focus-card">
+              <div class="card-pad">
+                <span class="tag">Support and separation</span>
+                <h3>Child and spousal support</h3>
+                <p>Users should eventually be guided into support-related forms, timelines, and official calculators or court resources for their province.</p>
+              </div>
+            </article>
+
+            <article class="focus-card">
+              <div class="card-pad">
+                <span class="tag">Divorce and court process</span>
+                <h3>Filing and documents</h3>
+                <p>Each province or territory page can later break down forms, filing methods, court levels, service steps, and document organization.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="province-picker">
+      <div class="container">
+        <h2>Pick Your Province or Territory</h2>
+        <p class="section-sub">
+          This is the key step on the family page. Once a user chooses their region, the site should move them into that region’s family law guidance, court resources, and forms.
+        </p>
+
+        <div class="province-shell">
+          <div class="province-grid">
+            <a class="province-button" href="family-ontario.html">Ontario</a>
+            <a class="province-button" href="family-british-columbia.html">British Columbia</a>
+            <a class="province-button" href="family-alberta.html">Alberta</a>
+            <a class="province-button" href="family-quebec.html">Quebec</a>
+            <a class="province-button" href="family-manitoba.html">Manitoba</a>
+            <a class="province-button" href="family-saskatchewan.html">Saskatchewan</a>
+            <a class="province-button" href="family-nova-scotia.html">Nova Scotia</a>
+            <a class="province-button" href="family-new-brunswick.html">New Brunswick</a>
+            <a class="province-button" href="family-newfoundland-and-labrador.html">Newfoundland &amp; Labrador</a>
+            <a class="province-button" href="family-prince-edward-island.html">Prince Edward Island</a>
+            <a class="province-button" href="family-yukon.html">Yukon</a>
+            <a class="province-button" href="family-northwest-territories.html">Northwest Territories</a>
+            <a class="province-button" href="family-nunavut.html">Nunavut</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>What Each Province Page Should Contain</h2>
+        <p class="section-sub">
+          Once the user clicks a region, that page should feel complete and local, not generic.
+        </p>
+
+        <div class="feature-shell">
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="card-pad">
+                <span class="tag">Local process</span>
+                <h3>Family court overview</h3>
+                <p>Explain the type of family court process in that region and what users are generally dealing with before they file anything.</p>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="card-pad">
+                <span class="tag">Official materials</span>
+                <h3>Forms and documents</h3>
+                <p>Link users to the proper official forms, document lists, filing guidance, and later your own organized preparation tools.</p>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="card-pad">
+                <span class="tag">Practical steps</span>
+                <h3>Timelines and next steps</h3>
+                <p>Show what usually comes next, what users should prepare, and where they can get help, depending on their region.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Official Resource Areas to Connect Later</h2>
+        <p class="section-sub">
+          These are placeholders for the local government and court links that should eventually sit inside each province page.
+        </p>
+
+        <div class="official-shell">
+          <div class="official-grid">
+            <article class="official-card">
+              <div class="card-pad">
+                <h3>Court websites</h3>
+                <p>Province family court pages, filing portals, courthouse finders, and court contact information.</p>
+              </div>
+            </article>
+
+            <article class="official-card">
+              <div class="card-pad">
+                <h3>Form libraries</h3>
+                <p>Official family law forms, checklists, document instructions, and local filing requirements.</p>
+              </div>
+            </article>
+
+            <article class="official-card">
+              <div class="card-pad">
+                <h3>Legal aid and support</h3>
+                <p>Local legal aid services, community resources, duty counsel information, and family justice support where available.</p>
+              </div>
+            </article>
+
+            <article class="official-card">
+              <div class="card-pad">
+                <h3>Preparation tools</h3>
+                <p>Later this can connect to CourtSimplified summaries, organized intake, and pre-filled family document workflows.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Best Next Pages to Build After This</h2>
+        <p class="section-sub">
+          To keep the site working properly, the next build steps after this family page should continue the province-first structure.
+        </p>
+
+        <div class="next-shell">
+          <div class="next-grid">
+            <article class="next-card">
+              <div class="card-pad">
+                <span class="tag">Next most important</span>
+                <h3>family-ontario.html</h3>
+                <p>Ontario should likely be built first so you have one full province family page working end-to-end before copying the structure elsewhere.</p>
+              </div>
+            </article>
+
+            <article class="next-card">
+              <div class="card-pad">
+                <span class="tag">Then expand</span>
+                <h3>small-claims.html</h3>
+                <p>After one full family province page, build the Small Claims landing page with the same province-first approach.</p>
+              </div>
+            </article>
+
+            <article class="next-card">
+              <div class="card-pad">
+                <span class="tag">Then continue</span>
+                <h3>forms.html</h3>
+                <p>Create a central forms page later, but keep the user flow tied to province and case type whenever possible.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="note-grid">
+          <div class="note-box">
+            <h3>User flow note</h3>
+            <p>
+              The family page should never overwhelm the user with every rule across Canada. Its job is to explain the category clearly, then move the user into the right region as quickly as possible.
+            </p>
           </div>
 
-          <aside class="hero-panel">
-            <div class="page-card">
-              <h3>What family judges often focus on</h3>
-              <ul class="checklist">
-                <li>Best interests of the child</li>
-                <li>Safety, stability, and routine</li>
-                <li>Credibility and consistency</li>
-                <li>Evidence, not just accusation</li>
-              </ul>
-            </div>
-
-            <div class="page-card">
-              <h3>What helps most</h3>
-              <p>Specific examples, a clean chronology, and records connected to the actual issues in dispute.</p>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft-band" id="learn">
-      <div class="container">
-        <div class="section-head">
-          <h2>Important things people often do not know</h2>
-          <p>Family matters can involve different conference stages, and each stage has different purposes and documents. :contentReference[oaicite:1]{index=1}</p>
-        </div>
-
-        <div class="grid-3">
-          <article class="resource-card">
-            <span class="mini-label">Case Conference</span>
-            <h3>Usually an early meaningful appearance</h3>
-            <p>Ontario says a case conference is usually the first meaningful appearance before a judge after first appearance court. :contentReference[oaicite:2]{index=2}</p>
-          </article>
-
-          <article class="resource-card">
-            <span class="mini-label">Settlement Conference</span>
-            <h3>Focused on narrowing or resolving issues</h3>
-            <p>Ontario says settlement conferences include exploring settlement, narrowing issues, ensuring disclosure, and even obtaining a view of how the court might decide the case. :contentReference[oaicite:3]{index=3}</p>
-          </article>
-
-          <article class="resource-card">
-            <span class="mini-label">Trial Management</span>
-            <h3>Used to get the case ready for trial</h3>
-            <p>Ontario says trial management conferences are intended to get everyone ready for trial and deal with evidence, witnesses, timing, and trial planning. :contentReference[oaicite:4]{index=4}</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="forms">
-      <div class="container">
-        <div class="section-head">
-          <h2>Common family court forms and process points</h2>
-          <p>Ontario’s Family Law Rules forms page includes conference and motion-related family forms, including Forms 14, 14A, 14B, 14C, and 17-series conference forms. :contentReference[oaicite:5]{index=5}</p>
-        </div>
-
-        <div class="grid-2">
-          <article class="page-card">
-            <span class="mini-label">Common forms</span>
-            <ul class="resource-list" style="margin-top:14px;">
-              <li>Form 14 — Notice of Motion</li>
-              <li>Form 14A — Affidavit (General)</li>
-              <li>Form 14B — Motion Form</li>
-              <li>Form 17-series conference forms</li>
-            </ul>
-          </article>
-
-          <article class="page-card">
-            <span class="mini-label">What usually helps most</span>
-            <ul class="resource-list" style="margin-top:14px;">
-              <li>A clean chronology</li>
-              <li>Specific examples, not broad accusations</li>
-              <li>Messages, schedules, records, and proof tied to events</li>
-              <li>A child-focused explanation of what order is sought and why</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft-band" id="tool">
-      <div class="container">
-        <div class="section-head">
-          <h2>Family law intake and summary builder</h2>
-          <p>Enter your facts and generate a family-specific summary you can save, print, and keep improving.</p>
-        </div>
-
-        <div class="tool-layout">
-          <section class="tool-shell">
-            <h3>Family intake</h3>
-            <div class="form-grid" style="margin-top:16px;">
-              <div class="form-row">
-                <div>
-                  <label for="name">Your name</label>
-                  <input id="name" type="text" placeholder="Your full name" />
-                </div>
-                <div>
-                  <label for="email">Email</label>
-                  <input id="email" type="email" placeholder="you@example.com" />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div>
-                  <label for="provinceSelect">Province</label>
-                  <select id="provinceSelect">
-                    <option>Ontario</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="goal">Main goal</label>
-                  <input id="goal" type="text" placeholder="What order or result do you want?" />
-                </div>
-              </div>
-
-              <div>
-                <label for="story">What happened?</label>
-                <textarea id="story" placeholder="Describe the family situation clearly and factually."></textarea>
-              </div>
-
-              <div>
-                <label for="timeline">Important dates and sequence</label>
-                <textarea id="timeline" placeholder="List the events in order."></textarea>
-              </div>
-
-              <div>
-                <label for="evidence">What proof do you have?</label>
-                <textarea id="evidence" placeholder="Messages, schedules, school records, medical records, court papers, screenshots, emails, etc."></textarea>
-              </div>
-
-              <div>
-                <label for="concerns">Main concerns</label>
-                <textarea id="concerns" placeholder="Safety concerns, parenting reliability, communication issues, support issues, etc."></textarea>
-              </div>
-
-              <input id="caseType" type="hidden" value="Family Law" />
-
-              <div class="tool-buttons">
-                <button class="tool-btn primary" id="generateSummaryBtn" type="button">Generate Summary</button>
-                <button class="tool-btn secondary" id="saveSummaryBtn" type="button">Save in Browser</button>
-                <button class="tool-btn secondary" id="printSummaryBtn" type="button">Print / Save PDF</button>
-                <button class="tool-btn secondary" id="clearSummaryBtn" type="button">Clear Form</button>
-              </div>
-
-              <p id="saveMessage" class="saved-note"></p>
-            </div>
-          </section>
-
-          <section class="output-box">
-            <h3>Structured family output</h3>
-            <p>Your family law summary appears here.</p>
-            <div id="summaryOutput" class="output-panel">COURTSIMPLIFIED FAMILY LAW SUMMARY
-
-Fill out the intake and generate a structured summary.</div>
-
-            <div class="page-card process-box">
-              <h3>Likely forms and next steps</h3>
-              <div id="processPanel" class="process-grid"></div>
-            </div>
-          </section>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="links">
-      <div class="container">
-        <div class="section-head">
-          <h2>Official family law links</h2>
-          <p>Ontario’s family court pages include conference guides and its court forms site includes the Family Law Rules forms. :contentReference[oaicite:6]{index=6}</p>
-        </div>
-
-        <div class="grid-3">
-          <article class="resource-card">
-            <h3>Family Law Rules Forms</h3>
-            <p>Official Ontario family forms page.</p>
-            <div class="hero-actions" style="margin-top:16px;">
-              <a class="tool-btn primary" href="https://ontariocourtforms.on.ca/en/family-law-rules-forms/" target="_blank" rel="noopener noreferrer">Open Family Forms</a>
-            </div>
-          </article>
-
-          <article class="resource-card">
-            <h3>Case Conferences</h3>
-            <p>Official Ontario information on case conferences.</p>
-            <div class="hero-actions" style="margin-top:16px;">
-              <a class="tool-btn primary" href="https://www.ontariocourts.ca/ocj/family-court/going-to-court/case-conferences/" target="_blank" rel="noopener noreferrer">Open Case Conference Info</a>
-            </div>
-          </article>
-
-          <article class="resource-card">
-            <h3>Settlement Conferences</h3>
-            <p>Official Ontario information on settlement conferences.</p>
-            <div class="hero-actions" style="margin-top:16px;">
-              <a class="tool-btn primary" href="https://www.ontariocourts.ca/ocj/family-court/going-to-court/settlement-conferences/" target="_blank" rel="noopener noreferrer">Open Settlement Conference Info</a>
-            </div>
-          </article>
+          <div class="backend-box">
+            <h3>Backend planning note</h3>
+            <p>
+              This page is structured so each province button can later connect to its own route, data source, form library, official links, and province-specific content blocks without rebuilding the whole site.
+            </p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">CourtSimplified</div>
+          <p>
+            A clearer starting point for Canadians navigating family, small claims, and civil court processes.
+          </p>
+        </div>
+
+        <div>
+          <h3>Site</h3>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="start-case.html">Start Your Case</a>
+            <a href="family.html">Family</a>
+            <a href="small-claims.html">Small Claims</a>
+            <a href="civil.html">Civil</a>
+          </div>
+        </div>
+
+        <div>
+          <h3>More</h3>
+          <div class="footer-links">
+            <a href="forms.html">Forms &amp; Documents</a>
+            <a href="resources.html">Resources</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        © <span id="year"></span> CourtSimplified. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    if (menuToggle && mobilePanel) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = mobilePanel.getAttribute('data-open') === 'true';
+        mobilePanel.setAttribute('data-open', String(!isOpen));
+        menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      });
+    }
+
+    const yearNode = document.getElementById('year');
+    if (yearNode) {
+      yearNode.textContent = new Date().getFullYear();
+    }
+  </script>
 </body>
 </html>
