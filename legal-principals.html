@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal Principles Library | CourtSimplified</title>
+  <meta name="description" content="CourtSimplified legal principles library explaining negligence, Charter issues, contract disputes, evidence, and civil procedure in plain but serious language." />
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --bg-soft: #fff3df;
+      --panel: #fffdf9;
+      --panel-2: #fff6e8;
+      --text: #2e241b;
+      --muted: #6b5b4c;
+      --line: #ecd9be;
+      --primary: #d97b17;
+      --primary-dark: #b86208;
+      --accent: #f3b24d;
+      --accent-soft: #ffe4b8;
+      --shadow: 0 10px 30px rgba(117, 76, 22, 0.10);
+      --radius: 22px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fff8ef 0%, #fff4e4 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 248, 239, 0.9);
+      border-bottom: 1px solid rgba(236, 217, 190, 0.75);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover { color: var(--primary-dark); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: 0.96rem;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: 0 12px 24px rgba(205, 110, 11, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.62);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .hero { padding: 58px 0 26px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-side {
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(236, 217, 190, 0.9);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy { padding: 36px; }
+    .hero-side { padding: 22px; display: grid; gap: 16px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8d520d;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      margin: 0 0 18px;
+      max-width: 68ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .stat-card,
+    .card,
+    .principle-card,
+    .faq-card {
+      background: linear-gradient(180deg, #fffdf9 0%, #fff6ea 100%);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card { padding: 18px; }
+    .stat-card strong {
+      display: block;
+      font-size: 1.15rem;
+      line-height: 1.05;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+    .stat-card span { color: var(--muted); font-size: 0.92rem; }
+
+    section { padding: 24px 0 34px; }
+
+    .section-head {
+      max-width: 820px;
+      margin-bottom: 22px;
+    }
+
+    .section-head .label {
+      color: var(--primary-dark);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .card,
+    .principle-card,
+    .faq-card { padding: 22px; }
+
+    .card h3,
+    .principle-card h3,
+    .faq-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+      line-height: 1.2;
+    }
+
+    .card p,
+    .principle-card p,
+    .faq-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .icon-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffe4b8 0%, #f6c46f 100%);
+      color: #8d520d;
+      font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(217, 123, 23, 0.15);
+    }
+
+    .principles-wrap {
+      display: grid;
+      gap: 18px;
+    }
+
+    .principle-card h3 {
+      font-size: 1.24rem;
+      margin-bottom: 12px;
+    }
+
+    .principle-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #fff1d9;
+      border: 1px solid #efcf93;
+      color: #7d5410;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .feature-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .feature-list li { margin-bottom: 8px; }
+
+    .callout {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: #fff1d9;
+      border: 1px solid #efcf93;
+      color: #7d5410;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .quick-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quick-link {
+      display: block;
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.76);
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .quick-link small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.87rem;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      .hero-copy,
+      .hero-side,
+      .card,
+      .principle-card,
+      .faq-card,
+      .stat-card { padding: 18px; }
+      h1 { font-size: 2.35rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="CourtSimplified home">
+        <div class="brand-mark">CS</div>
+        <span>CourtSimplified</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="start-case.html">Start Your Case</a>
+        <a href="documents.html">Documents</a>
+        <a href="case-law.html">Case Law</a>
+      </nav>
+      <a class="btn btn-primary" href="start-case.html">Start Your Case</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Doctrine and analysis library</div>
+          <h1>Legal principles explained in a clearer, stronger way.</h1>
+          <p>
+            This page is where CourtSimplified shows users how courts usually analyze legal problems. It is not here to tell a person what their exact case is. It is here to explain the frameworks courts commonly use, what elements usually matter, and what kinds of facts and records often become important.
+          </p>
+          <p>
+            A strong legal principles page makes the whole site feel more serious. It gives users a way to understand negligence, Charter issues, contract disputes, evidence, and civil procedure without turning the site into direct legal advice.
+          </p>
+          <div class="hero-actions">
+            <a href="#core-principles" class="btn btn-primary">Explore Principles</a>
+            <a href="#faq" class="btn btn-secondary">See Common Questions</a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="stat-card">
+            <strong>Negligence</strong>
+            <span>Courts often look at duty, breach, causation, and damages rather than just whether something unfair happened.</span>
+          </div>
+          <div class="stat-card">
+            <strong>Charter and public law</strong>
+            <span>State action, process, fairness, rights impact, and legal justification may all matter depending on the context.</span>
+          </div>
+          <div class="stat-card">
+            <strong>Evidence and procedure</strong>
+            <span>Good facts still need clear records, proper steps, and a usable timeline.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="label">How to use this page</span>
+          <h2>Built to guide thinking, not replace legal advice.</h2>
+          <p>
+            Users should come here to understand how courts usually reason. They should leave with a better sense of what questions matter, what evidence may support the issue, and what legal structure they may need to explore further.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <div class="card">
+            <div class="icon-badge">A</div>
+            <h3>Issue spotting</h3>
+            <p>Helps users recognize the legal frameworks that may be relevant to their situation.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">B</div>
+            <h3>Element breakdown</h3>
+            <p>Shows the main parts courts often look for instead of leaving users with vague labels.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">C</div>
+            <h3>Evidence focus</h3>
+            <p>Explains what kinds of facts, records, and chronology may become important.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">D</div>
+            <h3>Safe framing</h3>
+            <p>Keeps the site educational and structured instead of making personal legal determinations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="core-principles">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Core principles</span>
+          <h2>The legal frameworks users most often need explained.</h2>
+          <p>
+            These sections are written so users can understand the general framework, the usual questions a court asks, and what records often matter most.
+          </p>
+        </div>
+
+        <div class="principles-wrap">
+          <article class="principle-card">
+            <div class="principle-meta">
+              <span class="pill">Negligence</span>
+              <span class="pill">Private law</span>
+            </div>
+            <h3>Negligence</h3>
+            <p>
+              Negligence is not just about whether something bad happened. Courts usually ask whether there was a legally recognized duty, whether the conduct may have fallen below a reasonable standard, whether that conduct caused the loss, and whether compensable damage resulted.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Duty:</strong> Was there a legal relationship that created a responsibility to take reasonable care?</li>
+              <li><strong>Breach:</strong> Did the conduct arguably fall below what a reasonable person or actor would have done?</li>
+              <li><strong>Causation:</strong> Can the loss be linked in a meaningful way to the alleged breach?</li>
+              <li><strong>Damages:</strong> What actual harm, loss, injury, or expense resulted?</li>
+              <li><strong>Key records:</strong> photos, reports, communications, expert material, contracts, invoices, timelines, and proof of loss.</li>
+            </ul>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-meta">
+              <span class="pill">Charter</span>
+              <span class="pill">Public law</span>
+            </div>
+            <h3>Charter and state action</h3>
+            <p>
+              Charter issues usually arise when government action, state process, or public decision-making is said to have affected a protected right or freedom. The analysis often depends on which Charter section is being raised, what state conduct is being challenged, and what the real deprivation or impact is.
+            </p>
+            <ul class="feature-list">
+              <li><strong>State involvement:</strong> Is the issue connected to government conduct, legislation, public authority, or official process?</li>
+              <li><strong>Protected interest:</strong> What right, liberty, security interest, equality interest, or procedural concern is actually being raised?</li>
+              <li><strong>Process and fairness:</strong> Was the state process arbitrary, unfair, overbroad, discriminatory, or otherwise legally defective?</li>
+              <li><strong>Remedy questions:</strong> Some Charter matters focus on declarations, exclusion of evidence, or other constitutional remedies rather than ordinary damages alone.</li>
+              <li><strong>Key records:</strong> official decisions, legislation, policies, transcripts, reasons, notices, correspondence, and timelines.</li>
+            </ul>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-meta">
+              <span class="pill">Contract</span>
+              <span class="pill">Civil dispute</span>
+            </div>
+            <h3>Contract disputes</h3>
+            <p>
+              In a contract dispute, the court usually wants to know what agreement existed, what each side promised, what actually happened, and what loss flowed from the alleged breach. The strongest cases often turn on the documents.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Agreement:</strong> What were the actual terms, promises, or obligations?</li>
+              <li><strong>Breach:</strong> What was not done, done late, done badly, or refused?</li>
+              <li><strong>Loss:</strong> What money, delay, damage, or other measurable consequence followed?</li>
+              <li><strong>Mitigation:</strong> Did the affected party take reasonable steps to reduce the loss?</li>
+              <li><strong>Key records:</strong> signed agreements, emails, texts, invoices, receipts, quotes, work records, and payment history.</li>
+            </ul>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-meta">
+              <span class="pill">Evidence</span>
+              <span class="pill">Proof</span>
+            </div>
+            <h3>Evidence, credibility, and proof</h3>
+            <p>
+              A claim or defence is only as strong as the proof behind it. In civil matters, courts focus on what the records show, whether the timeline makes sense, and whether testimony is consistent, plausible, and supported.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Burden of proof:</strong> The party making an allegation usually has to prove it.</li>
+              <li><strong>Credibility:</strong> Courts compare what a person says with documents, timing, surrounding facts, and consistency.</li>
+              <li><strong>Reliability:</strong> Some evidence may be honest but still weak, incomplete, or poorly supported.</li>
+              <li><strong>Best practice:</strong> Build a dated chronology and connect each important event to at least one document where possible.</li>
+              <li><strong>Key records:</strong> messages, letters, photos, reports, receipts, logs, and original source material.</li>
+            </ul>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-meta">
+              <span class="pill">Procedure</span>
+              <span class="pill">Court process</span>
+            </div>
+            <h3>Civil procedure</h3>
+            <p>
+              A person can have strong facts and still create problems by missing deadlines, naming the wrong party, using the wrong form, or failing to serve documents properly. Procedure is often what keeps a case alive or causes it to unravel.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Correct court:</strong> The user needs the right court path before drafting or filing.</li>
+              <li><strong>Correct parties:</strong> Naming the wrong person, business, or institution can create major issues.</li>
+              <li><strong>Deadlines:</strong> Service, defence, motion, and filing dates can change the whole position of a case.</li>
+              <li><strong>Form discipline:</strong> Good legal writing still needs the correct form and sequence.</li>
+              <li><strong>Key records:</strong> issued documents, service proof, court notices, endorsements, and filing confirmations.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="card">
+          <h3>How this page should help users</h3>
+          <ul class="feature-list">
+            <li>Understand that legal labels alone are not enough.</li>
+            <li>See the elements and questions a court usually works through.</li>
+            <li>Recognize what evidence and records may actually matter.</li>
+            <li>Connect their issue to the correct court path and documents page.</li>
+            <li>Prepare for better conversations with a lawyer, clinic, or court resource.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>How to frame this page safely</h3>
+          <ul class="feature-list">
+            <li>Use phrases like “courts often consider” and “claims of this kind are commonly analyzed under.”</li>
+            <li>Do not say “you definitely have a negligence claim” or “this is a Charter breach.”</li>
+            <li>Keep the page educational, structural, and evidence-focused.</li>
+            <li>Use this page to teach legal reasoning, not to issue personal legal conclusions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Common questions</span>
+          <h2>Questions this page should answer clearly.</h2>
+          <p>
+            These are the kinds of questions real users have when they are trying to figure out whether their problem fits a legal framework.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h3>Does unfair treatment automatically mean negligence?</h3>
+            <p>
+              No. Negligence usually requires more than unfairness. Courts often look for duty, breach, causation, and actual damage.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h3>Does a government-related problem automatically make it a Charter case?</h3>
+            <p>
+              Not always. The analysis usually depends on the kind of state action involved, the right or interest said to be affected, and the legal structure around that conduct.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h3>If there was a contract, is that enough to win?</h3>
+            <p>
+              Usually not by itself. Courts also look at the actual terms, the alleged breach, the evidence, and the loss that followed.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h3>Why does procedure matter so much?</h3>
+            <p>
+              Because the strongest facts can still be weakened by missed deadlines, poor service, wrong parties, or incomplete documents.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="callout">
+          The strongest legal principles page does not try to sound like a lawyer arguing a case. It sounds like a serious guide that teaches users how courts think and what they need to prepare next.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div>
+          <div class="section-head">
+            <span class="label">Where users go next</span>
+            <h2>Pages this doctrine library should connect to.</h2>
+            <p>
+              Users should be able to move from legal principles into practical preparation without losing the thread of what they are doing.
+            </p>
+          </div>
+          <div class="quick-links">
+            <a class="quick-link" href="start-case.html">
+              Start Your Case
+              <small>Enter facts and generate a structured case summary.</small>
+            </a>
+            <a class="quick-link" href="documents.html">
+              Documents & Forms
+              <small>Turn doctrine into chronology, summaries, and form-ready information.</small>
+            </a>
+            <a class="quick-link" href="ontario-small-claims.html">
+              Ontario Small Claims Court
+              <small>See the practical court path for smaller money and property disputes.</small>
+            </a>
+            <a class="quick-link" href="ontario-civil.html">
+              Ontario Civil Court
+              <small>See the Superior Court path for larger or more complex civil matters.</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Important notice for your site</h3>
+          <p>
+            This page should be presented as a legal information and doctrine page. It helps users understand the frameworks courts often use, but it should not tell users what exact legal claim they have or what outcome they will get.
+          </p>
+          <div class="footer-note">
+            This page should always be treated as guided legal information, not legal advice. Users should compare their situation against the correct court rules, official forms, and, where needed, advice from a qualified legal professional.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
