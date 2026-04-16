@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Law Explorer | CourtSimplified</title>
+  <meta name="description" content="CourtSimplified case law explorer for understanding how courts reason through negligence, Charter, contract, evidence, and procedure issues in a clearer way." />
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --bg-soft: #fff3df;
+      --panel: #fffdf9;
+      --panel-2: #fff6e8;
+      --text: #2e241b;
+      --muted: #6b5b4c;
+      --line: #ecd9be;
+      --primary: #d97b17;
+      --primary-dark: #b86208;
+      --accent: #f3b24d;
+      --accent-soft: #ffe4b8;
+      --shadow: 0 10px 30px rgba(117, 76, 22, 0.10);
+      --radius: 22px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fff8ef 0%, #fff4e4 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 248, 239, 0.9);
+      border-bottom: 1px solid rgba(236, 217, 190, 0.75);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover { color: var(--primary-dark); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: 0.96rem;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: 0 12px 24px rgba(205, 110, 11, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.62);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .hero { padding: 58px 0 26px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-side {
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(236, 217, 190, 0.9);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy { padding: 36px; }
+    .hero-side { padding: 22px; display: grid; gap: 16px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8d520d;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      margin: 0 0 18px;
+      max-width: 68ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .stat-card,
+    .card,
+    .case-card,
+    .faq-card {
+      background: linear-gradient(180deg, #fffdf9 0%, #fff6ea 100%);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card { padding: 18px; }
+    .stat-card strong {
+      display: block;
+      font-size: 1.15rem;
+      line-height: 1.05;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+    .stat-card span { color: var(--muted); font-size: 0.92rem; }
+
+    section { padding: 24px 0 34px; }
+
+    .section-head {
+      max-width: 820px;
+      margin-bottom: 22px;
+    }
+
+    .section-head .label {
+      color: var(--primary-dark);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .card,
+    .case-card,
+    .faq-card { padding: 22px; }
+
+    .card h3,
+    .case-card h3,
+    .faq-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+      line-height: 1.2;
+    }
+
+    .card p,
+    .case-card p,
+    .faq-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .icon-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffe4b8 0%, #f6c46f 100%);
+      color: #8d520d;
+      font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(217, 123, 23, 0.15);
+    }
+
+    .case-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .case-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #fff1d9;
+      border: 1px solid #efcf93;
+      color: #7d5410;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .feature-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .feature-list li { margin-bottom: 8px; }
+
+    .callout {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: #fff1d9;
+      border: 1px solid #efcf93;
+      color: #7d5410;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .quick-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quick-link {
+      display: block;
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.76);
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .quick-link small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.87rem;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      .hero-copy,
+      .hero-side,
+      .card,
+      .case-card,
+      .faq-card,
+      .stat-card { padding: 18px; }
+      h1 { font-size: 2.35rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="CourtSimplified home">
+        <div class="brand-mark">CS</div>
+        <span>CourtSimplified</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="start-case.html">Start Your Case</a>
+        <a href="documents.html">Documents</a>
+        <a href="legal-principles.html">Legal Principles</a>
+      </nav>
+      <a class="btn btn-primary" href="start-case.html">Start Your Case</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Reasoning and precedent library</div>
+          <h1>Case law that shows how courts actually reason.</h1>
+          <p>
+            This page should help users move beyond legal labels and start understanding how courts think through real disputes. It is not here to overwhelm people with dozens of citations. It is here to explain what kinds of cases matter, what principle each case is known for, and how that reasoning can guide preparation.
+          </p>
+          <p>
+            A strong case law page makes the site feel far more serious. It helps users connect legal doctrine to real judicial reasoning, and it gives lawyers a reason to respect the structure of the platform.
+          </p>
+          <div class="hero-actions">
+            <a href="#featured-cases" class="btn btn-primary">Explore Featured Cases</a>
+            <a href="#how-to-use" class="btn btn-secondary">How to Use Case Law</a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="stat-card">
+            <strong>Principle first</strong>
+            <span>Users should understand what a case stands for before they ever worry about citing it.</span>
+          </div>
+          <div class="stat-card">
+            <strong>Reasoning matters</strong>
+            <span>Cases are valuable because they show how judges analyze facts, law, evidence, and procedure together.</span>
+          </div>
+          <div class="stat-card">
+            <strong>Safe and useful</strong>
+            <span>The page should educate users about precedent without telling them a specific case guarantees their result.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="how-to-use">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">How to use this page</span>
+          <h2>Case law should guide preparation, not become decoration.</h2>
+          <p>
+            Many people think using case law means dropping a citation into a document. That is not the real value. The real value is learning what legal test a court used, what facts mattered most, and what reasoning shaped the outcome.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <div class="card">
+            <div class="icon-badge">A</div>
+            <h3>See the principle</h3>
+            <p>Understand what the case is known for before trying to use it in any document.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">B</div>
+            <h3>Notice the facts</h3>
+            <p>Look at what facts the court actually relied on, not just the final result.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">C</div>
+            <h3>Study the reasoning</h3>
+            <p>See how the court moved from facts to legal test to conclusion.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">D</div>
+            <h3>Use it carefully</h3>
+            <p>A case can guide thinking without automatically deciding another person’s situation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured-cases">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Featured cases</span>
+          <h2>Core cases users should learn from first.</h2>
+          <p>
+            These examples are here to show how courts reason through major legal ideas. They should be presented as learning tools and doctrine anchors, not as one-click answers.
+          </p>
+        </div>
+
+        <div class="case-stack">
+          <article class="case-card">
+            <div class="case-meta">
+              <span class="pill">Negligence</span>
+              <span class="pill">Duty of care</span>
+            </div>
+            <h3>Donoghue v. Stevenson</h3>
+            <p>
+              This is one of the best-known starting points for modern negligence law. It is often used to explain that negligence is about legally recognized responsibility and reasonable care, not just a bad outcome.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Why it matters:</strong> It helps users understand why duty of care is a real legal question, not just a feeling of unfairness.</li>
+              <li><strong>What to notice:</strong> The court focused on legal relationship and foreseeability, not just sympathy.</li>
+              <li><strong>How it helps users:</strong> It teaches that negligence claims usually begin with structure, not emotion.</li>
+            </ul>
+          </article>
+
+          <article class="case-card">
+            <div class="case-meta">
+              <span class="pill">Evidence</span>
+              <span class="pill">Civil proof</span>
+            </div>
+            <h3>F.H. v. McDougall</h3>
+            <p>
+              This Supreme Court of Canada case is important because it reinforces the ordinary civil standard of proof. It is useful for users who need to understand that civil cases are generally decided on a balance of probabilities rather than a criminal standard.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Why it matters:</strong> It helps explain what level of proof usually applies in civil litigation.</li>
+              <li><strong>What to notice:</strong> The court emphasized one civil standard, while still requiring serious allegations to be supported by good evidence.</li>
+              <li><strong>How it helps users:</strong> It reminds them that evidence quality and credibility matter heavily in civil disputes.</li>
+            </ul>
+          </article>
+
+          <article class="case-card">
+            <div class="case-meta">
+              <span class="pill">Charter</span>
+              <span class="pill">Section 7</span>
+            </div>
+            <h3>Canada (Attorney General) v. Bedford</h3>
+            <p>
+              This case is widely used to explain how courts analyze section 7 Charter claims involving arbitrariness, overbreadth, and gross disproportionality. It is valuable because it shows structured constitutional reasoning rather than vague rights language.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Why it matters:</strong> It gives users a real example of how section 7 analysis is broken into recognizable legal categories.</li>
+              <li><strong>What to notice:</strong> The court tied legal principles to evidence, effects, and statutory design.</li>
+              <li><strong>How it helps users:</strong> It shows that Charter arguments usually need disciplined reasoning, not just strong feelings about unfairness.</li>
+            </ul>
+          </article>
+
+          <article class="case-card">
+            <div class="case-meta">
+              <span class="pill">Bail</span>
+              <span class="pill">Procedure</span>
+            </div>
+            <h3>R. v. Antic</h3>
+            <p>
+              This Supreme Court of Canada case is often used to explain the ladder principle and the importance of restraint in bail decision-making. It is a strong example of how legal rules shape process and why conditions and restrictions need justification.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Why it matters:</strong> It shows that legal process is not just paperwork; it shapes real rights and outcomes.</li>
+              <li><strong>What to notice:</strong> The court focused on structure, justification, and unlawful overreach.</li>
+              <li><strong>How it helps users:</strong> It demonstrates how courts can criticize process itself, not just final results.</li>
+            </ul>
+          </article>
+
+          <article class="case-card">
+            <div class="case-meta">
+              <span class="pill">Contract</span>
+              <span class="pill">Interpretation</span>
+            </div>
+            <h3>Sattva Capital Corp. v. Creston Moly Corp.</h3>
+            <p>
+              This case is a strong starting point for users trying to understand that contract disputes are often about interpretation in context, not just isolated words. It helps explain why surrounding circumstances can matter.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Why it matters:</strong> It shows that contracts are read as part of a bigger factual setting.</li>
+              <li><strong>What to notice:</strong> The court treated interpretation as grounded in both text and context.</li>
+              <li><strong>How it helps users:</strong> It helps them gather the emails, drafts, negotiations, and background facts that may matter.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="card">
+          <h3>What a good case summary on your site should include</h3>
+          <ul class="feature-list">
+            <li>The name of the case and the basic legal topic.</li>
+            <li>A plain explanation of what principle the case is known for.</li>
+            <li>A short note about what facts or reasoning made that principle matter.</li>
+            <li>A user-focused explanation of why someone preparing a case should care.</li>
+            <li>Clear, non-hyped wording that avoids pretending every case is the same.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>How to frame this page safely</h3>
+          <ul class="feature-list">
+            <li>Describe cases as illustrations of legal reasoning.</li>
+            <li>Do not suggest that one case automatically proves another person’s claim.</li>
+            <li>Keep the page educational, comparative, and principle-focused.</li>
+            <li>Use the page to teach analysis, not to promise legal outcomes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Common questions</span>
+          <h2>Questions users often have about case law.</h2>
+          <p>
+            A strong page answers these in a calm, usable way instead of making precedent sound mysterious.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h3>Do I need a case that is exactly the same as mine?</h3>
+            <p>
+              Usually not. What often matters more is whether the legal principle and the court’s reasoning are relevant to the issue you are dealing with.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h3>Can one good case make me win?</h3>
+            <p>
+              Not by itself. Courts still care about your facts, your evidence, your procedure, and how well the legal framework actually fits.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h3>Why does case law help if I am self-represented?</h3>
+            <p>
+              Because it teaches how courts think. That can improve how you organize your facts, your documents, and your legal questions.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h3>Should I fill my documents with citations?</h3>
+            <p>
+              Usually no. Good documents are guided by relevant authority, but they still need clarity, proper structure, and facts that fit the legal test.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="callout">
+          The best case law page does not try to impress people by sounding complicated. It impresses them by making legal reasoning understandable, accurate, and usable.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div>
+          <div class="section-head">
+            <span class="label">Where users go next</span>
+            <h2>Pages this precedent library should connect to.</h2>
+            <p>
+              Case law should always lead users back into action: doctrine, documents, or the correct court path.
+            </p>
+          </div>
+          <div class="quick-links">
+            <a class="quick-link" href="legal-principles.html">
+              Legal Principles Library
+              <small>See the core doctrines that the cases on this page help explain.</small>
+            </a>
+            <a class="quick-link" href="documents.html">
+              Documents & Forms
+              <small>Use case reasoning to strengthen chronology, summaries, and evidence organization.</small>
+            </a>
+            <a class="quick-link" href="ontario-small-claims.html">
+              Ontario Small Claims Court
+              <small>Connect principle and precedent to a simpler court path.</small>
+            </a>
+            <a class="quick-link" href="ontario-civil.html">
+              Ontario Civil Court
+              <small>Connect principle and precedent to the Superior Court path.</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Important notice for your site</h3>
+          <p>
+            This page should be presented as a legal information and case law learning page. It should help users understand how courts reason, but it should not tell users that a specific case guarantees their outcome or that one precedent automatically decides their situation.
+          </p>
+          <div class="footer-note">
+            This page should always be treated as guided legal information, not legal advice. Users should confirm any case they rely on, make sure it is still good law, and compare it carefully to the actual facts and procedure in their own matter.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
