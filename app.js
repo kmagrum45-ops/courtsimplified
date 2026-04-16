@@ -1,338 +1,478 @@
 console.log("CourtSimplified app loaded");
 
-const defaultOutputs = {
-  family: `COURTSIMPLIFIED FAMILY LAW SUMMARY
+(function () {
+  const STORAGE_KEYS = {
+    intake: "courtsimplified_start_case_v2",
+    documents: "courtsimplified_documents_v1"
+  };
 
-Fill out the intake and generate a structured summary.`,
-  civil: `COURTSIMPLIFIED CIVIL LAW SUMMARY
+  document.addEventListener("DOMContentLoaded", () => {
+    setupStartCasePage();
+    setupDocumentsPage();
+  });
 
-Fill out the intake and generate a structured summary.`,
-  "small-claims": `COURTSIMPLIFIED SMALL CLAIMS SUMMARY
+  function setupStartCasePage() {
+    const form = document.getElementById("case-form");
+    if (!form) return;
 
-Fill out the intake and generate a structured summary.`
-};
+    const steps = Array.from(document.querySelectorAll(".step-pane"));
+    const progressSteps = Array.from(document.querySelectorAll(".progress-step"));
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const outputCard = document.getElementById("outputCard");
 
-const guidance = {
-  Ontario: {
-    "Family Law": {
-      court: "Ontario Court of Justice or Superior Court of Justice, depending on the issue",
-      likelyForm: "Family forms vary by issue and stage. Conference and motion forms are commonly involved.",
-      steps: [
-        "Identify the main issue clearly, such as parenting, support, decision-making, or safety.",
-        "Organize facts in date order and focus on specifics.",
-        "Gather messages, schedules, records, and other proof tied to the real issues.",
-        "Confirm the exact forms and filing steps for the court and stage you are dealing with."
-      ],
-      filing: "Family court procedure depends on the issue and stage. Conference briefs and filing timelines matter.",
-      links: [
-        { label: "Family Law Rules Forms", url: "https://ontariocourtforms.on.ca/en/family-law-rules-forms/" },
-        { label: "Case Conferences", url: "https://www.ontariocourts.ca/ocj/family-court/going-to-court/case-conferences/" },
-        { label: "Settlement Conferences", url: "https://www.ontariocourts.ca/ocj/family-court/going-to-court/settlement-conferences/" }
-      ],
-      note: "Strong family materials are usually specific, child-focused where relevant, and supported by a clean chronology."
-    },
-    "Civil Matter": {
-      court: "Ontario Superior Court of Justice",
-      likelyForm: "A typical civil claim may involve Form 4A, Form 14A, and Form 4C together.",
-      steps: [
-        "Identify what happened, who is responsible, and what remedy is being requested.",
-        "Organize events in order and connect each key point to proof.",
-        "Gather letters, contracts, invoices, reports, and other supporting records.",
-        "Confirm the proper filing process and any special procedure that may apply."
-      ],
-      filing: "Civil procedure varies by claim type and process. Do not assume one path fits every civil matter.",
-      links: [
-        { label: "Rules of Civil Procedure Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/" },
-        { label: "Form 14A", url: "https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/14a/" },
-        { label: "Civil Case Management", url: "https://www.ontario.ca/page/civil-case-management" }
-      ],
-      note: "The strongest civil summaries usually connect facts, responsibility, loss, and remedy in a direct way."
-    },
-    "Small Claims": {
-      court: "Ontario Small Claims Court",
-      likelyForm: "Form 7A – Plaintiff’s Claim is a common starting form.",
-      steps: [
-        "Explain what happened simply and clearly.",
-        "Set out the amount claimed and why.",
-        "Gather invoices, receipts, messages, photos, and other proof.",
-        "Be ready for settlement conference and later steps if the matter continues."
-      ],
-      filing: "Small Claims Court still expects organized facts, proper forms, and supporting proof.",
-      links: [
-        { label: "Small Claims Court Forms", url: "https://ontariocourtforms.on.ca/en/rules-of-the-small-claims-court-forms/" },
-        { label: "Settlement Conferences", url: "https://www.ontariocourts.ca/scj/areas-of-law/small-claims-court/settlement-conference-trial-management-conferences/" },
-        { label: "Steps in a Case", url: "https://www.ontariocourts.ca/scj/areas-of-law/small-claims-court/steps-in-a-case/" }
-      ],
-      note: "Simple, clear, and supported usually works better than overloading the court with extra detail."
+    const fields = {
+      province: document.getElementById("province"),
+      matterType: document.getElementById("matterType"),
+      goal: document.getElementById("goal"),
+      whatHappened: document.getElementById("whatHappened"),
+      whenStarted: document.getElementById("whenStarted"),
+      recentEvent: document.getElementById("recentEvent"),
+      harm: document.getElementById("harm"),
+      people: document.getElementById("people"),
+      records: document.getElementById("records"),
+      deadline: document.getElementById("deadline")
+    };
+
+    const outputs = {
+      summaryText: document.getElementById("summaryText"),
+      pathwaysList: document.getElementById("pathwaysList"),
+      keyInfoList: document.getElementById("keyInfoList"),
+      nextStepsList: document.getElementById("nextStepsList")
+    };
+
+    let currentStep = 0;
+
+    restoreStartCase(fields, outputCard, outputs);
+    showStep(0);
+
+    nextBtn?.addEventListener("click", () => {
+      if (currentStep < steps.length - 2) {
+        if (!validateStep(currentStep, fields)) return;
+        showStep(currentStep + 1);
+        saveStartCase(fields);
+        return;
+      }
+
+      if (currentStep === steps.length - 2) {
+        if (!validateStep(currentStep, fields)) return;
+        const result = buildStructuredOutput(fields);
+        renderStructuredOutput(result, outputs, outputCard);
+        saveStartCase(fields, result);
+        saveDocumentsData(result);
+        showStep(currentStep + 1);
+        return;
+      }
+
+      const result = buildStructuredOutput(fields);
+      renderStructuredOutput(result, outputs, outputCard);
+      saveStartCase(fields, result);
+      saveDocumentsData(result);
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      if (currentStep > 0) showStep(currentStep - 1);
+    });
+
+    resetBtn?.addEventListener("click", () => {
+      form.reset();
+      outputCard?.classList.remove("show");
+      clearStartCase(outputs);
+      localStorage.removeItem(STORAGE_KEYS.intake);
+      localStorage.removeItem(STORAGE_KEYS.documents);
+      showStep(0);
+    });
+
+    Object.values(fields).forEach((field) => {
+      field?.addEventListener("input", () => saveStartCase(fields));
+      field?.addEventListener("change", () => saveStartCase(fields));
+    });
+
+    function showStep(index) {
+      steps.forEach((step, i) => step.classList.toggle("active", i === index));
+      progressSteps.forEach((step, i) => step.classList.toggle("active", i <= index));
+      if (prevBtn) prevBtn.style.visibility = index === 0 ? "hidden" : "visible";
+      if (nextBtn) {
+        nextBtn.textContent =
+          index === steps.length - 1
+            ? "Generate Again"
+            : index === steps.length - 2
+              ? "Generate Output"
+              : "Continue";
+      }
+      currentStep = index;
     }
   }
-};
 
-const pageType = document.body.dataset.pageType || "home";
-const fields = {};
+  function validateStep(stepIndex, fields) {
+    if (stepIndex === 0) {
+      if (!value(fields.goal)) {
+        alert("Please enter the main goal before continuing.");
+        fields.goal?.focus();
+        return false;
+      }
+    }
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (pageType === "home") return;
+    if (stepIndex === 1) {
+      if (!value(fields.whatHappened)) {
+        alert("Please describe what happened before continuing.");
+        fields.whatHappened?.focus();
+        return false;
+      }
+    }
 
-  mapFields();
-  bindEvents();
-  restoreBrowserSave();
-  renderProcessPanel();
-});
+    if (stepIndex === 2) {
+      if (!value(fields.people) && !value(fields.records)) {
+        alert("Please enter the people involved or the records you have before generating the output.");
+        fields.people?.focus();
+        return false;
+      }
+    }
 
-function mapFields() {
-  fields.name = document.getElementById("name");
-  fields.email = document.getElementById("email");
-  fields.goal = document.getElementById("goal");
-  fields.story = document.getElementById("story");
-  fields.timeline = document.getElementById("timeline");
-  fields.evidence = document.getElementById("evidence");
-  fields.concerns = document.getElementById("concerns");
-  fields.caseType = document.getElementById("caseType");
-  fields.provinceSelect = document.getElementById("provinceSelect");
-  fields.summaryOutput = document.getElementById("summaryOutput");
-  fields.processPanel = document.getElementById("processPanel");
-  fields.saveMessage = document.getElementById("saveMessage");
-}
-
-function bindEvents() {
-  document.getElementById("generateSummaryBtn")?.addEventListener("click", generateSummary);
-  document.getElementById("saveSummaryBtn")?.addEventListener("click", saveToBrowser);
-  document.getElementById("printSummaryBtn")?.addEventListener("click", printSummary);
-  document.getElementById("clearSummaryBtn")?.addEventListener("click", clearForm);
-
-  fields.provinceSelect?.addEventListener("change", () => {
-    renderProcessPanel();
-    generateSummary();
-  });
-}
-
-function getProvince() {
-  return fields.provinceSelect?.value || "Ontario";
-}
-
-function getCaseType() {
-  return fields.caseType?.value || "";
-}
-
-function getStorageKey() {
-  return `courtsimplified_${pageType}_builder`;
-}
-
-function getDefaultOutput() {
-  return defaultOutputs[pageType] || "Fill out the intake and generate a structured summary.";
-}
-
-function getGuidance() {
-  const province = getProvince();
-  const caseType = getCaseType();
-
-  if (guidance[province] && guidance[province][caseType]) {
-    return guidance[province][caseType];
+    return true;
   }
 
-  return {
-    court: "Not available",
-    likelyForm: "Not available",
-    steps: ["Complete the intake, then confirm the proper court process from official sources."],
-    filing: "Confirm the exact process before filing.",
-    links: [],
-    note: "More guidance can be added here later."
-  };
-}
+  function buildStructuredOutput(fields) {
+    const province = value(fields.province) || "Ontario";
+    const matterType = value(fields.matterType) || "Civil Matter";
+    const goal = value(fields.goal) || "understand next steps";
+    const whatHappened = value(fields.whatHappened) || "No detailed summary entered yet.";
+    const whenStarted = value(fields.whenStarted) || "an unspecified date";
+    const recentEvent = value(fields.recentEvent) || "no recent event listed";
+    const harm = value(fields.harm) || "No harm or loss was described yet.";
+    const people = value(fields.people) || "No parties or witnesses listed yet.";
+    const records = value(fields.records) || "No records listed yet.";
+    const deadline = value(fields.deadline) || "No deadline or court date listed yet.";
 
-function renderProcessPanel() {
-  if (!fields.processPanel) return;
+    const issueSignals = detectIssueSignals(matterType, whatHappened, harm, people, records);
+    const likelyPath = determineLikelyPath(province, matterType, whatHappened, harm);
+    const evidenceSuggestions = suggestEvidence(whatHappened, records, matterType);
 
-  const info = getGuidance();
+    const summary = `This matter appears to involve ${normalizePhrase(matterType)} issues in ${province}. The current goal is to ${goal.toLowerCase()}. Based on the information entered, the problem began around ${whenStarted}, and the most recent important event identified was ${recentEvent.toLowerCase()}. The situation described is: ${whatHappened} The main harm, loss, or consequence described is: ${harm}`;
 
-  fields.processPanel.innerHTML = `
-    <div class="process-row">
-      <div class="process-label">Likely court</div>
-      <div class="process-value">${escapeHtml(info.court)}</div>
-    </div>
-    <div class="process-row">
-      <div class="process-label">Likely form</div>
-      <div class="process-value">${escapeHtml(info.likelyForm)}</div>
-    </div>
-    <div class="process-row">
-      <div class="process-label">Next steps</div>
-      <div class="process-value">
-        <ol class="process-steps">
-          ${(info.steps || []).map(step => `<li>${escapeHtml(step)}</li>`).join("")}
-        </ol>
-      </div>
-    </div>
-    <div class="process-row">
-      <div class="process-label">Filing notes</div>
-      <div class="process-value">${escapeHtml(info.filing)}</div>
-    </div>
-    <div class="process-row">
-      <div class="process-label">Important note</div>
-      <div class="process-value">${escapeHtml(info.note)}</div>
-    </div>
-    <div class="process-row">
-      <div class="process-label">Official links</div>
-      <div class="process-value">
-        <div class="process-links">
-          ${
-            (info.links || []).length
-              ? info.links.map(link =>
-                  `<a class="process-link" href="${link.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`
-                ).join("")
-              : "<span>No official links added yet.</span>"
-          }
+    const pathways = buildPathways(issueSignals, likelyPath);
+
+    const keyInformation = [
+      `People, businesses, institutions, or witnesses currently identified: ${people}`,
+      `Documents or records already identified: ${records}`,
+      `Timing issue or deadline currently noted: ${deadline}`,
+      `A clearer dated chronology tied to real documents will usually strengthen later form completion and court preparation.`,
+      ...evidenceSuggestions
+    ];
+
+    const nextSteps = buildNextSteps(likelyPath, deadline, records, matterType);
+
+    return {
+      province,
+      matterType,
+      goal,
+      summary,
+      pathways,
+      keyInformation,
+      nextSteps,
+      likelyPath,
+      whatHappened,
+      whenStarted,
+      recentEvent,
+      harm,
+      people,
+      records,
+      deadline
+    };
+  }
+
+  function detectIssueSignals(matterType, whatHappened, harm, people, records) {
+    const text = `${matterType} ${whatHappened} ${harm} ${people} ${records}`.toLowerCase();
+    return {
+      contract: includesAny(text, ["contract", "agreement", "invoice", "payment", "service", "refund", "quote"]),
+      negligence: includesAny(text, ["injury", "damage", "unsafe", "careless", "negligence", "loss", "property damage"]),
+      publicLaw: includesAny(text, ["government", "police", "crown", "charter", "rights", "state", "public authority"]),
+      evidence: includesAny(text, ["email", "text", "photo", "video", "report", "receipt", "record", "contract"]),
+      urgent: includesAny(text, ["deadline", "hearing", "court date", "limitation", "urgent", "tomorrow", "next week"]),
+      smallClaims: includesAny(text, ["invoice", "refund", "money", "unpaid", "debt", "repair", "service dispute"])
+    };
+  }
+
+  function determineLikelyPath(province, matterType, whatHappened, harm) {
+    const text = `${matterType} ${whatHappened} ${harm}`.toLowerCase();
+
+    if (province === "Ontario") {
+      if (includesAny(text, ["small claims", "invoice", "refund", "unpaid", "money dispute", "debt", "service dispute"])) {
+        return {
+          label: "Ontario Small Claims Court",
+          page: "ontario-small-claims.html",
+          reason: "The facts sound more like a money, property, invoice, refund, or service dispute that may fit a Small Claims path."
+        };
+      }
+
+      if (includesAny(text, ["charter", "government", "police", "public authority", "institution", "civil claim", "negligence"])) {
+        return {
+          label: "Ontario Civil Court",
+          page: "ontario-civil.html",
+          reason: "The facts sound more like a Superior Court civil matter or a more complex claim that needs the civil court path."
+        };
+      }
+    }
+
+    return {
+      label: "Review the court path carefully",
+      page: "legal-principles.html",
+      reason: "The matter may need more issue sorting before the correct court path is obvious."
+    };
+  }
+
+  function buildPathways(issueSignals, likelyPath) {
+    const items = [];
+
+    if (issueSignals.contract) {
+      items.push("Contract or service-dispute principles, including what was promised, what was delivered, and what records support the difference.");
+    }
+
+    if (issueSignals.negligence) {
+      items.push("Negligence principles, including whether a duty may have existed, whether conduct may have fallen below a reasonable standard, and whether the loss can be linked to that conduct.");
+    }
+
+    if (issueSignals.publicLaw) {
+      items.push("Public law or Charter-related analysis, including whether state action, official process, or government conduct may be legally relevant.");
+    }
+
+    if (issueSignals.evidence) {
+      items.push("Evidence and proof issues, including how messages, records, photographs, reports, and timelines may support or weaken the matter.");
+    }
+
+    if (!items.length) {
+      items.push("General civil analysis focused on the facts, the parties involved, the records available, and the remedy being sought.");
+    }
+
+    items.push(`Court-path analysis focused on ${likelyPath.label}, because the site should guide the user into the most likely process page instead of leaving them with a summary only.`);
+
+    return items;
+  }
+
+  function suggestEvidence(whatHappened, records, matterType) {
+    const text = `${whatHappened} ${records} ${matterType}`.toLowerCase();
+    const suggestions = [];
+
+    if (!includesAny(text, ["email", "text", "message"])) {
+      suggestions.push("Check whether messages, emails, or written communications should be added to the file.");
+    }
+    if (!includesAny(text, ["photo", "video"])) {
+      suggestions.push("Consider whether photographs or video should be collected if they help prove damage, condition, or events.");
+    }
+    if (!includesAny(text, ["receipt", "invoice", "contract", "agreement"])) {
+      suggestions.push("Look for receipts, invoices, contracts, quotes, or payment records if money or service issues are involved.");
+    }
+
+    return suggestions;
+  }
+
+  function buildNextSteps(likelyPath, deadline, records, matterType) {
+    const steps = [
+      `Review the ${likelyPath.label} page next so the user sees the proper process, common forms, and basic court path.`,
+      "Turn the story into a dated chronology using documents, messages, receipts, letters, or reports wherever possible.",
+      "Separate facts, legal issues, and evidence so later forms and summaries are cleaner and easier to use.",
+      "Review official court forms, filing requirements, service rules, and deadlines before submitting anything."
+    ];
+
+    if (deadline && deadline !== "No deadline or court date listed yet.") {
+      steps.unshift(`Address the timing issue first: ${deadline}`);
+    }
+
+    if (!records || records === "No records listed yet.") {
+      steps.push("Build an evidence list now, because missing records often weaken the file before the user even reaches court.");
+    }
+
+    if (String(matterType).toLowerCase().includes("charter") || String(matterType).toLowerCase().includes("public law")) {
+      steps.push("If the matter involves government action or official process, keep state decisions, notices, policies, transcripts, and correspondence grouped carefully.");
+    }
+
+    return steps;
+  }
+
+  function renderStructuredOutput(result, outputs, outputCard) {
+    if (outputs.summaryText) outputs.summaryText.textContent = result.summary;
+
+    if (outputs.pathwaysList) {
+      outputs.pathwaysList.innerHTML = result.pathways
+        .map((item) => `<li>${escapeHtml(item)}</li>`)
+        .join("");
+    }
+
+    if (outputs.keyInfoList) {
+      outputs.keyInfoList.innerHTML = result.keyInformation
+        .map((item) => `<li>${escapeHtml(item)}</li>`)
+        .join("");
+    }
+
+    if (outputs.nextStepsList) {
+      outputs.nextStepsList.innerHTML = result.nextSteps
+        .map((item) => `<li>${escapeHtml(item)}</li>`)
+        .join("");
+    }
+
+    outputCard?.classList.add("show");
+  }
+
+  function saveStartCase(fields, result = null) {
+    const payload = {
+      province: value(fields.province),
+      matterType: value(fields.matterType),
+      goal: value(fields.goal),
+      whatHappened: value(fields.whatHappened),
+      whenStarted: value(fields.whenStarted),
+      recentEvent: value(fields.recentEvent),
+      harm: value(fields.harm),
+      people: value(fields.people),
+      records: value(fields.records),
+      deadline: value(fields.deadline),
+      result,
+      savedAt: new Date().toISOString()
+    };
+
+    localStorage.setItem(STORAGE_KEYS.intake, JSON.stringify(payload));
+  }
+
+  function restoreStartCase(fields, outputCard, outputs) {
+    const raw = localStorage.getItem(STORAGE_KEYS.intake);
+    if (!raw) return;
+
+    try {
+      const payload = JSON.parse(raw);
+      setField(fields.province, payload.province);
+      setField(fields.matterType, payload.matterType);
+      setField(fields.goal, payload.goal);
+      setField(fields.whatHappened, payload.whatHappened);
+      setField(fields.whenStarted, payload.whenStarted);
+      setField(fields.recentEvent, payload.recentEvent);
+      setField(fields.harm, payload.harm);
+      setField(fields.people, payload.people);
+      setField(fields.records, payload.records);
+      setField(fields.deadline, payload.deadline);
+
+      if (payload.result) {
+        renderStructuredOutput(payload.result, outputs, outputCard);
+      }
+    } catch (error) {
+      console.error("Could not restore CourtSimplified intake:", error);
+    }
+  }
+
+  function clearStartCase(outputs) {
+    if (outputs.summaryText) outputs.summaryText.textContent = "";
+    if (outputs.pathwaysList) outputs.pathwaysList.innerHTML = "";
+    if (outputs.keyInfoList) outputs.keyInfoList.innerHTML = "";
+    if (outputs.nextStepsList) outputs.nextStepsList.innerHTML = "";
+  }
+
+  function saveDocumentsData(result) {
+    const documentsPayload = {
+      generatedAt: new Date().toISOString(),
+      summary: result.summary,
+      chronology: [
+        result.whenStarted !== "an unspecified date" ? `Start: ${result.whenStarted}` : "Start date still needs to be clarified.",
+        result.recentEvent !== "no recent event listed" ? `Recent event: ${result.recentEvent}` : "Most recent important event still needs to be clarified."
+      ],
+      parties: result.people,
+      records: result.records,
+      deadline: result.deadline,
+      nextSteps: result.nextSteps,
+      likelyPath: result.likelyPath
+    };
+
+    localStorage.setItem(STORAGE_KEYS.documents, JSON.stringify(documentsPayload));
+  }
+
+  function setupDocumentsPage() {
+    const hero = document.querySelector("main");
+    if (!hero) return;
+    if (!window.location.pathname.toLowerCase().includes("documents") && !document.title.toLowerCase().includes("documents")) return;
+
+    const raw = localStorage.getItem(STORAGE_KEYS.documents);
+    if (!raw) return;
+
+    try {
+      const payload = JSON.parse(raw);
+      injectDocumentsPreview(payload);
+    } catch (error) {
+      console.error("Could not restore CourtSimplified documents preview:", error);
+    }
+  }
+
+  function injectDocumentsPreview(payload) {
+    const targetSection = document.getElementById("workspace");
+    if (!targetSection) return;
+
+    const preview = document.createElement("section");
+    preview.className = "container";
+    preview.style.marginBottom = "24px";
+    preview.innerHTML = `
+      <div class="workspace-card">
+        <div class="section-head" style="margin-bottom:18px;">
+          <span class="label">Saved case preview</span>
+          <h2>Your most recent generated case material.</h2>
+          <p>This is pulled from the Start Your Case page so users can continue building their file instead of starting over.</p>
+        </div>
+        <div class="doc-stack">
+          <article class="doc-card">
+            <header>
+              <span class="doc-type">Summary</span>
+              <span class="status">Saved</span>
+            </header>
+            <p>${escapeHtml(payload.summary || "No summary saved yet.")}</p>
+          </article>
+          <article class="doc-card">
+            <header>
+              <span class="doc-type">Parties</span>
+              <span class="status">Saved</span>
+            </header>
+            <p>${escapeHtml(payload.parties || "No parties listed yet.")}</p>
+          </article>
+          <article class="doc-card">
+            <header>
+              <span class="doc-type">Records</span>
+              <span class="status">Saved</span>
+            </header>
+            <p>${escapeHtml(payload.records || "No records listed yet.")}</p>
+          </article>
+          <article class="doc-card">
+            <header>
+              <span class="doc-type">Next path</span>
+              <span class="status">Suggested</span>
+            </header>
+            <p>${escapeHtml(payload.likelyPath?.label || "Review the site guidance pages.")}</p>
+          </article>
         </div>
       </div>
-    </div>
-  `;
-}
+    `;
 
-function buildSummary() {
-  const caseType = getCaseType();
-  const province = getProvince();
-  const info = getGuidance();
-
-  const name = fields.name?.value.trim() || "Not provided";
-  const email = fields.email?.value.trim() || "Not provided";
-  const goal = fields.goal?.value.trim() || "Not provided";
-  const story = fields.story?.value.trim() || "Not provided";
-  const timeline = fields.timeline?.value.trim() || "Not provided";
-  const evidence = fields.evidence?.value.trim() || "Not provided";
-  const concerns = fields.concerns?.value.trim() || "Not provided";
-
-  return `COURTSIMPLIFIED ${caseType.toUpperCase()} SUMMARY
-
-Jurisdiction:
-${province}
-
-Case Type:
-${caseType}
-
-Your Name:
-${name}
-
-Email:
-${email}
-
-Main Goal:
-${goal}
-
-BACKGROUND / WHAT HAPPENED:
-${story}
-
-TIMELINE / IMPORTANT DATES:
-${timeline}
-
-EVIDENCE / PROOF AVAILABLE:
-${evidence}
-
-MAIN CONCERNS / ISSUES:
-${concerns}
-
-LIKELY COURT:
-${info.court}
-
-LIKELY FORM OR STARTING MATERIAL:
-${info.likelyForm}
-
-LIKELY NEXT STEPS:
-${(info.steps || []).map((step, index) => `${index + 1}. ${step}`).join("\n")}
-
-FILING NOTE:
-${info.filing}
-
-IMPORTANT NOTE:
-${info.note}
-
-GENERAL REMINDER:
-This summary is for organization and preparation only. CourtSimplified is not a law firm and does not provide legal advice.`;
-}
-
-function generateSummary() {
-  if (fields.summaryOutput) {
-    fields.summaryOutput.textContent = buildSummary();
-  }
-  renderProcessPanel();
-}
-
-function saveToBrowser() {
-  const payload = {
-    name: fields.name?.value || "",
-    email: fields.email?.value || "",
-    goal: fields.goal?.value || "",
-    story: fields.story?.value || "",
-    timeline: fields.timeline?.value || "",
-    evidence: fields.evidence?.value || "",
-    concerns: fields.concerns?.value || "",
-    province: getProvince(),
-    caseType: getCaseType(),
-    summary: buildSummary(),
-    savedAt: new Date().toISOString()
-  };
-
-  localStorage.setItem(getStorageKey(), JSON.stringify(payload));
-
-  if (fields.saveMessage) {
-    fields.saveMessage.textContent = "Saved in this browser.";
-  }
-}
-
-function restoreBrowserSave() {
-  const raw = localStorage.getItem(getStorageKey());
-
-  if (!raw) {
-    if (fields.summaryOutput) {
-      fields.summaryOutput.textContent = getDefaultOutput();
-    }
-    return;
+    targetSection.parentNode.insertBefore(preview, targetSection);
   }
 
-  try {
-    const payload = JSON.parse(raw);
-
-    if (fields.name) fields.name.value = payload.name || "";
-    if (fields.email) fields.email.value = payload.email || "";
-    if (fields.goal) fields.goal.value = payload.goal || "";
-    if (fields.story) fields.story.value = payload.story || "";
-    if (fields.timeline) fields.timeline.value = payload.timeline || "";
-    if (fields.evidence) fields.evidence.value = payload.evidence || "";
-    if (fields.concerns) fields.concerns.value = payload.concerns || "";
-    if (fields.provinceSelect) fields.provinceSelect.value = payload.province || "Ontario";
-    if (fields.summaryOutput) fields.summaryOutput.textContent = payload.summary || getDefaultOutput();
-  } catch (error) {
-    console.error("Restore failed:", error);
-    if (fields.summaryOutput) {
-      fields.summaryOutput.textContent = getDefaultOutput();
+  function setField(field, fieldValue) {
+    if (field && typeof fieldValue !== "undefined") {
+      field.value = fieldValue || "";
     }
   }
-}
 
-function clearForm() {
-  if (fields.name) fields.name.value = "";
-  if (fields.email) fields.email.value = "";
-  if (fields.goal) fields.goal.value = "";
-  if (fields.story) fields.story.value = "";
-  if (fields.timeline) fields.timeline.value = "";
-  if (fields.evidence) fields.evidence.value = "";
-  if (fields.concerns) fields.concerns.value = "";
-  if (fields.summaryOutput) fields.summaryOutput.textContent = getDefaultOutput();
-  if (fields.saveMessage) fields.saveMessage.textContent = "";
+  function value(field) {
+    return field?.value?.trim() || "";
+  }
 
-  localStorage.removeItem(getStorageKey());
-  renderProcessPanel();
-}
+  function includesAny(text, keywords) {
+    return keywords.some((keyword) => text.includes(keyword));
+  }
 
-function printSummary() {
-  generateSummary();
-  window.print();
-}
+  function normalizePhrase(text) {
+    return String(text).toLowerCase();
+  }
 
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+})();
