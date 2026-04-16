@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ontario Civil Court Guide | CourtSimplified</title>
+  <meta name="description" content="Ontario civil court guide for Superior Court of Justice claims beyond Small Claims. Learn the basic process, common forms, filing paths, simplified procedure, and what to organize before starting or defending a case." />
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --bg-soft: #fff3df;
+      --panel: #fffdf9;
+      --panel-2: #fff6e8;
+      --text: #2e241b;
+      --muted: #6b5b4c;
+      --line: #ecd9be;
+      --primary: #d97b17;
+      --primary-dark: #b86208;
+      --accent: #f3b24d;
+      --accent-soft: #ffe4b8;
+      --shadow: 0 10px 30px rgba(117, 76, 22, 0.10);
+      --radius: 22px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fff8ef 0%, #fff4e4 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 248, 239, 0.9);
+      border-bottom: 1px solid rgba(236, 217, 190, 0.75);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      box-shadow: 0 10px 30px rgba(117, 76, 22, 0.10);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover { color: var(--primary-dark); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: 0.96rem;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: 0 12px 24px rgba(205, 110, 11, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.62);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .hero { padding: 58px 0 26px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-side {
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(236, 217, 190, 0.9);
+      border-radius: 28px;
+      box-shadow: 0 10px 30px rgba(117, 76, 22, 0.10);
+    }
+
+    .hero-copy { padding: 36px; }
+    .hero-side { padding: 22px; display: grid; gap: 16px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8d520d;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      margin: 0 0 18px;
+      max-width: 66ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .stat-card,
+    .card,
+    .timeline-step {
+      background: linear-gradient(180deg, #fffdf9 0%, #fff6ea 100%);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(117, 76, 22, 0.10);
+    }
+
+    .stat-card { padding: 18px; }
+    .stat-card strong {
+      display: block;
+      font-size: 1.28rem;
+      line-height: 1.05;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+    .stat-card span { color: var(--muted); font-size: 0.92rem; }
+
+    section { padding: 24px 0 34px; }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 22px;
+    }
+
+    .section-head .label {
+      color: var(--primary-dark);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .card { padding: 22px; }
+    .card h3 { margin: 0 0 10px; font-size: 1.08rem; line-height: 1.2; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+
+    .icon-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffe4b8 0%, #f6c46f 100%);
+      color: #8d520d;
+      font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(217, 123, 23, 0.15);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-step {
+      padding: 22px;
+      position: relative;
+    }
+
+    .timeline-step .step-no {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      font-size: 0.82rem;
+      font-weight: 900;
+      color: #b68d52;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-step h3 { margin: 0 0 10px; font-size: 1.12rem; }
+    .timeline-step p { margin: 0; color: var(--muted); }
+
+    .feature-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .feature-list li { margin-bottom: 8px; }
+
+    .callout {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: #fff1d9;
+      border: 1px solid #efcf93;
+      color: #7d5410;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .forms-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+    }
+
+    .forms-table th,
+    .forms-table td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(236, 217, 190, 0.75);
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+
+    .forms-table th {
+      background: #fff3dd;
+      color: var(--text);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .forms-table tr:last-child td { border-bottom: 0; }
+
+    .quick-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quick-link {
+      display: block;
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.76);
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .quick-link small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.87rem;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .grid-4,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      .hero-copy,
+      .hero-side,
+      .card,
+      .timeline-step,
+      .stat-card { padding: 18px; }
+      h1 { font-size: 2.35rem; }
+      .forms-table,
+      .forms-table thead,
+      .forms-table tbody,
+      .forms-table th,
+      .forms-table td,
+      .forms-table tr {
+        display: block;
+        width: 100%;
+      }
+      .forms-table thead { display: none; }
+      .forms-table td {
+        border-bottom: 1px solid rgba(236, 217, 190, 0.75);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="CourtSimplified home">
+        <div class="brand-mark">CS</div>
+        <span>CourtSimplified</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="start-case.html">Start Your Case</a>
+        <a href="ontario-small-claims.html">Ontario Small Claims</a>
+        <a href="#forms">Forms</a>
+      </nav>
+      <a class="btn btn-primary" href="start-case.html">Start Your Case</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Ontario Superior Court guide page</div>
+          <h1>Ontario civil court, explained in a more usable way.</h1>
+          <p>
+            This page is for civil claims in the Ontario Superior Court of Justice that are outside Small Claims Court. It is built to help users understand the main path of a civil action, the core forms, the difference between ordinary process and simplified procedure, and what should be organized before starting or defending a case.
+          </p>
+          <p>
+            Ontario’s civil claims guidance explains the basic steps for cases started by statement of claim in the Superior Court of Justice, while the Rules of Civil Procedure forms page points users to Form 14A for a general Statement of Claim and Form 18A for a Statement of Defence. The civil court fee schedule separately lists a current issue fee of $220 for a statement of claim. 
+          </p>
+          <div class="hero-actions">
+            <a href="#steps" class="btn btn-primary">See the Steps</a>
+            <a href="#forms" class="btn btn-secondary">See Main Forms</a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="stat-card">
+            <strong>Superior Court of Justice</strong>
+            <span>Ontario civil claims outside Small Claims Court generally proceed here under the Rules of Civil Procedure.</span>
+          </div>
+          <div class="stat-card">
+            <strong>Form 14A</strong>
+            <span>General Statement of Claim form commonly used to start a civil action.</span>
+          </div>
+          <div class="stat-card">
+            <strong>$220 issue fee</strong>
+            <span>Current Ontario fee listed for issuing a statement of claim, subject to change.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="label">What this court path is for</span>
+          <h2>The main civil route for larger or more complex claims.</h2>
+          <p>
+            This path is commonly used when the matter is too large or too complex for Small Claims Court, or when the remedy being sought belongs in the Superior Court process. Ontario also has a simplified procedure stream for certain civil cases, intended to make some actions faster and less costly while still remaining within Superior Court.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon-badge">A</div>
+            <h3>More formal than Small Claims</h3>
+            <p>Users should expect more procedural steps, more detailed documents, and stronger pressure to organize pleadings, records, and timelines carefully from the beginning.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">B</div>
+            <h3>Can involve different tracks</h3>
+            <p>Some cases proceed under ordinary civil procedure, while certain claims may fit within Ontario’s simplified procedure stream depending on the type and amount of claim.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">C</div>
+            <h3>Preparation matters early</h3>
+            <p>The quality of the parties list, pleading, chronology, documents, and service steps can shape everything that follows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Main path</span>
+          <h2>The usual civil action flow in Ontario Superior Court.</h2>
+          <p>
+            Ontario’s civil claims guide describes a general action sequence that starts with a claim, requires service, allows time for a defence, and then moves into later civil procedure steps depending on how the case develops.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="step-no">STEP 01</div>
+            <h3>Prepare the civil claim</h3>
+            <p>
+              The claimant needs to identify the correct parties, explain the core facts, state the relief being sought, and choose the proper form of proceeding. For many actions, that means preparing a Statement of Claim.
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 02</div>
+            <h3>Issue or file the claim</h3>
+            <p>
+              Ontario allows many Superior Court civil documents to be filed online. The current fee regulation lists an issue fee for a statement of claim, and Ontario also provides a fee waiver process for eligible users.
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 03</div>
+            <h3>Serve the defendant</h3>
+            <p>
+              After issuance, the claim must be properly served. Service and proof of service are important because deadlines for the responding party and later procedure often depend on valid service.
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 04</div>
+            <h3>Defence or notice of intent to defend</h3>
+            <p>
+              The Form 14A claim text states that a defendant served in Ontario generally has 20 days to deliver a statement of defence, with longer periods if served elsewhere. It also notes that a Notice of Intent to Defend can provide 10 extra days to serve the defence.
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 05</div>
+            <h3>Move into the civil process</h3>
+            <p>
+              After pleadings, the case may move into additional civil steps such as case management, scheduling, motions, discovery-related steps, mediation requirements in some regions, pre-trial steps, or trial preparation, depending on the nature of the case.
+            </p>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-no">STEP 06</div>
+            <h3>Settlement, motion work, or trial</h3>
+            <p>
+              Many cases resolve before trial. Others continue through interlocutory steps, scheduling, and trial preparation. Users need to keep their chronology, records, and procedural calendar organized throughout the case.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="card">
+          <h3>Simplified procedure</h3>
+          <p>
+            Ontario describes simplified procedure as a streamlined and less costly process for certain civil cases in the Superior Court of Justice. This is an important route to explain on your site because some users may belong in Superior Court but still fit the simplified stream rather than the full ordinary process.
+          </p>
+          <ul class="feature-list">
+            <li>Still part of Superior Court civil litigation.</li>
+            <li>Designed to reduce cost and complexity for eligible cases.</li>
+            <li>Should be explained separately so users understand that “civil court” is not always one single process.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>What users should organize first</h3>
+          <ul class="feature-list">
+            <li>Correct legal names of all parties.</li>
+            <li>A short, dated chronology of the events.</li>
+            <li>Contracts, letters, emails, messages, invoices, photos, reports, and key records.</li>
+            <li>The remedy being sought, such as damages, declarations, or another civil order.</li>
+            <li>Any limitation issue, service concern, or urgent deadline.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="forms">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Main forms</span>
+          <h2>The core forms users usually need to understand first.</h2>
+          <p>
+            Ontario’s Rules of Civil Procedure forms page explains that many civil forms are used together. It specifically notes that a typical Statement of Claim requires a General Heading (Form 4A), Statement of Claim (Form 14A), and Backsheet (Form 4C).
+          </p>
+        </div>
+
+        <table class="forms-table" aria-label="Key Ontario civil forms">
+          <thead>
+            <tr>
+              <th>Form</th>
+              <th>What it is for</th>
+              <th>Why it matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Form 4A</strong><br>General Heading</td>
+              <td>Sets out the court heading for an action.</td>
+              <td>Ontario’s forms page says it is typically used together with a Statement of Claim in an action.</td>
+            </tr>
+            <tr>
+              <td><strong>Form 14A</strong><br>Statement of Claim (General)</td>
+              <td>Main form commonly used to start a general civil action.</td>
+              <td>The form itself contains defence deadlines and other key response language.</td>
+            </tr>
+            <tr>
+              <td><strong>Form 18A</strong><br>Statement of Defence</td>
+              <td>Main form commonly used by a defendant to respond to the claim.</td>
+              <td>It is one of the first forms a defending party needs to know about.</td>
+            </tr>
+            <tr>
+              <td><strong>Form 4C</strong><br>Backsheet</td>
+              <td>Backsheet often used as part of the civil document package.</td>
+              <td>Ontario’s forms page says many court documents also need a backsheet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="card">
+          <h3>How courts usually look at a civil action</h3>
+          <ul class="feature-list">
+            <li>Whether the right parties and legal relationship have been identified.</li>
+            <li>Whether the pleading clearly explains the material facts.</li>
+            <li>Whether the remedy being requested matches the facts and legal framework.</li>
+            <li>Whether records, communications, and dates support the case theory.</li>
+            <li>Whether deadlines, service rules, and procedural requirements were followed.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>How to frame this page safely</h3>
+          <ul class="feature-list">
+            <li>Explain process, forms, and structure.</li>
+            <li>Show common legal pathways like contract, negligence, property, or public law issues.</li>
+            <li>Do not say the user definitely has a claim or will succeed.</li>
+            <li>Keep the language educational and preparation-focused.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="callout">
+          Ontario’s current civil court fee page lists a fee of $220 for issuing a statement of claim, and Ontario also offers a fee waiver process for eligible court users. Fees and procedures can change, so users should always verify current requirements before filing.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div>
+          <div class="section-head">
+            <span class="label">Official starting points</span>
+            <h2>Useful links this page should connect to.</h2>
+            <p>
+              These are the main official Ontario sources that support this page and should be used by visitors to confirm the live process before filing.
+            </p>
+          </div>
+          <div class="quick-links">
+            <a class="quick-link" href="https://www.ontario.ca/page/civil-claims-suing-and-being-sued">
+              Ontario guide: civil claims, suing and being sued
+              <small>Official overview of the civil action process in Superior Court.</small>
+            </a>
+            <a class="quick-link" href="https://www.ontario.ca/page/civil-claims-simplified-procedure">
+              Ontario guide: civil claims simplified procedure
+              <small>Official explanation of Ontario’s simplified procedure stream.</small>
+            </a>
+            <a class="quick-link" href="https://www.ontario.ca/page/file-civil-or-divisional-court-documents-online">
+              File civil or Divisional Court documents online
+              <small>Official online filing information for civil court users.</small>
+            </a>
+            <a class="quick-link" href="https://ontariocourtforms.on.ca/en/rules-of-civil-procedure-forms/">
+              Ontario civil forms bank
+              <small>Current official forms for civil proceedings, including Forms 4A, 14A, 18A, and 4C.</small>
+            </a>
+            <a class="quick-link" href="https://www.ontario.ca/page/civil-court-fees">
+              Ontario civil court fees
+              <small>Official fee schedule for civil proceedings.</small>
+            </a>
+            <a class="quick-link" href="https://www.ontario.ca/page/have-your-court-fees-waived">
+              Fee waiver information
+              <small>Official Ontario page for users who may qualify for waived court fees.</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Important notice for your site</h3>
+          <p>
+            This page should be presented as a civil court process and preparation guide. It should help users understand pleadings, timelines, forms, and procedure, but it should not tell users what exact cause of action they have or whether they will win.
+          </p>
+          <div class="footer-note">
+            This page should always be treated as guided legal information, not legal advice. Users should verify the current rules, forms, fees, filing methods, and deadlines through official Ontario sources before filing.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
