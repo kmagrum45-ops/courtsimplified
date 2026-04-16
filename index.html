@@ -3,233 +3,822 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CourtSimplified | Navigate court with more clarity</title>
-  <meta
-    name="description"
-    content="CourtSimplified helps people without lawyers organize facts, evidence, and timelines for Family, Civil, and Small Claims matters."
-  />
-  <link rel="stylesheet" href="styles.css" />
+  <title>CourtSimplified | Understand Your Case. Prepare With Confidence.</title>
+  <meta name="description" content="CourtSimplified helps self-represented people organize their case, understand court processes, review legal principles, and prepare documents with confidence." />
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --bg-soft: #fff3df;
+      --panel: #fffdf9;
+      --panel-2: #fff6e8;
+      --text: #2e241b;
+      --muted: #6b5b4c;
+      --line: #ecd9be;
+      --primary: #d97b17;
+      --primary-dark: #b86208;
+      --accent: #f3b24d;
+      --accent-soft: #ffe4b8;
+      --success: #4f7d55;
+      --shadow: 0 10px 30px rgba(117, 76, 22, 0.10);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fff8ef 0%, #fff4e4 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 248, 239, 0.9);
+      border-bottom: 1px solid rgba(236, 217, 190, 0.75);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover { color: var(--primary-dark); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: 0.96rem;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: 0 12px 24px rgba(205, 110, 11, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.62);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      border-color: #e2c99f;
+    }
+
+    .hero {
+      padding: 64px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-panel {
+      background: rgba(255,255,255,0.52);
+      border: 1px solid rgba(236, 217, 190, 0.9);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8d520d;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.2rem, 4vw, 4.35rem);
+      line-height: 1.03;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      margin: 0 0 26px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero-point {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .hero-point strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .hero-point span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-panel {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .panel-card {
+      background: linear-gradient(180deg, #fffdf9 0%, #fff6ea 100%);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .panel-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .panel-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .mini-checklist {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .mini-checklist span {
+      color: var(--success);
+      margin-top: 1px;
+    }
+
+    .notice {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: #fff1d9;
+      border: 1px solid #efcf93;
+      color: #7d5410;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 22px;
+    }
+
+    .section-head .label {
+      color: var(--primary-dark);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .grid-3,
+    .grid-4,
+    .grid-2 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .card {
+      background: rgba(255,255,255,0.68);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+      line-height: 1.2;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .icon-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffe4b8 0%, #f6c46f 100%);
+      color: #8d520d;
+      font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(217, 123, 23, 0.15);
+    }
+
+    .steps .card { position: relative; }
+    .step-no {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      font-size: 0.84rem;
+      font-weight: 900;
+      color: #b68d52;
+      letter-spacing: 0.08em;
+    }
+
+    .feature-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .split-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .quote-box {
+      background: linear-gradient(180deg, #fff6e8 0%, #fffdfb 100%);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .quote-box blockquote {
+      margin: 0 0 16px;
+      font-size: 1.18rem;
+      line-height: 1.5;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+    }
+
+    .quote-box p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .disclaimer {
+      background: #fff4df;
+      border: 1px solid #ebcc97;
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .disclaimer strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .cta-band {
+      margin-top: 18px;
+      background: linear-gradient(135deg, #fff0d6 0%, #ffe6ba 100%);
+      border: 1px solid #efcf93;
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-band h3 {
+      margin: 0 0 8px;
+      font-size: 1.45rem;
+      line-height: 1.15;
+    }
+
+    .cta-band p {
+      margin: 0;
+      color: #6b5b4c;
+      max-width: 56ch;
+    }
+
+    footer {
+      padding: 30px 0 46px;
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .footer-grid h4 {
+      margin: 0 0 10px;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+
+    .footer-grid p,
+    .footer-grid a {
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      min-width: 46px;
+      min-height: 46px;
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .split-panel,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links,
+      .nav-actions .btn-secondary {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .card,
+      .quote-box,
+      .cta-band,
+      .disclaimer {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="dev-banner">
-    🚧 CourtSimplified is currently under development. Services are not active yet. Launching in the coming months.
-  </div>
-  <div class="banner-spacer"></div>
-
   <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="index.html" class="brand">
-        <span class="brand-mark">CS</span>
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="CourtSimplified home">
+        <div class="brand-mark">CS</div>
         <span>CourtSimplified</span>
       </a>
-      <nav class="nav">
-        <a href="#why">Why</a>
-        <a href="#how">How It Works</a>
-        <a href="#paths">Case Types</a>
-        <a href="#contact" class="nav-cta">Get Started</a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#page-map">Site Pages</a>
+        <a href="#resources">Resources</a>
       </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="#disclaimer">Important Notice</a>
+        <a class="btn btn-primary" href="#start">Start Your Case</a>
+        <button class="mobile-toggle" aria-label="Menu">☰</button>
+      </div>
     </div>
   </header>
 
-  <main>
+  <main id="top">
     <section class="hero">
-      <div class="container hero-shell home-hero">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="eyebrow">Legal preparation for people without lawyers</div>
-            <h1>Navigate the justice system with more structure and less confusion.</h1>
-            <p class="lead">
-              CourtSimplified is built for people trying to move through court without a lawyer, or before they can afford one. The goal is to turn scattered facts, screenshots, records, and notes into something clearer, more organized, and easier to work with.
-            </p>
-            <div class="hero-actions">
-              <a href="#paths" class="btn btn-primary">Choose Your Case Type</a>
-              <a href="#why" class="btn btn-secondary">Why We Built This</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Built for self-represented people and serious case preparation</div>
+          <h1>Understand your case.<br>Prepare with confidence.</h1>
+          <p>
+            CourtSimplified helps people organize facts, understand court process, review legal principles, explore relevant case law, and prepare documents in a clearer and more structured way.
+          </p>
+          <div class="hero-actions" id="start">
+            <a href="#features" class="btn btn-primary">Start Your Case</a>
+            <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+          </div>
+          <div class="hero-points">
+            <div class="hero-point">
+              <strong>Separate court pages</strong>
+              <span>Dedicated pages for Small Claims, Civil, Family, documents, and province-specific court guidance.</span>
             </div>
-            <p class="hero-note">
-              Clearer intake. Better summaries. A stronger starting point.
+            <div class="hero-point">
+              <strong>Doctrine and precedent</strong>
+              <span>Show users how courts analyze claims without telling them what to argue.</span>
+            </div>
+            <div class="hero-point">
+              <strong>Practical preparation</strong>
+              <span>Guide forms, filings, timelines, and next steps so users can begin right away.</span>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Key platform benefits">
+          <div class="panel-card">
+            <h3>What this site is built to do</h3>
+            <p>
+              Help users move from confusion to structure with plain-language explanations, guided preparation, and polished legal-style outputs.
+            </p>
+            <ul class="mini-checklist">
+              <li><span>●</span><div>Generate structured case summaries instead of repeating the user’s input.</div></li>
+              <li><span>●</span><div>Show legal principles like negligence, Charter analysis, procedure, and evidence concepts.</div></li>
+              <li><span>●</span><div>Guide users to forms, steps, timelines, and court resources by province.</div></li>
+            </ul>
+          </div>
+
+          <div class="panel-card">
+            <h3>Professional, careful, and clear</h3>
+            <p>
+              The tone is strong and credible, but it stays within proper boundaries by offering guidance, structure, and legal education rather than personal legal advice.
             </p>
           </div>
 
-          <aside class="hero-panel">
-            <div class="page-card">
-              <h3>What CourtSimplified is meant to do</h3>
-              <ul class="checklist">
-                <li>Help self-represented people understand the process better</li>
-                <li>Organize facts, timelines, and evidence more professionally</li>
-                <li>Give each case type its own guidance and intake system</li>
-                <li>Create a better foundation before filing or speaking to a lawyer</li>
-              </ul>
-            </div>
-
-            <div class="page-card">
-              <h3>Who it is for</h3>
-              <p>People handling Family, Civil, and Small Claims matters who need more clarity, more structure, and a more useful starting point than random notes and screenshots.</p>
-            </div>
-          </aside>
-        </div>
+          <div class="notice">
+            CourtSimplified does not provide legal advice or create a lawyer-client relationship. It is a guided legal information and preparation platform.
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section class="section soft-band" id="why">
+    <section id="how-it-works">
       <div class="container">
         <div class="section-head">
-          <h2>Why this site exists</h2>
+          <span class="label">How it works</span>
+          <h2>A better starting point for people trying to figure out court.</h2>
           <p>
-            Most people do not lose confidence because their case is unimportant. They lose confidence because the system is hard to follow, the forms feel overwhelming, and their evidence is not organized in a way that makes sense.
+            Instead of generic legal information, users are guided through a cleaner process that helps them understand what matters, what documents may be needed, and how courts generally analyze issues.
           </p>
         </div>
 
-        <div class="grid-3">
-          <article class="page-card">
-            <div class="icon">01</div>
-            <h3>Too much confusion</h3>
-            <p>People often do not know what form they need, what stage they are in, or what a judge will actually focus on.</p>
-          </article>
-
-          <article class="page-card">
-            <div class="icon">02</div>
-            <h3>Too much disorder</h3>
-            <p>Important facts get buried inside photos, documents, notes, messages, and screenshots with no clean structure.</p>
-          </article>
-
-          <article class="page-card">
-            <div class="icon">03</div>
-            <h3>Too little practical help</h3>
-            <p>Most sites either provide legal information or software. CourtSimplified is designed to connect those two things together.</p>
-          </article>
+        <div class="grid-3 steps">
+          <div class="card">
+            <div class="step-no">STEP 01</div>
+            <div class="icon-badge">01</div>
+            <h3>Enter the facts</h3>
+            <p>Users describe what happened, who is involved, key dates, and the documents they already have.</p>
+          </div>
+          <div class="card">
+            <div class="step-no">STEP 02</div>
+            <div class="icon-badge">02</div>
+            <h3>Get a structured legal-style output</h3>
+            <p>The platform organizes facts into a cleaner summary, timeline, issue list, and possible legal pathways courts commonly examine.</p>
+          </div>
+          <div class="card">
+            <div class="step-no">STEP 03</div>
+            <div class="icon-badge">03</div>
+            <h3>Prepare the next step</h3>
+            <p>Users are guided to forms, filing steps, procedural resources, and relevant legal principles so they can move forward with more confidence.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="how">
+    <section id="features">
       <div class="container">
         <div class="section-head">
-          <h2>How it works</h2>
+          <span class="label">Core features</span>
+          <h2>Built to feel helpful from the first click.</h2>
           <p>
-            Instead of one long page trying to do everything, each case type has its own page with practical information, official links, and a dedicated intake and summary system.
+            These are the features that make CourtSimplified feel more like a serious legal preparation tool instead of a basic information page.
           </p>
         </div>
 
         <div class="grid-4">
-          <article class="page-card">
-            <div class="step-number">1</div>
-            <h3>Choose your case type</h3>
-            <p>Start with Family Law, Civil Law, or Small Claims based on what your problem is actually about.</p>
+          <article class="card">
+            <div class="icon-badge">A</div>
+            <h3>Case Analyzer</h3>
+            <p>Transforms raw facts into a clear summary with issues, timeline, parties, and procedural focus.</p>
           </article>
-
-          <article class="page-card">
-            <div class="step-number">2</div>
-            <h3>Learn the basics</h3>
-            <p>Read process notes, common forms, and the things people often do not know until it is too late.</p>
+          <article class="card">
+            <div class="icon-badge">B</div>
+            <h3>Doctrine Explorer</h3>
+            <p>Explains how courts typically approach negligence, Charter issues, contract disputes, evidence, and procedure.</p>
           </article>
-
-          <article class="page-card">
-            <div class="step-number">3</div>
-            <h3>Use the intake</h3>
-            <p>Enter your facts, timeline, concerns, and evidence in a cleaner and more structured way.</p>
+          <article class="card">
+            <div class="icon-badge">C</div>
+            <h3>Case Law Guidance</h3>
+            <p>Surfaces precedent and plain-language reasoning so users understand the framework courts use.</p>
           </article>
-
-          <article class="page-card">
-            <div class="step-number">4</div>
-            <h3>Generate your summary</h3>
-            <p>Create a stronger case summary you can save, print, and continue improving.</p>
+          <article class="card">
+            <div class="icon-badge">D</div>
+            <h3>Forms and Document Prep</h3>
+            <p>Guides users through form completion and document structure so they are better prepared to file.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section soft-band" id="paths">
+    <section id="page-map">
       <div class="container">
         <div class="section-head">
-          <h2>Choose your path</h2>
+          <span class="label">Site map</span>
+          <h2>Built as a real multi-page court platform.</h2>
           <p>
-            Each section is built to feel more complete and more useful for that kind of matter.
+            CourtSimplified is being structured so users can move directly into the area they need instead of digging through one long page.
           </p>
         </div>
 
         <div class="grid-3">
-          <article class="page-card law-card family-card">
-            <span class="mini-label">Family Law</span>
-            <h3>Supportive and structured</h3>
-            <p>Parenting, support, decision-making, safety concerns, and family court process guidance.</p>
-            <div class="hero-actions" style="margin-top:18px;">
-              <a href="family.html" class="btn btn-primary">Go to Family Law</a>
-            </div>
-          </article>
-
-          <article class="page-card law-card civil-card">
-            <span class="mini-label">Civil Law</span>
-            <h3>More formal and evidence-focused</h3>
-            <p>Negligence, damages, disputes, and a clearer structure for larger claims and responsibility issues.</p>
-            <div class="hero-actions" style="margin-top:18px;">
-              <a href="civil.html" class="btn btn-primary">Go to Civil Law</a>
-            </div>
-          </article>
-
-          <article class="page-card law-card small-card">
-            <span class="mini-label">Small Claims</span>
-            <h3>Practical and direct</h3>
-            <p>Money, property, unpaid bills, broken agreements, and simple process guidance that actually helps.</p>
-            <div class="hero-actions" style="margin-top:18px;">
-              <a href="small-claims.html" class="btn btn-primary">Go to Small Claims</a>
-            </div>
-          </article>
+          <div class="card">
+            <div class="icon-badge">01</div>
+            <h3>Ontario Small Claims</h3>
+            <p>Claim limits, plaintiff claim steps, defence steps, serving, settlement conference, trial preparation, and court forms.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">02</div>
+            <h3>Ontario Civil</h3>
+            <p>Superior Court process guidance, claims beyond Small Claims, pleadings structure, timelines, motions, and core procedure.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">03</div>
+            <h3>Start Your Case</h3>
+            <p>A guided intake page where users enter facts and receive a structured summary, issue framing, and document-prep direction.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">04</div>
+            <h3>Documents and Forms</h3>
+            <p>A central place for generated summaries, organized case materials, and guided form completion.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">05</div>
+            <h3>Legal Principles Library</h3>
+            <p>Plain-language guidance on negligence, Charter issues, contract disputes, evidence basics, and procedural concepts.</p>
+          </div>
+          <div class="card">
+            <div class="icon-badge">06</div>
+            <h3>Case Law Explorer</h3>
+            <p>Relevant precedent summaries and doctrine pages that help users understand how courts usually reason through legal issues.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contact">
-      <div class="container grid-2">
-        <div class="page-card">
-          <h2>Start with the section that fits your case</h2>
+    <section id="principles">
+      <div class="container split-panel">
+        <div class="quote-box">
+          <blockquote>
+            “We do not tell people what their case is. We show them how courts analyze cases like theirs.”
+          </blockquote>
           <p>
-            The site is strongest when users go straight to the case type that matches their issue, then build from there.
+            This is the key difference. CourtSimplified is built to educate, organize, and guide users using legal principles and structure without crossing into personalized legal advice.
           </p>
-          <div class="hero-actions" style="margin-top:16px;">
-            <a href="family.html" class="btn" style="background: var(--brand); color: white;">Family Law</a>
-            <a href="civil.html" class="btn" style="background: var(--civil); color: white;">Civil Law</a>
-            <a href="small-claims.html" class="btn" style="background: var(--small); color: white;">Small Claims</a>
+        </div>
+
+        <div class="card">
+          <h3>What users can explore here</h3>
+          <p>
+            The platform can point users toward common legal frameworks and procedural ideas that often matter in court.
+          </p>
+          <ul class="feature-list">
+            <li>Negligence: duty, breach, causation, damages</li>
+            <li>Charter-based issues and public law concepts</li>
+            <li>Contract principles and document-based disputes</li>
+            <li>Civil procedure, filing order, and court process</li>
+            <li>Evidence themes, timelines, records, and credibility</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">What the full platform will include</span>
+          <h2>A complete site users can actually start using.</h2>
+          <p>
+            The final build should feel complete from day one, with clear destinations for different types of users and legal situations.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Main site sections</h3>
+            <ul class="feature-list">
+              <li>Homepage</li>
+              <li>Start Your Case</li>
+              <li>Ontario Small Claims</li>
+              <li>Ontario Civil</li>
+              <li>Documents and Forms</li>
+              <li>Legal Principles Library</li>
+              <li>Case Law Explorer</li>
+              <li>Province-by-Province Court Guides</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>High-value user outcomes</h3>
+            <ul class="feature-list">
+              <li>Understand what information matters most</li>
+              <li>Stop missing obvious procedural steps</li>
+              <li>Get organized before filing or responding</li>
+              <li>See how legal doctrine may shape the issue</li>
+              <li>Prepare cleaner, more court-ready material</li>
+            </ul>
           </div>
         </div>
 
-        <div class="page-card">
-          <h3>Important note</h3>
-          <p>
-            CourtSimplified is a legal preparation and organization platform. It is not a law firm and does not provide legal advice.
-          </p>
-          <p class="tiny">Current contact placeholder: k.magrum45@gmail.com</p>
+        <div class="cta-band">
+          <div>
+            <h3>Designed for real people facing real court problems.</h3>
+            <p>
+              Built from lived experience with court systems and the challenges people face when trying to understand procedure, documents, deadlines, and legal structure on their own.
+            </p>
+          </div>
+          <a href="#start" class="btn btn-primary">Begin Building Your Case</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="disclaimer">
+      <div class="container">
+        <div class="disclaimer">
+          <strong>Important notice</strong>
+          CourtSimplified provides legal information, educational guidance, document organization support, and general court process tools. It does not provide legal advice, does not determine what claims a user has, and is not a substitute for a lawyer. Users should consult a qualified legal professional for advice on their specific situation.
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container footer-card">
-      <div class="grid-3">
-        <div>
-          <h3>CourtSimplified</h3>
-          <p>Built to help people navigate court with more clarity and better structure.</p>
-        </div>
-        <div>
-          <h3>Sections</h3>
-          <ul class="footer-links">
-            <li><a href="family.html">Family Law</a></li>
-            <li><a href="civil.html">Civil Law</a></li>
-            <li><a href="small-claims.html">Small Claims</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3>Homepage</h3>
-          <ul class="footer-links">
-            <li><a href="#why">Why</a></li>
-            <li><a href="#how">How It Works</a></li>
-            <li><a href="#paths">Case Types</a></li>
-          </ul>
+    <div class="container footer-grid">
+      <div>
+        <h4>CourtSimplified</h4>
+        <p>
+          A guided legal information and preparation platform for people trying to understand court process, organize their case, and move forward with more confidence.
+        </p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="#how-it-works">How It Works</a>
+          <a href="#features">Features</a>
+          <a href="#principles">Legal Principles</a>
+          <a href="#resources">Resources</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 CourtSimplified. All rights reserved.</p>
-        <p>Under active development.</p>
+      <div>
+        <h4>Note</h4>
+        <p>
+          This homepage is now framed as the central hub for a full multi-page site. The next step is building the Start Your Case page, then the Ontario Small Claims page.
+        </p>
       </div>
     </div>
   </footer>
